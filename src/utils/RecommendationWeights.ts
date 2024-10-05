@@ -1,8 +1,8 @@
 import { ITrackValues } from "../types/ITrackModel";
 
 export const WEIGHTS: ITrackValues = {
-    key: 1.2,
-    mode: 1,
+    key: 5,
+    mode: 5,
     durationMs: 0.8,
     tempo: 1,
     danceability: 0.8,
