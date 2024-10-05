@@ -7,33 +7,33 @@ interface IPlotPoint {
 }
 
 const NO_DATA = {
-  datasets: [],
+    datasets: [],
 };
 
 const KEYS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
-  if (!tracks) return NO_DATA;
+    if (!tracks) return NO_DATA;
 
-  var majorSongs = tracks.filter((x) => x.mode === 1);
-  var minorSongs = tracks.filter((x) => x.mode === 0);
+    var majorSongs = tracks.filter((x) => x.mode === 1);
+    var minorSongs = tracks.filter((x) => x.mode === 0);
 
-  const majorCounts = getKeys(majorSongs);
-  const minorCounts = getKeys(minorSongs);
+    const majorCounts = getKeys(majorSongs);
+    const minorCounts = getKeys(minorSongs);
 
-  return {
-    labels: ['C', 'C♯, D♭', 'D', 'D♯, E♭', 'E', 'F', 'F♯, G♭', 'G', 'G♯, A♭', 'A', 'A♯, B♭', 'B'],
-    datasets: [
-        {
-            label: 'Moll',
-            data: minorCounts,
-        },
-        {
-            label: 'Dur',
-            data: majorCounts,
-        },
-    ],
-  };
+    return {
+        labels: ['C', 'C♯, D♭', 'D', 'D♯, E♭', 'E', 'F', 'F♯, G♭', 'G', 'G♯, A♭', 'A', 'A♯, B♭', 'B'],
+        datasets: [
+            {
+                label: 'Moll',
+                data: minorCounts,
+            },
+            {
+                label: 'Dur',
+                data: majorCounts,
+            },
+        ],
+    };
 }
 
 export function getTempoEnergyDataset(tracks?: ITrackModel[]): ChartData<'scatter'> {
@@ -44,9 +44,9 @@ export function getTempoEnergyDataset(tracks?: ITrackModel[]): ChartData<'scatte
             data: getTempoEnergy(tracks),
         }]
     };
-  }
+}
 
-  export function getDanceabilityValenceDataset(tracks?: ITrackModel[]): ChartData<'scatter'> {
+export function getDanceabilityValenceDataset(tracks?: ITrackModel[]): ChartData<'scatter'> {
     if (!tracks) return NO_DATA;
     return {
         labels: getLabels(tracks),
@@ -54,22 +54,22 @@ export function getTempoEnergyDataset(tracks?: ITrackModel[]): ChartData<'scatte
             data: getDanceabilityValence(tracks),
         }]
     };
-  }
+}
 
-  
+
 
 function getKeys(tracks: ITrackModel[]): Array<number> {
-  const counts = [...KEYS];
-  tracks.forEach((t) => counts[t.key]++);
-  return counts;
+    const counts = [...KEYS];
+    tracks.forEach((t) => counts[t.key]++);
+    return counts;
 }
 
 function getTempoEnergy(tracks: ITrackModel[]): Array<IPlotPoint> {
-    return project(tracks, (t) => ({ x: t.tempo, y: t.energy}));
+    return project(tracks, (t) => ({ x: t.tempo, y: t.energy }));
 }
 
 function getDanceabilityValence(tracks: ITrackModel[]): Array<IPlotPoint> {
-    return project(tracks, (t) => ({ x: t.danceability, y: t.valence}));
+    return project(tracks, (t) => ({ x: t.danceability, y: t.valence }));
 }
 
 function project(tracks: ITrackModel[], projection: (t: ITrackModel) => IPlotPoint): Array<IPlotPoint> {
@@ -83,4 +83,3 @@ function getLabels(tracks: ITrackModel[]): Array<string> {
     tracks.forEach((t, i) => values[i] = `${t.artistName} - ${t.name}`);
     return values;
 }
-  

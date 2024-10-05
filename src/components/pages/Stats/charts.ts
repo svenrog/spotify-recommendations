@@ -1,13 +1,13 @@
 import {
-  Chart,
-  Colors,
-  PointElement,
-  LineElement,
-  LinearScale,
-  RadialLinearScale,
-  CategoryScale,
-  Legend,
-  Filler,
+    Chart,
+    Colors,
+    PointElement,
+    LineElement,
+    LinearScale,
+    RadialLinearScale,
+    CategoryScale,
+    Legend,
+    Filler,
 } from 'chart.js';
 
 Chart.defaults.backgroundColor = '#9BD0F5';
@@ -19,11 +19,11 @@ Chart.defaults.scale.ticks.backdropPadding = 4;
 
 Chart.register(Colors);
 Chart.register(
-  RadialLinearScale,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Legend,
-  Filler
+    RadialLinearScale,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Legend,
+    Filler
 );

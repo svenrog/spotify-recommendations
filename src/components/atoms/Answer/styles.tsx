@@ -1,9 +1,9 @@
 import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
 
 export const Container = styled.button<{
-  $selected?: boolean;
-  $deemphasize?: boolean;
-  $css?: FlattenSimpleInterpolation;
+    $selected?: boolean;
+    $deemphasize?: boolean;
+    $css?: FlattenSimpleInterpolation;
 }>`
   width: 100%;
   color: #ffffffdd;
@@ -23,16 +23,16 @@ export const Container = styled.button<{
   }
 
   ${(props) =>
-    props.$selected &&
-    css`
+        props.$selected &&
+        css`
       color: #fff;
       background-color: #90ee90cc !important;
       text-shadow: 2px 2px #00000033;
     `}
 
   ${(props) =>
-    props.$deemphasize &&
-    css`
+        props.$deemphasize &&
+        css`
       font-size: 1rem;
       padding: 14px;
       color: rgba(255, 255, 255, 0.8);

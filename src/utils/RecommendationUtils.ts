@@ -5,13 +5,13 @@ import { DURATION_MAX, IRecommendationProfile, KEY_DIVISOR, KEY_MAX, TEMPO_MAX, 
 import { WEIGHTS } from "./RecommendationWeights";
 
 export function sortTracks(tracks?: ITrackModel[], profile?: IRecommendationProfile | null): ITrackModel[] {
-   if (!tracks) return [];
-   if (!profile) return tracks;
+    if (!tracks) return [];
+    if (!profile) return tracks;
 
-   // Consider collecting data bounds (min/max) for normalization.
+    // Consider collecting data bounds (min/max) for normalization.
 
-   tracks = filterTracks(tracks, profile);
-   return tracks.sort((a, b) => getTrackDistance(a, profile) - getTrackDistance(b, profile))
+    tracks = filterTracks(tracks, profile);
+    return tracks.sort((a, b) => getTrackDistance(a, profile) - getTrackDistance(b, profile))
 }
 
 export function mapRecommendationProfile(context: IRecommendationContext): IRecommendationProfile {
@@ -37,25 +37,25 @@ function getTrackDistance(track: ITrackModel, profile: IRecommendationProfile) {
     distance += (getDistance(track.durationMs, profile.duration) / DURATION_MAX) * WEIGHTS.durationMs;
     distance += getDistance(track.energy, profile.energy) * WEIGHTS.energy;
     distance += getDistance(track.danceability, profile.danceability) * WEIGHTS.danceability;
-    distance += getDistance(track.acousticness, profile.acousticness) * WEIGHTS.acousticness;   
+    distance += getDistance(track.acousticness, profile.acousticness) * WEIGHTS.acousticness;
     distance += getDistance(track.instrumentalness, profile.instrumentalness) * WEIGHTS.instrumentalness;
 
     return distance;
 }
 
 function filterTracks(tracks: ITrackModel[], profile: IRecommendationProfile): ITrackModel[] {
-   
-    return tracks.filter((track) => filterTrack(track, profile))
- }
 
-function filterTrack(track: ITrackModel, profile: IRecommendationProfile) { 
-    return shouldFilter(track.key, profile.key) || 
-    shouldFilter(track.mode, profile.mode) ||
-    shouldFilter(track.durationMs, profile.duration) ||
-    shouldFilter(track.tempo, profile.tempo) ||
-    shouldFilter(track.acousticness, profile.acousticness) ||
-    shouldFilter(track.danceability, profile.danceability) ||
-    shouldFilter(track.energy, profile.energy) ||
-    shouldFilter(track.instrumentalness, profile.instrumentalness) ||
-    shouldFilter(track.valence, profile.valence);
+    return tracks.filter((track) => filterTrack(track, profile))
+}
+
+function filterTrack(track: ITrackModel, profile: IRecommendationProfile) {
+    return shouldFilter(track.key, profile.key) ||
+        shouldFilter(track.mode, profile.mode) ||
+        shouldFilter(track.durationMs, profile.duration) ||
+        shouldFilter(track.tempo, profile.tempo) ||
+        shouldFilter(track.acousticness, profile.acousticness) ||
+        shouldFilter(track.danceability, profile.danceability) ||
+        shouldFilter(track.energy, profile.energy) ||
+        shouldFilter(track.instrumentalness, profile.instrumentalness) ||
+        shouldFilter(track.valence, profile.valence);
 }

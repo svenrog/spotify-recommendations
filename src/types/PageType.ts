@@ -8,4 +8,4 @@ export type PageType = {
     title: string;
     color: string;
     hide?: boolean;
-  };
+};
