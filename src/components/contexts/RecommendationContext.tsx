@@ -31,7 +31,6 @@ interface Props {
 
 function RecommendationContextProvider({ children }: Props) {
   const [duration, setDuration] = useState<IValueSpace>({
-    base: 180_000,
     min: 0,
     max: DURATION_MAX,
   });

@@ -18,7 +18,7 @@ const pages: PageType[] = [
           modifier: [
             { type: 'set', property: 'key', base: 0 },
             { type: 'set', property: 'mode', base: 1 },
-            { type: 'set', property: 'valence', base: 0.75, min: 0.5 },
+            { type: 'set', property: 'valence', base: 0.9, min: 0.5 },
           ],
         },
         {
@@ -26,6 +26,7 @@ const pages: PageType[] = [
           modifier: [
             { type: 'set', property: 'key', base: 10 },
             { type: 'set', property: 'mode', base: 0 },
+            { type: 'set', property: 'valence', base: 0.6, min: 0.2, max: 0.8 },
           ],
         },
         {
@@ -33,6 +34,7 @@ const pages: PageType[] = [
           modifier: [
             { type: 'set', property: 'key', base: 3 },
             { type: 'set', property: 'mode', base: 1 },
+            { type: 'set', property: 'valence', base: 0.5, min: 0.2, max: 0.6 },
           ],
         },
         {
@@ -40,20 +42,21 @@ const pages: PageType[] = [
           modifier: [
             { type: 'set', property: 'key', base: 2 },
             { type: 'set', property: 'mode', base: 1 },
+            { type: 'set', property: 'valence', base: 0.9, min: 0.3, max: 0.6 },
           ],
         },
         {
           text: 'Dystert',
           modifier: [
             { type: 'set', property: 'mode', base: 1 },
-            { type: 'set', property: 'valence', base: 0.45, max: 0.65 },
+            { type: 'set', property: 'valence', base: 0.35, max: 0.5 },
           ],
         },
         {
           text: 'Ledset',
           modifier: [
             { type: 'set', property: 'mode', base: 1 },
-            { type: 'set', property: 'valence', base: 0.25, max: 0.4 },
+            { type: 'set', property: 'valence', base: 0.1, max: 0.4 },
           ],
         },
         { text: 'Hoppa över', deemphasize: true },
@@ -158,7 +161,7 @@ const pages: PageType[] = [
         {
           text: 'Jätteviktigt',
           modifier: [
-            { type: 'set', property: 'danceability', min: 0.6, base: 0.8 },
+            { type: 'set', property: 'danceability', min: 0.6, base: 0.9 },
           ],
         },
         {
@@ -232,8 +235,8 @@ const pages: PageType[] = [
               type: 'set',
               property: 'duration',
               min: 180_000,
-              base: 340_000,
-              max: 500_000,
+              base: 400_000,
+              max: 800_000,
             },
           ],
         },
@@ -244,7 +247,7 @@ const pages: PageType[] = [
               type: 'set',
               property: 'duration',
               min: 180_000,
-              base: 500_000,
+              base: 800_000,
             },
           ],
         },
