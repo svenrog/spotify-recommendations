@@ -27,11 +27,11 @@ export function shouldFilter(value: number, space: IValueSpace): boolean {
 }
 
 export function getDistance(value: number, space: IValueSpace): number {
-    if (!space.base) return 0;
+    if (space.base === undefined) return 0;
     return Math.abs(space.base - value);
 }
 
 export function getRotationalDistance(value: number, space: IValueSpace, max: number): number {
-    if (!space.base) return 0;
+    if (space.base === undefined) return 0;
     return Math.min(Math.abs(space.base - value), Math.abs(space.base - max - value))
 }

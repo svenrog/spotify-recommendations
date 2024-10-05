@@ -5,7 +5,10 @@ import { ResultContent } from '../../../types/ResultContent';
 import { Title } from '../Question/styles';
 import { Container, Description } from './styles';
 import { Wrapper } from '../Page/styles';
-import { sortTracks } from '../../../utils/RecommendationUtils';
+import {
+  mapRecommendationProfile,
+  sortTracks,
+} from '../../../utils/RecommendationUtils';
 import SpotifyEmbed from '../../atoms/SpotifyEmbed';
 import { tracks } from '../../../data/tracks';
 
@@ -15,9 +18,9 @@ function Result({ page }: PageComponent) {
     () => sortTracks(tracks, recommendations),
     [recommendations, tracks]
   );
-
   const track = result[0];
   const content = page.content as ResultContent;
+
   return (
     <Wrapper color={page.color}>
       <Container>
