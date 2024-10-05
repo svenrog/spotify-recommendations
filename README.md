@@ -19,6 +19,11 @@ This guide has been tested using `Node.js` version `20.5.0`, other versions migh
 
 - To build the project for distribution run `npm run build`.
 
+## Recommended extensions for VSCode or Cursor
+
+- vscode-styled-components
+- prettier
+
 ## Package maintainer
 
 https://github.com/svenrog

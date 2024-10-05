@@ -1,7 +1,8 @@
 import { PageComponent } from '../../../types/PageComponent';
 import { ResultContent } from '../../../types/ResultContent';
 import { Title } from '../Question/styles';
-import { Container, Graph, Graphs, Subtitle, Wrapper } from './styles';
+import { Container, Graph, Graphs, Subtitle } from './styles';
+import { Wrapper } from '../Page/styles';
 import { tracks } from '../../../data/tracks';
 import { Radar, Scatter } from 'react-chartjs-2';
 import { useMemo } from 'react';
