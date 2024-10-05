@@ -34,19 +34,19 @@ const NavLink = styled.a`
 `;
 
 function Navigation() {
-  return (
-    <Wrapper>
-      <Nav>
-        {pages
-          .filter((x) => !x.hide)
-          .map((page, index) => (
-            <NavLink as={Link} key={index} to={page.path}>
-              {page.title}
-            </NavLink>
-          ))}
-      </Nav>
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <Nav>
+                {pages
+                    .filter((x) => !x.hide)
+                    .map((page, index) => (
+                        <NavLink as={Link} key={index} to={page.path}>
+                            {page.title}
+                        </NavLink>
+                    ))}
+            </Nav>
+        </Wrapper>
+    );
 }
 
 export { Navigation };

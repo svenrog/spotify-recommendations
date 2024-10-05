@@ -22,7 +22,6 @@ This guide has been tested using `Node.js` version `20.5.0`, other versions migh
 ## Recommended extensions for VSCode or Cursor
 
 - vscode-styled-components
-- prettier
 
 ## Package maintainer
 

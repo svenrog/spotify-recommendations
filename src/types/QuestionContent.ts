@@ -10,4 +10,3 @@ export type AnswerContent = {
     modifier?: IValueModifier[];
     deemphasize?: boolean;
 }
-

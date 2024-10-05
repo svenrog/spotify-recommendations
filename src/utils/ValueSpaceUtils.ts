@@ -8,14 +8,14 @@ function add(a?: number, b?: number): number | undefined {
 
 export function adjustValueSpace(value: IValueSpace, diff?: IValueSpace): IValueSpace {
     if (!diff) return value;
-    return { min: add(value.min, diff.min), max: add(value.max, diff.max), base: add(value.base, diff.base)}
+    return { min: add(value.min, diff.min), max: add(value.max, diff.max), base: add(value.base, diff.base) }
 }
 
 export function setValueSpace(oldValue: IValueSpace, newValue?: IValueSpace): IValueSpace {
     if (!newValue) return oldValue;
-    return { 
-        min: newValue?.min ?? oldValue?.min, 
-        max: newValue?.max ?? oldValue.max, 
+    return {
+        min: newValue?.min ?? oldValue?.min,
+        max: newValue?.max ?? oldValue.max,
         base: newValue?.base ?? oldValue.base
     }
 }

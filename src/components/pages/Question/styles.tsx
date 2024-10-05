@@ -6,8 +6,8 @@ export const Container = styled.nav<{ $hasSelection?: boolean }>`
   width: 100%;
 
   ${(props) =>
-    props.$hasSelection &&
-    css`
+        props.$hasSelection &&
+        css`
       pointer-events: none;
       cursor: default !important;
     `}
