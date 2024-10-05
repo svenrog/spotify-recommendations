@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 100px 48px 48px 48px;
+  padding: 100px 26px 26px 26px;
   width: 100%;
 `;
 

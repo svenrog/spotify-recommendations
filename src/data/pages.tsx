@@ -104,18 +104,18 @@ const pages: PageType[] = [
     content: {
       question: (
         <>
-          Vilken musikalisk <em>intensitet</em> söker du efter?
+          Vilken musikalisk <em>intensitet</em> är du ute efter?
         </>
       ),
       answers: [
         {
-          text: 'Nej... inte så intensivt faktiskt.',
+          text: 'Nej... inte så intensivt faktiskt',
           modifier: [
             { type: 'set', property: 'energy', min: 0, base: 0.25, max: 0.45 },
           ],
         },
         {
-          text: 'Mittemellan klarar jag mig med.',
+          text: 'Mittemellan klarar jag mig med',
           modifier: [
             {
               type: 'set',
@@ -127,13 +127,13 @@ const pages: PageType[] = [
           ],
         },
         {
-          text: 'Jo men lite intensivt får det nog vara.',
+          text: 'Jo men lite intensivt får det nog vara',
           modifier: [
             { type: 'set', property: 'energy', min: 0.5, base: 0.75, max: 0.8 },
           ],
         },
         {
-          text: 'Mycket intensivt.',
+          text: 'Mycket intensivt!',
           modifier: [
             { type: 'set', property: 'energy', min: 0.6, base: 1, max: 1 },
           ],
