@@ -8,10 +8,10 @@ This is a demo project showcasing a rudimentary recommendation system for educat
 
 The following steps are required to set up, build and run the project.
 
-This guide requires [NodeJS](https://nodejs.org/) to run.
+This guide requires [Node.js](https://nodejs.org/) to run.
 Make sure to install [NVM](https://github.com/coreybutler/nvm-windows/releases) beforehand.
 
-This guide has been tested using `NodeJs` version `20.5.0`, other versions might work but results may vary.
+This guide has been tested using `Node.js` version `20.5.0`, other versions might work but results may vary.
 
 - To install all modules open a terminal in this folder and run `npm install`.
 
