@@ -1,11 +1,5 @@
 import { IValueSpace } from "../types/IValueSpace";
 
-function add(a?: number, b?: number): number | undefined {
-    if (b === undefined) return a;
-    if (a === undefined) return undefined;
-    return a + b;
-}
-
 export function adjustValueSpace(value: IValueSpace, diff?: IValueSpace): IValueSpace {
     if (!diff) return value;
     return { min: add(value.min, diff.min), max: add(value.max, diff.max), base: add(value.base, diff.base) }
@@ -13,10 +7,13 @@ export function adjustValueSpace(value: IValueSpace, diff?: IValueSpace): IValue
 
 export function setValueSpace(oldValue: IValueSpace, newValue?: IValueSpace): IValueSpace {
     if (!newValue) return oldValue;
+
+    // Previously this used the old values if the new where undefined
+    // this causes propblems when a user steps back and gives another answer
     return {
-        min: newValue?.min ?? oldValue?.min,
-        max: newValue?.max ?? oldValue.max,
-        base: newValue?.base ?? oldValue.base
+        min: newValue.min,
+        max: newValue.max,
+        base: newValue.base
     }
 }
 
@@ -34,4 +31,10 @@ export function getDistance(value: number, space: IValueSpace): number {
 export function getRotationalDistance(value: number, space: IValueSpace, max: number): number {
     if (space.base === undefined) return 0;
     return Math.min(Math.abs(space.base - value), Math.abs(space.base - max - value))
+}
+
+function add(a?: number, b?: number): number | undefined {
+    if (b === undefined) return a;
+    if (a === undefined) return undefined;
+    return a + b;
 }
