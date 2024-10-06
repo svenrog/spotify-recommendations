@@ -42,7 +42,6 @@ export function mapTrackValues(track: ITrackModel): ITrackValues {
     }
 }
 
-
 export function getTrackDistance(track: ITrackModel, profile: IRecommendationProfile) {
     let distance = 0;
 

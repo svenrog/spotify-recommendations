@@ -8,6 +8,7 @@ import {
     CategoryScale,
     Legend,
     Filler,
+    Tooltip
 } from 'chart.js';
 
 Chart.defaults.backgroundColor = '#9BD0F5';
@@ -24,5 +25,6 @@ Chart.register(
     PointElement,
     LineElement,
     Legend,
-    Filler
+    Filler,
+    Tooltip
 );

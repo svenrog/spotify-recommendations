@@ -8,8 +8,10 @@ import { Radar, Scatter } from 'react-chartjs-2';
 import { useMemo } from 'react';
 import {
     getDanceabilityValenceDataset,
+    getDurationTempoDataset,
     getKeyModeDataset,
     getTempoEnergyDataset,
+    getTime,
 } from '../../../utils/ChartUtils';
 import './charts'; // Setup defaults for chart component
 
@@ -22,6 +24,10 @@ function Stats({ page }: PageComponent) {
     );
     const danceabilityValenceData = useMemo(
         () => getDanceabilityValenceDataset(tracks),
+        [tracks]
+    );
+    const durationTempoData = useMemo(
+        () => getDurationTempoDataset(tracks),
         [tracks]
     );
 
@@ -42,7 +48,14 @@ function Stats({ page }: PageComponent) {
                                 plugins: {
                                     legend: {
                                         display: false,
-                                    },
+                                    }
+                                },
+                                scales: {
+                                    x: {
+                                        ticks: {
+                                            callback: (value) => `${value} BPM`,
+                                        }
+                                    }
                                 },
                             }}
                         />
@@ -57,6 +70,29 @@ function Stats({ page }: PageComponent) {
                                         display: false,
                                     },
                                 },
+                            }}
+                        />
+                    </Graph>
+                    <Graph>
+                        <Subtitle>Låtlängd och tempo</Subtitle>
+                        <Scatter
+                            data={durationTempoData}
+                            options={{
+                                plugins: {
+                                    legend: {
+                                        display: false,
+                                    },
+                                },
+                                scales: {
+                                    x: {
+                                        ticks: {
+                                            callback: function (value) {
+                                                const { minutes, seconds } = getTime(value as number);
+                                                return `${minutes}:${seconds}`
+                                            }
+                                        }
+                                    }
+                                }
                             }}
                         />
                     </Graph>

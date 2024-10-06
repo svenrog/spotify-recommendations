@@ -49,7 +49,7 @@ const pages: PageType[] = [
                     text: 'Dystert',
                     modifier: [
                         { type: 'set', property: 'mode', base: 0, max: 0 },
-                        { type: 'set', property: 'valence', base: 0.35, max: 0.5 },
+                        { type: 'set', property: 'valence', base: 0.3, max: 0.5 },
                     ],
                 },
                 {
@@ -77,23 +77,23 @@ const pages: PageType[] = [
             answers: [
                 {
                     text: 'Långsamt och avkopplande',
-                    modifier: [{ type: 'set', property: 'tempo', base: 60, max: 100 }],
+                    modifier: [{ type: 'set', property: 'tempo', base: 65, max: 100 }],
                 },
                 {
                     text: 'Mittemellan',
                     modifier: [
-                        { type: 'set', property: 'tempo', min: 65, base: 110, max: 140 },
+                        { type: 'set', property: 'tempo', min: 65, base: 100, max: 140 },
                     ],
                 },
                 {
                     text: 'Snabbt',
                     modifier: [
-                        { type: 'set', property: 'tempo', min: 100, base: 130, max: 160 },
+                        { type: 'set', property: 'tempo', min: 100, base: 140, max: 160 },
                     ],
                 },
                 {
                     text: 'Vad är det snabbaste ni har?',
-                    modifier: [{ type: 'set', property: 'tempo', min: 110, base: 160 }],
+                    modifier: [{ type: 'set', property: 'tempo', min: 110, base: 180 }],
                 },
                 { text: 'Hoppa över', deemphasize: true },
             ],
@@ -112,13 +112,13 @@ const pages: PageType[] = [
             ),
             answers: [
                 {
-                    text: 'Nej... inte så intensivt faktiskt',
+                    text: 'Inte så intensivt, faktiskt',
                     modifier: [
                         { type: 'set', property: 'energy', min: 0, base: 0.25, max: 0.45 },
                     ],
                 },
                 {
-                    text: 'Mittemellan klarar jag mig med',
+                    text: 'Lagom klarar jag mig med',
                     modifier: [
                         {
                             type: 'set',
@@ -130,13 +130,13 @@ const pages: PageType[] = [
                     ],
                 },
                 {
-                    text: 'Jo men lite intensivt får det nog vara',
+                    text: 'Lite intensivt får det nog vara',
                     modifier: [
                         { type: 'set', property: 'energy', min: 0.5, base: 0.75, max: 0.8 },
                     ],
                 },
                 {
-                    text: 'Mycket intensivt!',
+                    text: 'MYCKET!',
                     modifier: [
                         { type: 'set', property: 'energy', min: 0.6, base: 1, max: 1 },
                     ],
@@ -154,7 +154,7 @@ const pages: PageType[] = [
         content: {
             question: (
                 <>
-                    Hur viktigt är det att <em>dansa</em> till musiken?
+                    Hur viktigt är det att kunna <em>dansa</em> till musiken?
                 </>
             ),
             answers: [
@@ -171,25 +171,25 @@ const pages: PageType[] = [
                     ],
                 },
                 {
-                    text: 'Sådär',
+                    text: 'Sådär...',
                     modifier: [
                         {
                             type: 'set',
                             property: 'danceability',
                             min: 0.25,
-                            base: 0.5,
+                            base: 0.4,
                             max: 0.75,
                         },
                     ],
                 },
                 {
-                    text: 'Absolut inte',
+                    text: 'Vill absolut inte dansa',
                     modifier: [
                         {
                             type: 'set',
                             property: 'danceability',
                             min: 0,
-                            base: 0.1,
+                            base: 0.15,
                             max: 0.5,
                         },
                     ],
@@ -223,8 +223,8 @@ const pages: PageType[] = [
                             type: 'set',
                             property: 'duration',
                             min: 120_000,
-                            base: 180_000,
-                            max: 360_000,
+                            base: 200_000,
+                            max: 400_000,
                         },
                     ],
                 },
@@ -247,7 +247,7 @@ const pages: PageType[] = [
                             type: 'set',
                             property: 'duration',
                             min: 180_000,
-                            base: 800_000,
+                            base: 520_000,
                         },
                     ],
                 },
