@@ -1,13 +1,9 @@
 import React, { createContext, useState } from 'react';
 import { IValueSpace } from '../../types/IValueSpace';
 import {
-    DURATION_MAX,
     IRecommendationProfile,
-    KEY_INVALID,
-    KEY_MAX,
-    TEMPO_MAX,
-    TEMPO_MIN,
 } from '../../types/IRecommendationProfile';
+import { DURATION_MAX, KEY_INVALID, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from '../../utils/RecommendationWeights';
 
 export interface IRecommendationContext extends IRecommendationProfile {
     setDuration: React.Dispatch<IValueSpace>;

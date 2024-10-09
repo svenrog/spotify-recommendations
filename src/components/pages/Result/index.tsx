@@ -7,6 +7,7 @@ import { Container, Description } from './styles';
 import { Wrapper } from '../Page/styles';
 import {
     getTrackDistance,
+    getTrackDistances,
     mapRecommendationProfile,
     mapTrackValues,
     sortTracks,
@@ -20,15 +21,18 @@ function Result({ page }: PageComponent) {
         () => sortTracks(tracks, recommendations),
         [recommendations]
     );
-    const track = result[0];
+    const track = useMemo(
+        () => result.shift(),
+        [recommendations]
+    );
     const content = page.content as ResultContent;
 
     if (recommendations) {
-        const top3 = result.slice(0, 3);
+        const top = [track!, ...result.slice(0, 2)];
         console.log('Recommendation profile', mapRecommendationProfile(recommendations));
-        console.log('Top 3 recommendations');
+        console.log(`Top ${top.length} recommendations (out of ${result.length + 1})`);
         console.log('---');
-        top3.forEach(t => console.log(`${t.name}`, 'score', getTrackDistance(t, recommendations), mapTrackValues(t)));
+        top.forEach(t => console.log(`${t.name}`, 'score', getTrackDistance(t, recommendations), getTrackDistances(t, recommendations), mapTrackValues(t)));
         console.log('---');
     }
 

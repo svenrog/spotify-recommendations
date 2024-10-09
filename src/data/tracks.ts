@@ -1,4 +1,3 @@
-import { ITrackModel } from '../types/ITrackModel';
 import tracks from './popular-classics.json';
 
 // This could be used to import practically any dataset following the ITrackModel schema.
