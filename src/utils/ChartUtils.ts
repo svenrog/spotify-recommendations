@@ -3,6 +3,7 @@ import { ITrackModel } from '../types/ITrackModel';
 import { IValueSpace } from '../types/IValueSpace';
 import { QuestionContent } from '../types/QuestionContent';
 import { pages } from '../data/pages';
+import { ValueSpaceProperties } from '../types/IValueModifier';
 
 interface IPlotPoint {
     x: number;
@@ -39,42 +40,6 @@ export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
     };
 }
 
-export function getTempoEnergyDataset(tracks?: ITrackModel[]): ChartData<'scatter'> {
-    if (!tracks) return NO_DATA;
-    return {
-        labels: getTrackLabels(tracks),
-        datasets: [{
-            data: getTempoEnergy(tracks),
-        }, {
-            data: collectAnswerValues('tempo', 'energy')
-        }]
-    };
-}
-
-export function getDanceabilityValenceDataset(tracks?: ITrackModel[]): ChartData<'scatter'> {
-    if (!tracks) return NO_DATA;
-    return {
-        labels: getTrackLabels(tracks),
-        datasets: [{
-            data: getDanceabilityValence(tracks),
-        }, {
-            data: collectAnswerValues('danceability', 'valence')
-        }]
-    };
-}
-
-export function getDurationTempoDataset(tracks?: ITrackModel[]): ChartData<'scatter'> {
-    if (!tracks) return NO_DATA;
-    return {
-        labels: getTrackLabels(tracks),
-        datasets: [{
-            data: getDurationTempo(tracks),
-        }, {
-            data: collectAnswerValues('duration', 'tempo')
-        }],
-    };
-}
-
 export function getTime(duration: number) {
     var milliseconds = Math.floor((duration % 1000) / 100),
         seconds = Math.floor((duration / 1000) % 60),
@@ -82,6 +47,42 @@ export function getTime(duration: number) {
         hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
     return { hours, minutes, seconds, milliseconds };
+}
+
+export function getScatterPlotDataset(propertyX: ValueSpaceProperties, propertyY: ValueSpaceProperties, tracks?: ITrackModel[], heatMap?: Map<string, number>): ChartData<'scatter'> {
+    if (!tracks) return NO_DATA;
+    return {
+        labels: getTrackLabels(tracks),
+        datasets: [{
+            data: project(tracks, (t) => ({ x: t[propertyX], y: t[propertyY] })),
+            backgroundColor: getBackgroundColors(tracks, heatMap),
+            borderColor: 'transparent'
+        }, {
+            data: collectAnswerValues(propertyX, propertyY),
+            backgroundColor: '#e500ff',
+            borderColor: 'transparent'
+        }],
+    };
+}
+
+function getBackgroundColors(tracks?: ITrackModel[], heatMap?: Map<string, number>): Array<string> | undefined {
+    if (!heatMap) return undefined;
+    if (!tracks) return undefined;
+
+    const values = new Array<string>(tracks.length);
+    tracks.forEach((t, i) => values[i] = getColor(heatMap.get(t.id)));
+    return values;
+}
+
+function getColor(count?: number): string {
+    if (!count) return '#444';
+    if (count > 200) return '#f22c2c';
+    if (count > 100) return '#ff5900'
+    if (count > 75) return '#f2ae2c';
+    if (count > 50) return '#f0f22c';
+    if (count > 35) return '#4dd5ac';
+    if (count > 20) return '#2caef2';
+    return '#477ca0';
 }
 
 function getTrackLabels(tracks: ITrackModel[]): Array<string> {
@@ -94,18 +95,6 @@ function getKeys(tracks: ITrackModel[]): Array<number> {
     const counts = [...KEYS];
     tracks.forEach((t) => counts[t.key]++);
     return counts;
-}
-
-function getTempoEnergy(tracks: ITrackModel[]): Array<IPlotPoint> {
-    return project(tracks, (t) => ({ x: t.tempo, y: t.energy }));
-}
-
-function getDanceabilityValence(tracks: ITrackModel[]): Array<IPlotPoint> {
-    return project(tracks, (t) => ({ x: t.danceability, y: t.valence }));
-}
-
-function getDurationTempo(tracks: ITrackModel[]): Array<IPlotPoint> {
-    return project(tracks, (t) => ({ x: t.durationMs, y: t.tempo }));
 }
 
 function project(tracks: ITrackModel[], projection: (t: ITrackModel) => IPlotPoint): Array<IPlotPoint> {

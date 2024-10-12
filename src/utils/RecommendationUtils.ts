@@ -6,7 +6,7 @@ import { DURATION_MAX, KEY_DIVISOR, KEY_MAX, MULTIPLE_OPERATIONS_MAX, MULTIPLE_O
 import { IValueSpace } from "../types/IValueSpace";
 
 export function sortTracks(tracks?: ITrackModel[], profile?: IRecommendationProfile | null): ITrackModel[] {
-    if (!tracks) return [];
+    if (!tracks || !tracks.sort) return [];
     if (!profile) return tracks;
 
     // Consider collecting data bounds (min/max) for normalization.
@@ -20,13 +20,14 @@ export function mapRecommendationProfile(context: IRecommendationContext): IReco
     return {
         key: context.key,
         mode: context.mode,
-        duration: context.duration,
+        durationMs: context.durationMs,
         tempo: context.tempo,
         acousticness: context.acousticness,
         danceability: context.danceability,
         energy: context.energy,
         instrumentalness: context.instrumentalness,
-        valence: context.valence
+        valence: context.valence,
+        liveness: context.liveness
     }
 }
 
@@ -40,7 +41,8 @@ export function mapTrackValues(track: ITrackModel): ITrackValues {
         danceability: track.danceability,
         energy: track.energy,
         instrumentalness: track.instrumentalness,
-        valence: track.valence
+        valence: track.valence,
+        liveness: track.liveness
     }
 }
 
@@ -55,11 +57,12 @@ export function getTrackDistances(track: ITrackModel, profile: IRecommendationPr
         mode: getDistance(track.mode, profile.mode) * scaleByOperations(profile.mode),
         valence: getDistance(track.valence, profile.valence) * scaleByOperations(profile.valence),
         tempo: (getDistance(track.tempo - TEMPO_MIN, profile.tempo) / (TEMPO_MAX - TEMPO_MIN)) * scaleByOperations(profile.tempo),
-        durationMs: (getDistance(track.durationMs, profile.duration) / DURATION_MAX) * scaleByOperations(profile.duration),
+        durationMs: (getDistance(track.durationMs, profile.durationMs) / DURATION_MAX) * scaleByOperations(profile.durationMs),
         energy: getDistance(track.energy, profile.energy) * scaleByOperations(profile.energy),
         danceability: getDistance(track.danceability, profile.danceability) * scaleByOperations(profile.danceability),
         acousticness: getDistance(track.acousticness, profile.acousticness) * scaleByOperations(profile.acousticness),
         instrumentalness: getDistance(track.instrumentalness, profile.instrumentalness) * scaleByOperations(profile.instrumentalness),
+        liveness: getDistance(track.liveness, profile.liveness) * scaleByOperations(profile.liveness),
     }
 }
 
@@ -83,7 +86,8 @@ function applyScaling(values: ITrackValues): ITrackValues {
         energy: Scaling.energy(values.energy),
         danceability: Scaling.danceability(values.danceability),
         acousticness: Scaling.acousticness(values.acousticness),
-        instrumentalness: Scaling.instrumentalness(values.instrumentalness)
+        instrumentalness: Scaling.instrumentalness(values.instrumentalness),
+        liveness: Scaling.liveness(values.liveness)
     }
 }
 
@@ -96,6 +100,7 @@ function sumValues(values: ITrackValues) {
     sum += values.energy;
     sum += values.danceability;
     sum += values.instrumentalness;
+    sum += values.liveness;
 
     return sum;
 }
@@ -107,11 +112,12 @@ function filterTracks(tracks: ITrackModel[], profile: IRecommendationProfile): I
 function filterTrack(track: ITrackModel, profile: IRecommendationProfile) {
     return shouldFilter(track.key, profile.key) ||
         shouldFilter(track.mode, profile.mode) ||
-        shouldFilter(track.durationMs, profile.duration) ||
+        shouldFilter(track.durationMs, profile.durationMs) ||
         shouldFilter(track.tempo, profile.tempo) ||
         shouldFilter(track.acousticness, profile.acousticness) ||
         shouldFilter(track.danceability, profile.danceability) ||
         shouldFilter(track.energy, profile.energy) ||
         shouldFilter(track.instrumentalness, profile.instrumentalness) ||
-        shouldFilter(track.valence, profile.valence);
+        shouldFilter(track.valence, profile.valence) ||
+        shouldFilter(track.liveness, profile.liveness);
 }

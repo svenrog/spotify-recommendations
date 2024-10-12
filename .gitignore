@@ -361,3 +361,6 @@ build/
 
 # Package lock
 package-lock.json
+
+# Public scripts
+/public/*.js

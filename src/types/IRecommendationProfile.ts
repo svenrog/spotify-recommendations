@@ -1,7 +1,7 @@
 import { IValueSpace } from "./IValueSpace";
 
 export interface IRecommendationProfile {
-    duration: IValueSpace;
+    durationMs: IValueSpace;
     key: IValueSpace;
     mode: IValueSpace;
     tempo: IValueSpace;
@@ -10,4 +10,5 @@ export interface IRecommendationProfile {
     energy: IValueSpace;
     instrumentalness: IValueSpace;
     valence: IValueSpace;
+    liveness: IValueSpace;
 }

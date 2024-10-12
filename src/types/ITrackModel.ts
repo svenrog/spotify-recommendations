@@ -1,3 +1,7 @@
+export interface ITrackModelCount extends ITrackModel {
+    count: number;
+}
+
 export interface ITrackModel extends ITrackValues {
     id: string;
     name: string;
@@ -6,22 +10,20 @@ export interface ITrackModel extends ITrackValues {
     artistId: string;
     artistName: string;
     albumImageUrl: string;
-    artistImageUrl: string | null;
-    durationMs: number,
     keyConfidence: number;
     modeConfidence: number;
     tempoConfidence: number;
 }
 
-export interface ITrackValues extends ITrackProps<number> { }
-export interface ITrackProps<T> {
-    durationMs: T,
-    key: T;
-    mode: T;
-    tempo: T;
-    acousticness: T;
-    danceability: T;
-    energy: T;
-    instrumentalness: T;
-    valence: T;
+export interface ITrackValues {
+    durationMs: number,
+    key: number;
+    mode: number;
+    tempo: number;
+    acousticness: number;
+    danceability: number;
+    energy: number;
+    instrumentalness: number;
+    liveness: number;
+    valence: number;
 }

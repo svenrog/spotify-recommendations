@@ -6,7 +6,7 @@ import {
 import { DURATION_MAX, KEY_INVALID, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from '../../utils/RecommendationWeights';
 
 export interface IRecommendationContext extends IRecommendationProfile {
-    setDuration: React.Dispatch<IValueSpace>;
+    setDurationMs: React.Dispatch<IValueSpace>;
     setKey: React.Dispatch<IValueSpace>;
     setMode: React.Dispatch<IValueSpace>;
     setTempo: React.Dispatch<IValueSpace>;
@@ -15,6 +15,41 @@ export interface IRecommendationContext extends IRecommendationProfile {
     setEnergy: React.Dispatch<IValueSpace>;
     setInstrumentalness: React.Dispatch<IValueSpace>;
     setValence: React.Dispatch<IValueSpace>;
+    setLiveness: React.Dispatch<IValueSpace>;
+}
+
+export const defaults: IRecommendationProfile = {
+    durationMs: {
+        min: 0,
+        max: DURATION_MAX,
+    },
+    key: {
+        min: KEY_INVALID,
+        max: KEY_MAX,
+    },
+    mode: { min: 0, max: 1 },
+    tempo: {
+        min: TEMPO_MIN,
+        max: TEMPO_MAX,
+    },
+    acousticness: {
+        min: 0,
+        max: 1,
+    },
+    danceability: {
+        min: 0,
+        max: 1,
+    },
+    energy: { min: 0, max: 1 },
+    instrumentalness: {
+        min: 0,
+        max: 1,
+    },
+    liveness: {
+        min: 0,
+        max: 1,
+    },
+    valence: { min: 0, max: 1 }
 }
 
 const RecommendationContext = createContext<IRecommendationContext | null>(
@@ -26,38 +61,20 @@ interface Props {
 }
 
 function RecommendationContextProvider({ children }: Props) {
-    const [duration, setDuration] = useState<IValueSpace>({
-        min: 0,
-        max: DURATION_MAX,
-    });
-
-    const [key, setKey] = useState<IValueSpace>({
-        min: KEY_INVALID,
-        max: KEY_MAX,
-    });
-    const [mode, setMode] = useState<IValueSpace>({ min: 0, max: 1 });
-    const [tempo, setTempo] = useState<IValueSpace>({
-        min: TEMPO_MIN,
-        max: TEMPO_MAX,
-    });
-    const [acousticness, setAcousticness] = useState<IValueSpace>({
-        min: 0,
-        max: 1,
-    });
-    const [danceability, setDanceability] = useState<IValueSpace>({
-        min: 0,
-        max: 1,
-    });
-    const [energy, setEnergy] = useState<IValueSpace>({ min: 0, max: 1 });
-    const [instrumentalness, setInstrumentalness] = useState<IValueSpace>({
-        min: 0,
-        max: 1,
-    });
-    const [valence, setValence] = useState<IValueSpace>({ min: 0, max: 1 });
+    const [durationMs, setDurationMs] = useState<IValueSpace>(defaults.durationMs);
+    const [key, setKey] = useState<IValueSpace>(defaults.key);
+    const [mode, setMode] = useState<IValueSpace>(defaults.mode);
+    const [tempo, setTempo] = useState<IValueSpace>(defaults.tempo);
+    const [acousticness, setAcousticness] = useState<IValueSpace>(defaults.acousticness);
+    const [danceability, setDanceability] = useState<IValueSpace>(defaults.danceability);
+    const [energy, setEnergy] = useState<IValueSpace>(defaults.energy);
+    const [instrumentalness, setInstrumentalness] = useState<IValueSpace>(defaults.instrumentalness);
+    const [valence, setValence] = useState<IValueSpace>(defaults.valence);
+    const [liveness, setLiveness] = useState<IValueSpace>(defaults.liveness);
 
     const context: IRecommendationContext = {
-        duration,
-        setDuration,
+        durationMs,
+        setDurationMs,
         key,
         setKey,
         mode,
@@ -74,6 +91,8 @@ function RecommendationContextProvider({ children }: Props) {
         setInstrumentalness,
         valence,
         setValence,
+        liveness,
+        setLiveness
     };
 
     return (
