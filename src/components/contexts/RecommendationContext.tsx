@@ -16,6 +16,8 @@ export interface IRecommendationContext extends IRecommendationProfile {
     setInstrumentalness: React.Dispatch<IValueSpace>;
     setValence: React.Dispatch<IValueSpace>;
     setLiveness: React.Dispatch<IValueSpace>;
+    setQuestionsAnswered: React.Dispatch<number>;
+    questionsAnswered: number;
 }
 
 export const defaults: IRecommendationProfile = {
@@ -49,7 +51,7 @@ export const defaults: IRecommendationProfile = {
         min: 0,
         max: 1,
     },
-    valence: { min: 0, max: 1 }
+    valence: { min: 0, max: 1 },
 }
 
 const RecommendationContext = createContext<IRecommendationContext | null>(
@@ -71,6 +73,7 @@ function RecommendationContextProvider({ children }: Props) {
     const [instrumentalness, setInstrumentalness] = useState<IValueSpace>(defaults.instrumentalness);
     const [valence, setValence] = useState<IValueSpace>(defaults.valence);
     const [liveness, setLiveness] = useState<IValueSpace>(defaults.liveness);
+    const [questionsAnswered, setQuestionsAnswered] = useState<number>(0)
 
     const context: IRecommendationContext = {
         durationMs,
@@ -92,7 +95,9 @@ function RecommendationContextProvider({ children }: Props) {
         valence,
         setValence,
         liveness,
-        setLiveness
+        setLiveness,
+        questionsAnswered,
+        setQuestionsAnswered,
     };
 
     return (

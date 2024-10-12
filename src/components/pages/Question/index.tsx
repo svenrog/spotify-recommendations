@@ -13,7 +13,7 @@ function Question({ page, nextPage }: PageComponent) {
 
     const onClickHandler = (answer: AnswerContent, index: number) => {
         if (answer.modifier) {
-            answer.modifier.forEach((modifier) => setRecommendations(modifier));
+            setRecommendations(answer.modifier);
         }
         setSelected(index);
         setTimeout(() => {
