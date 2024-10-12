@@ -77,23 +77,37 @@ const pages: PageType[] = [
             answers: [
                 {
                     text: 'Långsamt och avkopplande',
-                    modifier: [{ type: 'set', property: 'tempo', base: 60 }],
+                    modifier: [
+                        { type: 'set', property: 'tempo', base: 60 },
+                        { type: 'set', property: 'energy', base: 0.25 }
+                    ],
                 },
                 {
                     text: 'Mittemellan',
                     modifier: [
                         { type: 'set', property: 'tempo', base: 100 },
+                        {
+                            type: 'set',
+                            property: 'energy',
+                            min: 0.25,
+                            base: 0.5,
+                            max: 0.75,
+                        }
                     ],
                 },
                 {
                     text: 'Snabbt',
                     modifier: [
-                        { type: 'set', property: 'tempo', base: 140 },
+                        { type: 'set', property: 'tempo', base: 130 },
+                        { type: 'set', property: 'energy', base: 0.75 }
                     ],
                 },
                 {
                     text: 'Vad är det snabbaste ni har?',
-                    modifier: [{ type: 'set', property: 'tempo', base: 180 }],
+                    modifier: [
+                        { type: 'set', property: 'tempo', base: 170 },
+                        { type: 'set', property: 'energy', base: 1 }
+                    ],
                 },
                 { text: 'Hoppa över', deemphasize: true },
             ],
@@ -107,42 +121,41 @@ const pages: PageType[] = [
         content: {
             question: (
                 <>
-                    Vilken musikalisk <em>intensitet</em> är du ute efter?
+                    Vilken <em>upplevelse</em> är du ute efter?
                 </>
             ),
             answers: [
                 {
-                    text: 'Inte så intensivt, faktiskt',
+                    text: 'Ett liveframträde',
                     modifier: [
-                        { type: 'set', property: 'energy', base: 0.25 },
+                        { type: 'set', property: 'liveness', base: 0.8 },
+                        { type: 'set', property: 'acousticness', base: 0 },
                     ],
                 },
                 {
-                    text: 'Lagom klarar jag mig med',
+                    text: 'Ett trubadurframträdande',
                     modifier: [
-                        {
-                            type: 'set',
-                            property: 'energy',
-                            min: 0.25,
-                            base: 0.5,
-                            max: 0.75,
-                        },
+                        { type: 'set', property: 'liveness', base: 0.33 },
+                        { type: 'set', property: 'acousticness', base: 0.5 },
+                        { type: 'set', property: 'instrumentalness', base: 0.2 },
                     ],
                 },
                 {
-                    text: 'Lite intensivt får det nog vara',
+                    text: 'Ensam med instrumentet',
                     modifier: [
-                        { type: 'set', property: 'energy', base: 0.75 },
+                        { type: 'set', property: 'liveness', base: 0.15 },
+                        { type: 'set', property: 'acousticness', base: 0.8 },
+                        { type: 'set', property: 'instrumentalness', base: 0.5 },
                     ],
                 },
                 {
-                    text: 'MYCKET!',
+                    text: 'En studioinspelning',
                     modifier: [
-                        { type: 'set', property: 'energy', base: 1 },
+                        { type: 'set', property: 'liveness', base: 0 },
+                        { type: 'set', property: 'acousticness', base: 0 },
                     ],
                 },
-
-                { text: 'Hoppa över', deemphasize: true },
+                { text: 'Spelar inte stor roll', deemphasize: true },
             ],
         },
     },
@@ -209,7 +222,7 @@ const pages: PageType[] = [
                 {
                     text: 'Jag vill bara lyssna på korta låtar',
                     modifier: [
-                        { type: 'set', property: 'duration', base: 120_000 },
+                        { type: 'set', property: 'durationMs', base: 120_000 },
                     ],
                 },
                 {
@@ -217,8 +230,8 @@ const pages: PageType[] = [
                     modifier: [
                         {
                             type: 'set',
-                            property: 'duration',
-                            base: 200_000,
+                            property: 'durationMs',
+                            base: 210_000,
                         },
                     ],
                 },
@@ -227,8 +240,8 @@ const pages: PageType[] = [
                     modifier: [
                         {
                             type: 'set',
-                            property: 'duration',
-                            base: 400_000,
+                            property: 'durationMs',
+                            base: 350_000,
                         },
                     ],
                 },
@@ -237,7 +250,7 @@ const pages: PageType[] = [
                     modifier: [
                         {
                             type: 'set',
-                            property: 'duration',
+                            property: 'durationMs',
                             base: 520_000,
                         },
                     ],

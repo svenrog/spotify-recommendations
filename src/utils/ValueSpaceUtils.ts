@@ -28,7 +28,9 @@ export function shouldFilter(value: number, space: IValueSpace): boolean {
 }
 
 export function getDistance(value: number, space: IValueSpace): number {
-    if (space.base === undefined) return 0;
+    if (space.base === undefined || space.base === null) {
+        return 0;
+    }
     return Math.abs(space.base - value);
 }
 

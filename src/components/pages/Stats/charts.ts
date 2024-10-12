@@ -8,8 +8,11 @@ import {
     CategoryScale,
     Legend,
     Filler,
-    Tooltip
+    Tooltip,
+    PluginChartOptions,
+    ScaleChartOptions
 } from 'chart.js';
+import { _DeepPartialObject } from 'chart.js/dist/types/utils';
 
 Chart.defaults.backgroundColor = '#9BD0F5';
 Chart.defaults.borderColor = '#ffffff33';
@@ -28,3 +31,20 @@ Chart.register(
     Filler,
     Tooltip
 );
+
+export function getScatterPlotOptions(renderTicks?: (value: string | number) => string): _DeepPartialObject<PluginChartOptions<"scatter"> & ScaleChartOptions<"scatter">> {
+    return {
+        plugins: {
+            legend: {
+                display: false,
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    callback: renderTicks,
+                }
+            }
+        }
+    }
+}

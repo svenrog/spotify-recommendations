@@ -15,7 +15,7 @@ export function useRecommendations(): [IRecommendationContext | null, (value?: I
         switch (value.property) {
             case 'key': context.setKey(newValue); break;
             case 'mode': context.setMode(newValue); break;
-            case 'duration': context.setDuration(newValue); break;
+            case 'durationMs': context.setDurationMs(newValue); break;
             case 'tempo': context.setTempo(newValue); break;
             case 'acousticness': context.setAcousticness(newValue); break;
             case 'danceability': context.setDanceability(newValue); break;
