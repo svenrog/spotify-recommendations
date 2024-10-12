@@ -22,12 +22,12 @@ function Result({ page }: PageComponent) {
         [recommendations]
     );
     const track = useMemo(
-        () => result.shift(),
+        () => recommendations?.questionsAnswered ? result.shift() : null,
         [recommendations]
     );
     const content = page.content as ResultContent;
 
-    if (recommendations) {
+    if (track && recommendations) {
         const top = [track!, ...result.slice(0, 2)];
         console.log('Recommendation profile', mapRecommendationProfile(recommendations));
         console.log(`Top ${top.length} recommendations (out of ${result.length + 1})`);
