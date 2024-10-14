@@ -5,19 +5,21 @@ import { Title } from '../Question/styles';
 import { Container, Graph, Graphs, List, Subtitle } from './styles';
 import { Wrapper } from '../Page/styles';
 import { tracks } from '../../../data/tracks';
-import { Radar, Scatter } from 'react-chartjs-2';
+import { Bar, Chart, Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';
 import {
+    getBucketDataset,
     getKeyModeDataset,
     getScatterPlotDataset,
     getTime,
 } from '../../../utils/ChartUtils';
 import './charts'; // Setup defaults for chart component
-import { getScatterPlotOptions } from './charts';
+import { getMatrixOptions, getRadarPlotOptions, getScatterPlotOptions } from './charts';
+import Track from '../../atoms/Track';
 
 function Stats({ page }: PageComponent) {
     const content = page.content as ResultContent;
-    const [{ missingTracks, collidingTracks, heatMap, permutations }, setProblems] = useState<IPropblemAnalysis>(emptyAnalysis);
+    const [{ missingTracks, missingBuckets, collidingTracks, heatMap, permutations }, setProblems] = useState<IPropblemAnalysis>(emptyAnalysis);
     const keyModeData = useMemo(() => getKeyModeDataset(tracks), [tracks]);
     const tempoEnergyData = useMemo(
         () => getScatterPlotDataset('tempo', 'energy', tracks, heatMap),
@@ -35,6 +37,13 @@ function Stats({ page }: PageComponent) {
         () => getScatterPlotDataset('liveness', 'acousticness', tracks, heatMap),
         [tracks, heatMap]
     );
+    const missingTracksData = useMemo(
+        () => {
+            const buckets = getBucketDataset(missingBuckets);
+            return buckets;
+        },
+        [tracks, missingBuckets]
+    )
     useEffect(() => {
         const problemWorker = new Worker('./problemWorker.js', { type: "module" });
         problemWorker.onmessageerror = (error) => {
@@ -58,7 +67,8 @@ function Stats({ page }: PageComponent) {
                 <Graphs>
                     <Graph>
                         <Subtitle>Modus och fördelning av tonarter</Subtitle>
-                        <Radar data={keyModeData} />
+                        <Radar data={keyModeData}
+                            options={getRadarPlotOptions()} />
                     </Graph>
                     <Graph>
                         <Subtitle>Tempo och energi</Subtitle>
@@ -96,19 +106,26 @@ function Stats({ page }: PageComponent) {
                     <List>
                         <Subtitle>Låtar som förekommer i över 100 av {permutations} frågekombinationer</Subtitle>
                         <ul>
-                            {collidingTracks.map(t => <li key={t.id}><span className='artist'>{t.artistName}<span className='dark'> - </span></span>{t.name}<span className="count">
-                                ({t.count})
-                            </span></li>)}
+                            {collidingTracks.map(t => <li key={t.id}>
+                                <Track track={t}><span className="count">({t.count})</span></Track>
+                            </li>)}
                         </ul>
                     </List>
                 }
                 {missingTracks.length > 0 &&
-                    <List>
-                        <Subtitle>Låtar som inte visas i någon frågekombination</Subtitle>
-                        <ul>
-                            {missingTracks.map(t => <li key={t.id}><span className='artist'>{t.artistName}<span className='dark'> - </span></span>{t.name}</li>)}
-                        </ul>
-                    </List>
+                    <>
+                        <List>
+                            <Subtitle>Låtar som inte visas i någon frågekombination</Subtitle>
+                            <ul>
+                                {missingTracks.map(t => <li key={t.id}><Track track={t} /></li>)}
+                            </ul>
+                        </List>
+                        {missingTracksData && <Graph>
+                            <Subtitle>Gemensamt för låtar som inte visas</Subtitle>
+                            <Chart type='matrix' data={missingTracksData}
+                                options={getMatrixOptions()} />
+                        </Graph>}
+                    </>
                 }
             </Container>
         </Wrapper >
