@@ -1,15 +1,11 @@
 import { ChartData } from 'chart.js';
-import { ITrackModel } from '../types/ITrackModel';
+import { ITrackModel, ITrackProps } from '../types/ITrackModel';
 import { IValueSpace } from '../types/IValueSpace';
 import { QuestionContent } from '../types/QuestionContent';
 import { pages } from '../data/pages';
 import { ValueSpaceProperties } from '../types/IValueModifier';
-
-interface IPlotPoint {
-    x: number;
-    y: number;
-}
-
+import { LABEL_ACOUSTICNESS, LABEL_DANCEABILITY, LABEL_DURATION_MS, LABEL_ENERGY, LABEL_KEY, LABEL_MODE, LABEL_TEMPO, LABEL_VALENCE } from '../components/pages/Stats/charts';
+import { IPlotPoint } from '../types/IPlotPoint';
 const NO_DATA = {
     datasets: [],
 };
@@ -24,6 +20,10 @@ export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
 
     const majorCounts = getKeys(majorSongs);
     const minorCounts = getKeys(minorSongs);
+    const answers = collectKeyAnswerValues();
+
+    const answerCounts = [...KEYS];
+    answers.forEach((t) => answerCounts[t]++);
 
     return {
         labels: ['C', 'C♯, D♭', 'D', 'D♯, E♭', 'E', 'F', 'F♯, G♭', 'G', 'G♯, A♭', 'A', 'A♯, B♭', 'B'],
@@ -36,6 +36,11 @@ export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
                 label: 'Dur',
                 data: majorCounts,
             },
+            {
+                label: 'Svarsalternativ',
+                data: answerCounts,
+                spanGaps: true,
+            }
         ],
     };
 }
@@ -56,13 +61,68 @@ export function getScatterPlotDataset(propertyX: ValueSpaceProperties, propertyY
         datasets: [{
             data: project(tracks, (t) => ({ x: t[propertyX], y: t[propertyY] })),
             backgroundColor: getBackgroundColors(tracks, heatMap),
-            borderColor: 'transparent'
         }, {
             data: collectAnswerValues(propertyX, propertyY),
-            backgroundColor: '#e500ff',
-            borderColor: 'transparent'
+            backgroundColor: '#e500ff11',
+            borderColor: '#0090ff66',
+            borderWidth: 1,
+            pointRadius: 6,
+
         }],
     };
+}
+
+export function getBucketDataset(buckets?: ITrackProps<number[]>): ChartData<'matrix'> | null {
+    if (!buckets) return null;
+
+    let data: IPlotPoint[] = [];
+
+    data.push(...getMatrixDataColumn(buckets.key, LABEL_KEY));
+    data.push(...getMatrixDataColumn(buckets.mode, LABEL_MODE));
+    data.push(...getMatrixDataColumn(buckets.durationMs, LABEL_DURATION_MS));
+    data.push(...getMatrixDataColumn(buckets.tempo, LABEL_TEMPO));
+    data.push(...getMatrixDataColumn(buckets.energy, LABEL_ENERGY));
+    data.push(...getMatrixDataColumn(buckets.acousticness, LABEL_ACOUSTICNESS));
+    data.push(...getMatrixDataColumn(buckets.danceability, LABEL_DANCEABILITY));
+    data.push(...getMatrixDataColumn(buckets.valence, LABEL_VALENCE));
+
+    return {
+        datasets: [
+            {
+                label: 'Dataintervall',
+                borderWidth: 1,
+                data,
+                backgroundColor: function (ctx) {
+                    const point = ctx.dataset.data[ctx.dataIndex] as IPlotPoint;
+                    return getCellColor(point.v);
+                },
+                width(c) {
+                    const a = c.chart.chartArea || {};
+                    return (a.right - a.left) / 8;
+                },
+                height(c) {
+                    const divisor = c.dataIndex >= 6 && c.dataIndex < 8 ? 2 : 6;
+                    const a = c.chart.chartArea || {};
+                    return (a.bottom - a.top) / divisor;
+                }
+            }
+        ],
+    };
+}
+
+function getMatrixDataColumn(buckets: number[], key: string) {
+    let column: IPlotPoint[] = [];
+    const step: number = 6 / buckets.length;
+    buckets.forEach((bucket, i) => {
+        column.push({
+            //@ts-ignore
+            x: key,
+            y: (i * step) + 0.5 + step / 2,
+            v: bucket
+        });
+    });
+
+    return column;
 }
 
 function getBackgroundColors(tracks?: ITrackModel[], heatMap?: Map<string, number>): Array<string> | undefined {
@@ -76,13 +136,24 @@ function getBackgroundColors(tracks?: ITrackModel[], heatMap?: Map<string, numbe
 
 function getColor(count?: number): string {
     if (!count) return '#444';
-    if (count > 200) return '#f22c2c';
-    if (count > 100) return '#ff5900'
-    if (count > 75) return '#f2ae2c';
-    if (count > 50) return '#f0f22c';
+    if (count > 200) return '#d83737';
+    if (count > 100) return '#cd7241'
+    if (count > 75) return '#bf9037';
+    if (count > 50) return '#bebf5b';
     if (count > 35) return '#4dd5ac';
     if (count > 20) return '#2caef2';
     return '#477ca0';
+}
+
+function getCellColor(count?: number): string {
+    if (!count) return '#111';
+    if (count > 10) return '#d83737';
+    if (count > 8) return '#cd7241'
+    if (count > 6) return '#bf9037';
+    if (count > 5) return '#bebf5b';
+    if (count > 2) return '#2b6654';
+    if (count > 1) return '#1c242b';
+    return '#141b20';
 }
 
 function getTrackLabels(tracks: ITrackModel[]): Array<string> {
@@ -111,6 +182,17 @@ function collectAnswerValues(property1: string, property2: string): Array<IPlotP
         for (var j = 0; j < space[1].length; j++) {
             values.push({ x: space[0][i].base ?? 0, y: space[1][j].base ?? 0 });
         }
+    }
+
+    return values;
+}
+
+function collectKeyAnswerValues(): Array<number> {
+    const space = collectQuestionSpace(['key']);
+    const values = [];
+
+    for (var i = 0; i < space[0].length; i++) {
+        values.push(space[0][i].base ?? 0);
     }
 
     return values;

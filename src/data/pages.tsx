@@ -32,9 +32,16 @@ const pages: PageType[] = [
                 {
                     text: 'Drömskt',
                     modifier: [
-                        { type: 'set', property: 'key', base: 3 },
+                        { type: 'set', property: 'key', base: 8 },
                         { type: 'set', property: 'mode', base: 1 },
                         { type: 'set', property: 'valence', base: 0.5 },
+                    ],
+                },
+                {
+                    text: 'Jazzigt',
+                    modifier: [
+                        { type: 'set', property: 'key', base: 5 },
+                        { type: 'set', property: 'mode', base: 1 },
                     ],
                 },
                 {

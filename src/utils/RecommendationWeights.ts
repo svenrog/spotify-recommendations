@@ -1,5 +1,7 @@
+import { ITrackProps } from "../types/ITrackModel";
+
 export const DURATION_MAX: number = 900_000;
-export const KEY_MAX: number = 12;
+export const KEY_MAX: number = 11;
 export const KEY_DIVISOR: number = 6;
 export const KEY_INVALID: number = -1;
 export const TEMPO_MAX: number = 200;
@@ -41,15 +43,4 @@ export const Scaling: ITrackScaling = {
     liveness: (x) => x * WEIGHT_LIVENESS
 }
 
-interface ITrackScaling {
-    durationMs: (x: number) => number,
-    key: (x: number) => number;
-    mode: (x: number) => number;
-    tempo: (x: number) => number;
-    acousticness: (x: number) => number;
-    danceability: (x: number) => number;
-    energy: (x: number) => number;
-    instrumentalness: (x: number) => number;
-    valence: (x: number) => number;
-    liveness: (x: number) => number;
-}
+interface ITrackScaling extends ITrackProps<(x: number) => number> { }

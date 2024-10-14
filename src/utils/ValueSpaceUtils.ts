@@ -14,7 +14,7 @@ export function setValueSpace(oldValue: IValueSpace, newValue?: IValueSpace): IV
     if (!newValue) return oldValue;
 
     return {
-        base: clamp(newValue.base, oldValue.max, oldValue.min),
+        base: clamp(newValue.base, oldValue.min, oldValue.max),
         min: oldValue.min,
         max: oldValue.max,
         operations: incrementOperations(oldValue)
@@ -39,19 +39,14 @@ export function getRotationalDistance(value: number, space: IValueSpace, max: nu
     return Math.min(Math.abs(space.base - value), Math.abs(space.base - max - value))
 }
 
-function incrementOperations(space?: IValueSpace): number {
-    if (space?.operations === undefined) return 1;
-    return ++space.operations;
-}
-
-function add(a?: number, b?: number, max?: number, min?: number): number | undefined {
+export function add(a?: number, b?: number, max?: number, min?: number): number | undefined {
     if (b === undefined) return a;
     if (a === undefined) return clamp(b, max, min);
 
-    return clamp(a + b, max, min);
+    return clamp(a + b, min, max);
 }
 
-function clamp(a?: number, max?: number, min?: number) {
+export function clamp(a?: number, min?: number, max?: number) {
     if (a === undefined) return a;
 
     let result = a;
@@ -65,4 +60,9 @@ function clamp(a?: number, max?: number, min?: number) {
     }
 
     return result;
+}
+
+function incrementOperations(space?: IValueSpace): number {
+    if (space?.operations === undefined) return 1;
+    return ++space.operations;
 }

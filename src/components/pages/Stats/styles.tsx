@@ -7,10 +7,13 @@ export const Container = styled.nav`
 `;
 
 export const Subtitle = styled.h3`
-  font-size: 1.2rem;
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: 0.6px;
   line-height: 1.4;
   margin-bottom: 10px;
   margin-top: 20px;
+  
   text-align: center;
 `;
 
@@ -21,7 +24,7 @@ export const Graph = styled.div`
 `;
 
 export const List = styled.div`
-    font-size: 0.7em;
+    font-size: 0.8em;
     letter-spacing: 0.6px;
     line-height: 1.3;
     margin-bottom: 40px;

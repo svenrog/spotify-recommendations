@@ -15,15 +15,16 @@ export interface ITrackModel extends ITrackValues {
     tempoConfidence: number;
 }
 
-export interface ITrackValues {
-    durationMs: number,
-    key: number;
-    mode: number;
-    tempo: number;
-    acousticness: number;
-    danceability: number;
-    energy: number;
-    instrumentalness: number;
-    liveness: number;
-    valence: number;
+export interface ITrackValues extends ITrackProps<number> { }
+export interface ITrackProps<T> {
+    durationMs: T,
+    key: T;
+    mode: T;
+    tempo: T;
+    acousticness: T;
+    danceability: T;
+    energy: T;
+    instrumentalness: T;
+    liveness: T;
+    valence: T;
 }
