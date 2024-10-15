@@ -7,13 +7,12 @@ export const Container = styled.nav`
 `;
 
 export const Subtitle = styled.h3`
-  font-size: 1.45rem;
-  font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: 400;
   letter-spacing: 0.6px;
   line-height: 1.4;
   margin-bottom: 10px;
   margin-top: 20px;
-  
   text-align: center;
 `;
 
@@ -26,7 +25,6 @@ export const Graph = styled.div`
 export const List = styled.div`
     font-size: 0.8em;
     letter-spacing: 0.6px;
-    line-height: 1.3;
     margin-bottom: 40px;
     
     ul {
@@ -46,11 +44,22 @@ export const List = styled.div`
     }
 
     .count, .dark {
-        color: #888;
+        color: #999;
     }
 
 
     .artist {
         color: #86ccfb;
+    }
+`;
+
+export const Dual = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    canvas {
+        margin: 12px 10px 30px 0;
     }
 `;

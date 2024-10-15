@@ -2,10 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { PageComponent } from '../../../types/PageComponent';
 import { ResultContent } from '../../../types/ResultContent';
 import { Title } from '../Question/styles';
-import { Container, Graph, Graphs, List, Subtitle } from './styles';
+import { Container, Graph, Graphs, List, Subtitle, Dual } from './styles';
 import { Wrapper } from '../Page/styles';
 import { tracks } from '../../../data/tracks';
-import { Bar, Chart, Radar, Scatter } from 'react-chartjs-2';
+import { Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';
 import {
     getBucketDataset,
@@ -14,12 +14,13 @@ import {
     getTime,
 } from '../../../utils/ChartUtils';
 import './charts'; // Setup defaults for chart component
-import { getMatrixOptions, getRadarPlotOptions, getScatterPlotOptions } from './charts';
+import { getRadarPlotOptions, getScatterPlotOptions } from './charts';
 import Track from '../../atoms/Track';
+import Matrix from '../../atoms/Matrix';
 
 function Stats({ page }: PageComponent) {
     const content = page.content as ResultContent;
-    const [{ missingTracks, missingBuckets, collidingTracks, heatMap, permutations }, setProblems] = useState<IPropblemAnalysis>(emptyAnalysis);
+    const [{ missingTracks, missingBuckets, collidingTracks, collidingBuckets, heatMap, permutations }, setProblems] = useState<IPropblemAnalysis>(emptyAnalysis);
     const keyModeData = useMemo(() => getKeyModeDataset(tracks), [tracks]);
     const tempoEnergyData = useMemo(
         () => getScatterPlotDataset('tempo', 'energy', tracks, heatMap),
@@ -43,6 +44,13 @@ function Stats({ page }: PageComponent) {
             return buckets;
         },
         [tracks, missingBuckets]
+    )
+    const collidingTracksData = useMemo(
+        () => {
+            const buckets = getBucketDataset(collidingBuckets);
+            return buckets;
+        },
+        [tracks, collidingBuckets]
     )
     useEffect(() => {
         const problemWorker = new Worker('./problemWorker.js', { type: "module" });
@@ -121,9 +129,11 @@ function Stats({ page }: PageComponent) {
                             </ul>
                         </List>
                         {missingTracksData && <Graph>
-                            <Subtitle>Gemensamt för låtar som inte visas</Subtitle>
-                            <Chart type='matrix' data={missingTracksData}
-                                options={getMatrixOptions()} />
+                            <Subtitle>Gemensamt för låtar som inte visas / visas</Subtitle>
+                            <Dual>
+                                <Matrix data={missingTracksData} />
+                                {collidingTracksData && <Matrix data={collidingTracksData} />}
+                            </Dual>
                         </Graph>}
                     </>
                 }
