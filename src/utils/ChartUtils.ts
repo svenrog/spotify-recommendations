@@ -4,13 +4,31 @@ import { IValueSpace } from '../types/IValueSpace';
 import { QuestionContent } from '../types/QuestionContent';
 import { pages } from '../data/pages';
 import { ValueSpaceProperties } from '../types/IValueModifier';
-import { LABEL_ACOUSTICNESS, LABEL_DANCEABILITY, LABEL_DURATION_MS, LABEL_ENERGY, LABEL_KEY, LABEL_MODE, LABEL_TEMPO, LABEL_VALENCE } from '../components/pages/Stats/charts';
 import { IPlotPoint } from '../types/IPlotPoint';
 const NO_DATA = {
     datasets: [],
 };
 
 const KEYS = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+export const LABEL_KEY = 'Tonart';
+export const LABEL_MODE = 'Modus';
+export const LABEL_DURATION_MS = 'Längd';
+export const LABEL_TEMPO = 'Tempo';
+export const LABEL_ENERGY = 'Energi';
+export const LABEL_ACOUSTICNESS = 'Akust.';
+export const LABEL_DANCEABILITY = 'Dans';
+export const LABEL_VALENCE = 'Valens';
+export const LABELS = [
+    LABEL_KEY,
+    LABEL_MODE,
+    LABEL_DURATION_MS,
+    LABEL_TEMPO,
+    LABEL_ENERGY,
+    LABEL_ACOUSTICNESS,
+    LABEL_DANCEABILITY,
+    LABEL_VALENCE
+];
 
 export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
     if (!tracks) return NO_DATA;

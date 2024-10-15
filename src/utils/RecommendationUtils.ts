@@ -27,7 +27,7 @@ export function mapRecommendationProfile(context: IRecommendationContext): IReco
         energy: context.energy,
         instrumentalness: context.instrumentalness,
         valence: context.valence,
-        liveness: context.liveness
+        liveness: context.liveness,
     }
 }
 
@@ -42,7 +42,8 @@ export function mapTrackValues(track: ITrackModel): ITrackValues {
         energy: track.energy,
         instrumentalness: track.instrumentalness,
         valence: track.valence,
-        liveness: track.liveness
+        liveness: track.liveness,
+        boost: track.boost
     }
 }
 
@@ -63,6 +64,7 @@ export function getTrackDistances(track: ITrackModel, profile: IRecommendationPr
         acousticness: getDistance(track.acousticness, profile.acousticness) * scaleByOperations(profile.acousticness),
         instrumentalness: getDistance(track.instrumentalness, profile.instrumentalness) * scaleByOperations(profile.instrumentalness),
         liveness: getDistance(track.liveness, profile.liveness) * scaleByOperations(profile.liveness),
+        boost: track.boost
     }
 }
 
@@ -87,11 +89,13 @@ function applyScaling(values: ITrackValues): ITrackValues {
         danceability: Scaling.danceability(values.danceability),
         acousticness: Scaling.acousticness(values.acousticness),
         instrumentalness: Scaling.instrumentalness(values.instrumentalness),
-        liveness: Scaling.liveness(values.liveness)
+        liveness: Scaling.liveness(values.liveness),
+        boost: values.boost,
     }
 }
 
 function sumValues(values: ITrackValues) {
+
     let sum = values.key;
     sum += values.mode;
     sum += values.valence;
@@ -102,22 +106,9 @@ function sumValues(values: ITrackValues) {
     sum += values.instrumentalness;
     sum += values.liveness;
 
+    if (values.boost) {
+        sum *= 1 / values.boost;
+    }
+
     return sum;
-}
-
-function filterTracks(tracks: ITrackModel[], profile: IRecommendationProfile): ITrackModel[] {
-    return tracks.filter((track) => !filterTrack(track, profile))
-}
-
-function filterTrack(track: ITrackModel, profile: IRecommendationProfile) {
-    return shouldFilter(track.key, profile.key) ||
-        shouldFilter(track.mode, profile.mode) ||
-        shouldFilter(track.durationMs, profile.durationMs) ||
-        shouldFilter(track.tempo, profile.tempo) ||
-        shouldFilter(track.acousticness, profile.acousticness) ||
-        shouldFilter(track.danceability, profile.danceability) ||
-        shouldFilter(track.energy, profile.energy) ||
-        shouldFilter(track.instrumentalness, profile.instrumentalness) ||
-        shouldFilter(track.valence, profile.valence) ||
-        shouldFilter(track.liveness, profile.liveness);
 }

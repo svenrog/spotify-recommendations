@@ -17,7 +17,7 @@ import {
 } from 'chart.js';
 import { MatrixController, MatrixElement } from 'chartjs-chart-matrix';
 import { _DeepPartialObject } from 'chart.js/dist/types/utils';
-import { IPlotPoint } from '../../../types/IPlotPoint';
+
 
 Chart.register(Colors);
 Chart.register(
@@ -35,7 +35,7 @@ Chart.register(
 );
 
 const labelStyle: Partial<FontSpec> = {
-    size: 14, weight: 500, family: 'Raleway'
+    size: 16, weight: 500, family: 'Raleway'
 }
 
 Chart.defaults.backgroundColor = '#9BD0F5';
@@ -96,65 +96,3 @@ export function getRadarPlotOptions(): _DeepPartialObject<PluginChartOptions<"ra
     }
 }
 
-export function getMatrixOptions(): _DeepPartialObject<PluginChartOptions<"matrix"> & ScaleChartOptions<"matrix">> {
-    return {
-        plugins: {
-            legend: {
-                display: false,
-            },
-            tooltip: {
-                callbacks: {
-                    label: (context: ScriptableContext<"matrix">) => {
-                        const label = LABELS[context.datasetIndex];
-                        const value = context.raw as IPlotPoint;
-
-                        return `${label}, intervall ${value.y}: ${value.v}`;
-                    }
-                }
-            }
-        },
-        scales: {
-            x: {
-                type: 'category',
-                labels: LABELS,
-            },
-            y: {
-                ticks: {
-                    display: false
-                },
-                grid: {
-                    display: false
-                },
-                min: 0.5,
-                max: 6.5
-            }
-        },
-        animations: {
-            x: {
-                duration: 0
-            },
-            y: {
-                duration: 0
-            }
-        }
-    }
-}
-
-export const LABEL_KEY = 'Tonart';
-export const LABEL_MODE = 'Modus';
-export const LABEL_DURATION_MS = 'Längd';
-export const LABEL_TEMPO = 'Tempo';
-export const LABEL_ENERGY = 'Energi';
-export const LABEL_ACOUSTICNESS = 'Akust.';
-export const LABEL_DANCEABILITY = 'Dans';
-export const LABEL_VALENCE = 'Valens';
-export const LABELS = [
-    LABEL_KEY,
-    LABEL_MODE,
-    LABEL_DURATION_MS,
-    LABEL_TEMPO,
-    LABEL_ENERGY,
-    LABEL_ACOUSTICNESS,
-    LABEL_DANCEABILITY,
-    LABEL_VALENCE
-];

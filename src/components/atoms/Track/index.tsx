@@ -8,9 +8,9 @@ interface Props {
 function Track({ track, children }: Props) {
     return (
         <>
-            <span className='artist'>{track.artistName}</span>
-            <span className='dark'> - </span>
             <span className="track">{track.name}</span>
+            <span className='dark'> - </span>
+            <span className='artist'>{track.artistName}</span>
             {children}
         </>
     );

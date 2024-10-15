@@ -277,7 +277,7 @@ const pages: PageType[] = [
                     Nu är <em>resultatet</em> färdigställt
                 </>
             ),
-            body: 'Efter att ha utvärderat dina svar noga (men inte så värst länge), tror vi att du kommer gilla den här låten.',
+            body: <>Efter att ha utvärderat dina svar noga (men inte så värst länge), <br />tror vi att du kommer gilla den här låten.'</>,
         },
     },
     {

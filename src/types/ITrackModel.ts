@@ -27,4 +27,5 @@ export interface ITrackProps<T> {
     instrumentalness: T;
     liveness: T;
     valence: T;
+    boost?: number;
 }
