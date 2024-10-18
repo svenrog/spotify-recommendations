@@ -28,8 +28,9 @@
     "scripts": {
         "watch-worker": "esbuild \"./src/workers/problemWorker.ts\" --bundle --outfile=\"./public/problemWorker.js\" --watch",
         "worker": "esbuild \"./src/workers/problemWorker.ts\" --bundle --outfile=\"./public/problemWorker.js\"",
+        "worker-production": "esbuild \"./src/workers/problemWorker.ts\" --bundle --outfile=\"./public/problemWorker.js\" --minify",
         "watch": "npm run worker && react-scripts start",
-        "build": "npm run worker && react-scripts build",
+        "build": "npm run worker-production && react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
     },

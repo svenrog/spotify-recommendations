@@ -18,7 +18,7 @@ function Question({ page, nextPage }: PageComponent) {
         setSelected(index);
         setTimeout(() => {
             nextPage && nextPage();
-        }, 350);
+        }, 400);
     };
 
     return (

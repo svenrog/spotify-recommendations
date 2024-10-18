@@ -7,35 +7,45 @@ export const Container = styled.button<{
 }>`
   width: 100%;
   color: #ffffffdd;
-  background-color: #ffffff33;
+  background-color: #ffffff22;
   padding: 16px 14px;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 200ms ease-in-out;
+  transition: all 400ms ease-in-out;
   text-shadow: 2px 2px 3px #00000022;
-  font-size: 1.1rem;
-  line-height: 1.3;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  
   &:hover {
-    background-color: #ffffff44;
+    background-color: #ffffff47;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   }
 
   ${(props) =>
         props.$selected &&
         css`
       color: #fff;
+      transition: all 300ms ease-in-out;
       background-color: #90ee90cc !important;
       text-shadow: 2px 2px #00000033;
+      box-shadow: 0 5px 40px rgba(70,120,70,0.2) !important;
     `}
 
   ${(props) =>
         props.$deemphasize &&
         css`
-      font-size: 1rem;
+      //font-size: 1.1rem;
       padding: 14px;
-      color: rgba(255, 255, 255, 0.8);
+      //color: rgba(255, 255, 255, 0.8);
+      background-color: #ffffff08;
+
+      &:hover {
+            background-color: #ffffff11;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
     `}
 
   ${(props) => props.$css}
