@@ -5,7 +5,7 @@ const pages: PageType[] = [
         path: '/fraga-1',
         title: 'Fråga 1',
         type: 'question',
-        color: '#02A676',
+        color: '#089068',
         content: {
             question: (
                 <>
@@ -73,7 +73,7 @@ const pages: PageType[] = [
     {
         path: '/fraga-2',
         title: 'Fråga 2',
-        color: '#008C72',
+        color: '#06846c',
         type: 'question',
         content: {
             question: (

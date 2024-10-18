@@ -16,6 +16,9 @@ const GlobalStyles = createGlobalStyle`
 
     body{
         background-color: #333;
+    }
+
+    body, button {
         color: rgba(255,255,255,0.9);
         font-family: "Raleway", sans-serif;
         font-optical-sizing: auto;

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, lazy } from 'react';
 import {
     Routes,
     Route,
@@ -11,10 +11,12 @@ import { pages } from '../data/pages';
 import { AppContext } from './contexts/AppContext';
 import { PageType } from '../types/PageType';
 import { PageComponent } from '../types/PageComponent';
-import Question from './pages/Question';
-import Result from './pages/Result';
-import Page from './pages/Page';
-import Stats from './pages/Stats';
+import '../utils/AnimationBootstrap';
+
+const Stats = lazy(() => import('./pages/Stats'));
+const Page = lazy(() => import('./pages/Page'));
+const Question = lazy(() => import('./pages/Question'));
+const Result = lazy(() => import('./pages/Result'));
 
 function Pages() {
     const location = useLocation();
