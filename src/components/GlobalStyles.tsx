@@ -39,6 +39,19 @@ const GlobalStyles = createGlobalStyle`
         z-index: 0;
     }
 
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
+
+        th {
+            text-align: left;
+        }
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
     /* Stylized elements */
     em {
         display: inline-block;

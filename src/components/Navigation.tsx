@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { pages } from '../data/pages';
 
 const Wrapper = styled.div`
-  //display: flex;
   display: none;
   left: 0;
   overflow-x: auto;

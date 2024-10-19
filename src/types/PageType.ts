@@ -1,10 +1,10 @@
 import { QuestionContent } from "./QuestionContent";
-import { ResultContent } from "./ResultContent";
+import { PageContent } from "./PageContent";
 
 export type PageType = {
     path: string;
-    type?: 'question' | 'results' | 'stats' | null;
-    content?: QuestionContent | ResultContent;
+    type?: 'question' | 'results' | 'stats' | 'weights' | null;
+    content?: QuestionContent | PageContent;
     title: string;
     color: string;
     hide?: boolean;

@@ -1,9 +1,8 @@
 import { useMemo } from 'react';
 import { useRecommendations } from '../../../hooks/useRecommendations';
 import { PageComponent } from '../../../types/PageComponent';
-import { ResultContent } from '../../../types/ResultContent';
-import { Title } from '../Question/styles';
-import { Container, Description } from './styles';
+import { PageContent } from '../../../types/PageContent';
+import { Container, Title, Description } from '../Page/styles';
 import { Wrapper } from '../Page/styles';
 import {
     getTrackDistance,
@@ -25,10 +24,10 @@ function Result({ page }: PageComponent) {
         () => recommendations?.questionsAnswered ? result.shift() : null,
         [recommendations]
     );
-    const content = page.content as ResultContent;
+    const content = page.content as PageContent;
 
     if (track && recommendations) {
-        const top = [track!, ...result.slice(0, 2)];
+        const top = [track!, ...result.slice(0, 4)];
         console.log('Recommendation profile', mapRecommendationProfile(recommendations));
         console.log(`Top ${top.length} recommendations (out of ${result.length + 1})`);
         console.log('---');

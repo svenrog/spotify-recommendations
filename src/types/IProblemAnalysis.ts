@@ -1,12 +1,13 @@
 import { createBuckets } from "./AnalysisBuckets";
-import { ITrackModel, ITrackModelCount, ITrackProps } from "./ITrackModel";
+import { ITrackModel, ITrackModelCount, ITrackModelScore, ITrackProps } from "./ITrackModel";
 
 export interface IPropblemAnalysis {
     collidingTracks: ITrackModelCount[];
     collidingBuckets: ITrackProps<number[]>
-    missingTracks: ITrackModel[];
+    missingTracks: ITrackModelScore[];
     missingBuckets: ITrackProps<number[]>
     heatMap: Map<string, number>;
+    scoreMap: Map<string, number>;
     permutations: number;
 };
 
@@ -16,6 +17,6 @@ export const emptyAnalysis: IPropblemAnalysis = {
     missingTracks: [],
     missingBuckets: createBuckets(),
     heatMap: new Map<string, number>(),
+    scoreMap: new Map<string, number>(),
     permutations: 0
 };
-

@@ -1,12 +1,12 @@
 import { ITrackModel, ITrackProps } from "../types/ITrackModel";
-import { DURATION_MAX, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from "./RecommendationWeights";
+import { DURATION_MAX, DURATION_MIN, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from "./RecommendationWeights";
 import { clamp } from "./ValueSpaceUtils";
 
 export function getBuckets(track: ITrackModel): ITrackProps<number> {
     return {
         key: getBucket(track.key, 0, KEY_MAX, 6),
         mode: getBucket(track.mode, 0, 1, 2),
-        durationMs: getBucket(track.durationMs, 0, DURATION_MAX, 6),
+        durationMs: getBucket(track.durationMs, DURATION_MIN, DURATION_MAX, 6),
         tempo: getBucket(track.tempo, TEMPO_MIN, TEMPO_MAX, 6),
         acousticness: getBucket(track.acousticness, 0, 1, 6),
         danceability: getBucket(track.danceability, 0, 1, 6),

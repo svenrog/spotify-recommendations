@@ -1,5 +1,9 @@
-export interface ITrackModelCount extends ITrackModel {
+export interface ITrackModelCount extends ITrackModelScore {
     count: number;
+}
+
+export interface ITrackModelScore extends ITrackModel {
+    score: number;
 }
 
 export interface ITrackModel extends ITrackValues {
@@ -9,7 +13,7 @@ export interface ITrackModel extends ITrackValues {
     albumName: string;
     artistId: string;
     artistName: string;
-    albumImageUrl: string;
+    albumImageUrl: string | null;
     keyConfidence: number;
     modeConfidence: number;
     tempoConfidence: number;
