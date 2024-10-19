@@ -1,25 +1,25 @@
 import { useEffect, useMemo, useState } from 'react';
 import { PageComponent } from '../../../types/PageComponent';
-import { ResultContent } from '../../../types/ResultContent';
-import { Title } from '../Question/styles';
-import { Container, Graph, Graphs, List, Subtitle, Dual } from './styles';
-import { Wrapper } from '../Page/styles';
+import { PageContent } from '../../../types/PageContent';
+import { Graph, Graphs, List, Dual } from './styles';
+import { Wrapper, Container, Title, Subtitle } from '../Page/styles';
 import { tracks } from '../../../data/tracks';
 import { Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';
+import { getRadarPlotOptions, getScatterPlotOptions } from './charts';
+import Matrix from '../../atoms/Matrix';
 import {
     getBucketDataset,
     getKeyModeDataset,
     getScatterPlotDataset,
     getTime,
 } from '../../../utils/ChartUtils';
-import './charts'; // Setup defaults for chart component
-import { getRadarPlotOptions, getScatterPlotOptions } from './charts';
-import Track from '../../atoms/Track';
-import Matrix from '../../atoms/Matrix';
+import '../Shared/chartboot'; // Setup defaults for chart component
+
+const displayMissingTracks = 30;
 
 function Stats({ page }: PageComponent) {
-    const content = page.content as ResultContent;
+    const content = page.content as PageContent;
     const [{ missingTracks, missingBuckets, collidingTracks, collidingBuckets, heatMap, permutations }, setProblems] = useState<IPropblemAnalysis>(emptyAnalysis);
     const keyModeData = useMemo(() => getKeyModeDataset(tracks), [tracks]);
     const tempoEnergyData = useMemo(
@@ -113,20 +113,49 @@ function Stats({ page }: PageComponent) {
                 {collidingTracks.length > 0 &&
                     <List>
                         <Subtitle>Låtar som förekommer i över 100 av {permutations} frågekombinationer</Subtitle>
-                        <ul>
-                            {collidingTracks.map(t => <li key={t.id}>
-                                <Track track={t}><span className="count">({t.count})</span></Track>
-                            </li>)}
-                        </ul>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Låtnamn</th>
+                                    <th>Artist</th>
+                                    <th>Frågor</th>
+                                    <th>Poäng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {collidingTracks.map(t => <tr key={t.id}>
+                                    <td className='track'>{t.name}</td>
+                                    <td className='artist'>{t.name}</td>
+                                    <td className="count">{t.count}</td>
+                                    <td className="score">{t.score}</td>
+                                </tr>)}
+                            </tbody>
+                        </table>
                     </List>
                 }
                 {missingTracks.length > 0 &&
                     <>
                         <List>
                             <Subtitle>Låtar som inte visas i någon frågekombination</Subtitle>
-                            <ul>
-                                {missingTracks.map(t => <li key={t.id}><Track track={t} /></li>)}
-                            </ul>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Låtnamn</th>
+                                        <th>Artist</th>
+                                        <th>Poäng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {missingTracks.slice(0, displayMissingTracks).map(t => <tr key={t.id}>
+                                        <td className='track'>{t.name}</td>
+                                        <td className='artist'>{t.name}</td>
+                                        <td className="score">{t.score}</td>
+                                    </tr>)}
+                                    {missingTracks.length > displayMissingTracks && <tr>
+                                        <td colSpan={3}><span className="dark">Dolde {missingTracks.length - displayMissingTracks} resultat...</span></td>
+                                    </tr>}
+                                </tbody>
+                            </table>
                         </List>
                         {missingTracksData && <Graph>
                             <Subtitle>Gemensamt för låtar som inte visas / visas</Subtitle>

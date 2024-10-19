@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const Container = styled.nav`
+  margin: auto;
+  max-width: 640px;
+  width: 100%;
+`;
+
 export const Wrapper = styled.div`
   background-color: ${({ color }) => color};
   display: flex;
@@ -7,26 +13,35 @@ export const Wrapper = styled.div`
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 100px 26px 26px 26px;
-  width: 100%;
-`;
-
-export const Container = styled.nav`
-  margin: auto;
-  max-width: 640px;
+  padding: 24px 24px;
   width: 100%;
 `;
 
 export const Title = styled.h1`
-  font-size: 2.4rem;
-  font-weight: 100;
+  font-size: 2.2rem;
+  font-weight: 300;
   margin-bottom: 24px;
+  max-width: 720px;
   text-align: center;
+  text-wrap: balance;
+  letter-spacing: 1.1px;
+  margin: 10px auto 40px;
 
-  strong {
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 400;
+  em {
+    color: #eee;
+    font-size: 4rem;
+    letter-spacing: 0px;
   }
+`;
+
+export const Subtitle = styled.h3`
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.6px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  text-align: center;
 `;
 
 export const Description = styled.p`

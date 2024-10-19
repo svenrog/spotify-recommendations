@@ -5,6 +5,7 @@ import { QuestionContent } from '../types/QuestionContent';
 import { pages } from '../data/pages';
 import { ValueSpaceProperties } from '../types/IValueModifier';
 import { IPlotPoint } from '../types/IPlotPoint';
+import { Decimals, Round } from './MathUtils';
 const NO_DATA = {
     datasets: [],
 };
@@ -86,6 +87,17 @@ export function getScatterPlotDataset(propertyX: ValueSpaceProperties, propertyY
             borderWidth: 1,
             pointRadius: 6,
 
+        }],
+    };
+}
+
+export function getScalingDataset(scaleFunc: (x: number) => number): ChartData<'line'> {
+    const scale = getScale(scaleFunc, 1, 0.1);
+    return {
+        labels: getScaleLabels(scale),
+        datasets: [{
+            data: scale,
+            tension: 0.1
         }],
     };
 }
@@ -184,6 +196,29 @@ function getKeys(tracks: ITrackModel[]): Array<number> {
     const counts = [...KEYS];
     tracks.forEach((t) => counts[t.key]++);
     return counts;
+}
+
+function getScaleLabels(scale: number[]): string[] {
+    let data: string[] = new Array<string>(scale.length);
+
+    for (let i = 0; i < scale.length; i++) {
+        data[i] = Round(scale[i], Decimals.One).toString();
+    }
+
+    return data;
+}
+
+
+function getScale(scaleFunc: (x: number) => number, target: number, resolution: number): number[] {
+    let steps: number = target / resolution;
+    let data: number[] = new Array<number>(steps);
+
+    for (let i = 0; i < steps + 1; i++) {
+        const x = i * resolution;
+        data[i] = scaleFunc(x)
+    }
+
+    return data;
 }
 
 function project(tracks: ITrackModel[], projection: (t: ITrackModel) => IPlotPoint): Array<IPlotPoint> {

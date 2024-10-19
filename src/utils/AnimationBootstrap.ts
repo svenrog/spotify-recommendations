@@ -1,7 +1,7 @@
 import { animations } from "@steveeeie/react-page-transition";
 
 const timing = "cubic-bezier(.6,0,.4,1)"
-const duration = 1200
+const duration = 700
 
 animations.rotateRoomBottomIn.timing = timing
 animations.rotateRoomBottomOut.timing = timing

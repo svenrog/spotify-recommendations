@@ -3,7 +3,7 @@ import { IValueSpace } from '../../types/IValueSpace';
 import {
     IRecommendationProfile,
 } from '../../types/IRecommendationProfile';
-import { DURATION_MAX, KEY_INVALID, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from '../../utils/RecommendationWeights';
+import { DURATION_MAX, DURATION_MIN, KEY_INVALID, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from '../../utils/RecommendationWeights';
 
 export interface IRecommendationContext extends IRecommendationProfile {
     setDurationMs: React.Dispatch<IValueSpace>;
@@ -22,7 +22,7 @@ export interface IRecommendationContext extends IRecommendationProfile {
 
 export const defaults: IRecommendationProfile = {
     durationMs: {
-        min: 0,
+        min: DURATION_MIN,
         max: DURATION_MAX,
     },
     key: {

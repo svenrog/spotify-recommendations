@@ -18,7 +18,7 @@ const pages: PageType[] = [
                     modifier: [
                         { type: 'set', property: 'key', base: 0 },
                         { type: 'set', property: 'mode', base: 1 },
-                        { type: 'set', property: 'valence', base: 0.9 },
+                        { type: 'set', property: 'valence', base: 1 },
                     ],
                 },
                 {
@@ -86,20 +86,21 @@ const pages: PageType[] = [
                     text: 'Långsamt och avkopplande',
                     modifier: [
                         { type: 'set', property: 'tempo', base: 60 },
-                        { type: 'set', property: 'energy', base: 0.25 }
+                        { type: 'set', property: 'energy', base: 0.15 }
                     ],
                 },
                 {
                     text: 'Mittemellan',
                     modifier: [
-                        { type: 'set', property: 'tempo', base: 100 },
-                        {
-                            type: 'set',
-                            property: 'energy',
-                            min: 0.25,
-                            base: 0.5,
-                            max: 0.75,
-                        }
+                        { type: 'set', property: 'tempo', base: 85 },
+                        { type: 'set', property: 'energy', base: 0.27 }
+                    ],
+                },
+                {
+                    text: 'Mellansnabbt',
+                    modifier: [
+                        { type: 'set', property: 'tempo', base: 110 },
+                        { type: 'set', property: 'energy', base: 0.5 }
                     ],
                 },
                 {
@@ -142,21 +143,21 @@ const pages: PageType[] = [
                 {
                     text: 'Ett trubadurframträdande',
                     modifier: [
-                        { type: 'set', property: 'liveness', base: 0.33 },
+                        { type: 'set', property: 'liveness', base: 0.1 },
                         { type: 'set', property: 'acousticness', base: 0.5 },
                         { type: 'set', property: 'instrumentalness', base: 0.2 },
                     ],
                 },
                 {
-                    text: 'Ensam med instrumentet',
+                    text: 'Höra akustiska instrument',
                     modifier: [
-                        { type: 'set', property: 'liveness', base: 0.15 },
-                        { type: 'set', property: 'acousticness', base: 0.8 },
+                        { type: 'set', property: 'liveness', base: 0.05 },
+                        { type: 'set', property: 'acousticness', base: 1 },
                         { type: 'set', property: 'instrumentalness', base: 0.5 },
                     ],
                 },
                 {
-                    text: 'En studioinspelning',
+                    text: 'Vara i en studio, med kablarna',
                     modifier: [
                         { type: 'set', property: 'liveness', base: 0 },
                         { type: 'set', property: 'acousticness', base: 0 },
@@ -243,7 +244,7 @@ const pages: PageType[] = [
                     ],
                 },
                 {
-                    text: 'Halvlånga',
+                    text: 'Halvlång',
                     modifier: [
                         {
                             type: 'set',
@@ -253,7 +254,7 @@ const pages: PageType[] = [
                     ],
                 },
                 {
-                    text: 'Jättelånga är bäst',
+                    text: 'Jättelång, faktiskt',
                     modifier: [
                         {
                             type: 'set',
@@ -277,7 +278,7 @@ const pages: PageType[] = [
                     Nu är <em>resultatet</em> färdigställt
                 </>
             ),
-            body: <>Efter att ha utvärderat dina svar noga (men inte så värst länge), <br />tror vi att du kommer gilla den här låten.'</>,
+            body: <>Efter att ha utvärderat dina svar noga (men inte så värst länge), <br />tror vi att du kommer gilla den här låten.</>
         },
     },
     {
@@ -289,10 +290,25 @@ const pages: PageType[] = [
         content: {
             title: (
                 <>
-                    Här följer lite påkallade <em>grafer</em> från datamängden
+                    Här följer lite (av dig) påkallade <em>grafer</em> från datamängden
                 </>
             ),
             body: '',
+        },
+    },
+    {
+        path: '/weights',
+        type: 'weights',
+        title: 'Statistik',
+        hide: true,
+        color: '#161616',
+        content: {
+            title: (
+                <>
+                    En beskrivning av <em>värden</em> i datamängden
+                </>
+            ),
+            body: <>Spotify analyserar all musik i sin bibliotek – det är grunden för deras rekommendationer. Nedan följer en redogörelse för de värden som används och med vilken vikt dessa påverkar resultatet.</>,
         },
     },
 ];

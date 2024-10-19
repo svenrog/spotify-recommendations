@@ -37,9 +37,7 @@ export const Container = styled.button<{
   ${(props) =>
         props.$deemphasize &&
         css`
-      //font-size: 1.1rem;
       padding: 14px;
-      //color: rgba(255, 255, 255, 0.8);
       background-color: #ffffff08;
 
       &:hover {

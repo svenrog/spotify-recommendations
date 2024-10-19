@@ -37,7 +37,7 @@ export const getPermutations = () => {
     return permutations;
 }
 
-export const performTest = (answers: number[], tracks: ITrackModel[]): ITrackModel => {
+export const performTest = (answers: number[], tracks: ITrackModel[]) => {
     const profile = { ...defaults };
 
     for (let i = 0; i < questions.length; i++) {
@@ -54,5 +54,5 @@ export const performTest = (answers: number[], tracks: ITrackModel[]): ITrackMod
 
     tracks = sortTracks(tracks, profile);
 
-    return tracks[0];
+    return { recommendations: tracks, profile };
 }

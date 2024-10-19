@@ -2,7 +2,7 @@ import { IRecommendationContext } from "../components/contexts/RecommendationCon
 import { getDistance, getRotationalDistance, shouldFilter } from "./ValueSpaceUtils"
 import { ITrackModel, ITrackValues } from "../types/ITrackModel"
 import { IRecommendationProfile } from "../types/IRecommendationProfile";
-import { DURATION_MAX, KEY_DIVISOR, KEY_MAX, MULTIPLE_OPERATIONS_MAX, MULTIPLE_OPERATION_SCALE, Scaling, TEMPO_MAX, TEMPO_MIN } from "./RecommendationWeights";
+import { DURATION_MAX, DURATION_MIN, KEY_DIVISOR, KEY_MAX, MULTIPLE_OPERATIONS_MAX, MULTIPLE_OPERATION_SCALE, Scaling, TEMPO_MAX, TEMPO_MIN } from "./RecommendationWeights";
 import { IValueSpace } from "../types/IValueSpace";
 
 export function sortTracks(tracks?: ITrackModel[], profile?: IRecommendationProfile | null): ITrackModel[] {
@@ -57,8 +57,8 @@ export function getTrackDistances(track: ITrackModel, profile: IRecommendationPr
         key: (getRotationalDistance(track.key, profile.key, KEY_MAX) / KEY_DIVISOR) * scaleByOperations(profile.key),
         mode: getDistance(track.mode, profile.mode) * scaleByOperations(profile.mode),
         valence: getDistance(track.valence, profile.valence) * scaleByOperations(profile.valence),
-        tempo: (getDistance(track.tempo - TEMPO_MIN, profile.tempo) / (TEMPO_MAX - TEMPO_MIN)) * scaleByOperations(profile.tempo),
-        durationMs: (getDistance(track.durationMs, profile.durationMs) / DURATION_MAX) * scaleByOperations(profile.durationMs),
+        tempo: (getDistance(track.tempo, profile.tempo, TEMPO_MIN) / (TEMPO_MAX - TEMPO_MIN)) * scaleByOperations(profile.tempo),
+        durationMs: (getDistance(track.durationMs, profile.durationMs, DURATION_MIN) / (DURATION_MAX - DURATION_MIN)) * scaleByOperations(profile.durationMs),
         energy: getDistance(track.energy, profile.energy) * scaleByOperations(profile.energy),
         danceability: getDistance(track.danceability, profile.danceability) * scaleByOperations(profile.danceability),
         acousticness: getDistance(track.acousticness, profile.acousticness) * scaleByOperations(profile.acousticness),

@@ -1,4 +1,4 @@
-import { useContext, lazy } from 'react';
+import { useContext, lazy, Suspense } from 'react';
 import {
     Routes,
     Route,
@@ -14,6 +14,7 @@ import { PageComponent } from '../types/PageComponent';
 import '../utils/AnimationBootstrap';
 
 const Stats = lazy(() => import('./pages/Stats'));
+const Weights = lazy(() => import('./pages/Weights'));
 const Page = lazy(() => import('./pages/Page'));
 const Question = lazy(() => import('./pages/Question'));
 const Result = lazy(() => import('./pages/Result'));
@@ -39,6 +40,8 @@ function Pages() {
                 return <Result {...props} />;
             case 'stats':
                 return <Stats {...props} />;
+            case 'weights':
+                return <Weights {...props} />;
             default:
                 return <Page {...props} />;
         }
@@ -52,18 +55,20 @@ function Pages() {
                 enterAnimation={''}
                 exitAnimation={''}
             >
-                <Routes location={location}>
-                    {pages.map((page, index) => {
-                        return (
-                            <Route
-                                key={index}
-                                path={page.path}
-                                element={getComponent(page, index)}
-                            />
-                        );
-                    })}
-                    <Route path="/" element={<Navigate to={pages[0].path} />} />
-                </Routes>
+                <Suspense>
+                    <Routes location={location}>
+                        {pages.map((page, index) => {
+                            return (
+                                <Route
+                                    key={index}
+                                    path={page.path}
+                                    element={getComponent(page, index)}
+                                />
+                            );
+                        })}
+                        <Route path="/" element={<Navigate to={pages[0].path} />} />
+                    </Routes>
+                </Suspense>
             </PageTransition>
         );
     }

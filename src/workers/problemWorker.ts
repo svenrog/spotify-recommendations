@@ -1,8 +1,10 @@
 import { getPermutations, performTest } from "../data/combinations";
 import { createBuckets } from "../types/AnalysisBuckets";
 import { emptyAnalysis } from "../types/IProblemAnalysis";
-import { ITrackModel, ITrackModelCount, ITrackProps } from "../types/ITrackModel";
+import { ITrackModel, ITrackModelCount, ITrackModelScore, ITrackProps } from "../types/ITrackModel";
 import { appendBuckets, getBuckets } from "../utils/BucketUtils";
+import { Round } from "../utils/MathUtils";
+import { getTrackDistance } from "../utils/RecommendationUtils";
 
 self.onmessage = (event: MessageEvent<ITrackModel[]>) => {
     const tracks = event.data;
@@ -17,9 +19,9 @@ self.onmessage = (event: MessageEvent<ITrackModel[]>) => {
 
 export function analyzeProblems(tracks: ITrackModel[]) {
     const permutations = getPermutations();
-    const heatMap = collectHeatmap(permutations, tracks);
+    const { heatMap, scoreMap } = collectMaps(permutations, tracks);
     const { collidingTracks, collidingBuckets,
-        missingTracks, missingBuckets } = collectPropblemData(tracks, heatMap);
+        missingTracks, missingBuckets } = collectPropblemData(tracks, heatMap, scoreMap);
 
     return {
         collidingTracks,
@@ -27,28 +29,30 @@ export function analyzeProblems(tracks: ITrackModel[]) {
         missingTracks,
         missingBuckets,
         heatMap,
+        scoreMap,
         permutations: permutations.length
     };
 }
 
-function collectPropblemData(tracks: ITrackModel[], heatMap: Map<string, number>) {
+function collectPropblemData(tracks: ITrackModel[], heatMap: Map<string, number>, scoreMap: Map<string, number>) {
 
     const collidingTracks: ITrackModelCount[] = [];
-    const missingTracks: ITrackModel[] = [];
+    const missingTracks: ITrackModelScore[] = [];
     const missingBuckets: ITrackProps<number[]> = createBuckets();
     const collidingBuckets: ITrackProps<number[]> = createBuckets();
 
     for (const track of tracks) {
         const count = heatMap.get(track.id);
+        const score = scoreMap.get(track.id) ?? 0;
         const bucketIndexes = getBuckets(track);
 
         if (count === undefined) {
             appendBuckets(bucketIndexes, missingBuckets);
-            missingTracks.push(track);
+            missingTracks.push({ ...track, score });
         }
         else if (count > 100) {
             appendBuckets(bucketIndexes, collidingBuckets);
-            collidingTracks.push({ ...track, count });
+            collidingTracks.push({ ...track, count, score });
         }
     }
 
@@ -57,15 +61,50 @@ function collectPropblemData(tracks: ITrackModel[], heatMap: Map<string, number>
     return { collidingTracks, missingTracks, collidingBuckets, missingBuckets };
 }
 
-
-function collectHeatmap(permutations: number[][], tracks: ITrackModel[]) {
+function collectMaps(permutations: number[][], tracks: ITrackModel[]) {
     const heatMap = new Map<string, number>();
+    const scoreMap = new Map<string, number>();
 
     for (const permutation of permutations) {
-        const result = performTest(permutation, tracks);
-        let count = heatMap.get(result.id) || 0;
-        heatMap.set(result.id, ++count);
+        const { recommendations, profile } = performTest(permutation, tracks);
+        const topRecommendation = recommendations[0];
+
+        let count = heatMap.get(topRecommendation.id) || 0;
+        heatMap.set(topRecommendation.id, ++count);
+
+        for (const recommendation of recommendations) {
+            let score = scoreMap.get(recommendation.id) || 0;
+            score += getTrackDistance(recommendation, profile) / permutations.length;
+
+            scoreMap.set(recommendation.id, score);
+        }
     }
 
-    return heatMap;
+    normalizeMap(scoreMap);
+
+    return { heatMap, scoreMap };
+}
+
+function normalizeMap(input: Map<string, number>): Map<string, number> {
+
+    let min: number | null = null;
+    let max: number | null = null;
+
+    input.forEach(x => {
+        if (min === null || x < min) min = x;
+        if (max === null || x > max) max = x;
+    });
+
+    if (min === null) min = 0;
+    if (max === null) max = 1;
+
+    const scale = 1 / (max - min);
+
+    for (const [id, value] of input) {
+        const normalized = (value - min) * scale;
+        const rounded = Round(normalized);
+        input.set(id, rounded);
+    }
+
+    return input;
 }

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useRecommendations } from '../../../hooks/useRecommendations';
 import { AnswerContent, QuestionContent } from '../../../types/QuestionContent';
 import { PageComponent } from '../../../types/PageComponent';
-import { Answers, answerStyles, Container, Title } from './styles';
-import { Wrapper } from '../Page/styles';
+import { Answers, answerStyles, Container } from './styles';
+import { Wrapper, Title } from '../Page/styles';
 import Answer from '../../atoms/Answer';
 
 function Question({ page, nextPage }: PageComponent) {
@@ -18,7 +18,7 @@ function Question({ page, nextPage }: PageComponent) {
         setSelected(index);
         setTimeout(() => {
             nextPage && nextPage();
-        }, 400);
+        }, 300);
     };
 
     return (

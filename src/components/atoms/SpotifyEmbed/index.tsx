@@ -16,7 +16,7 @@ function Embed({ trackId, height }: Props) {
 }
 
 Embed.defaultProps = {
-    height: 312,
+    height: 233,
 };
 
 export default Embed;
