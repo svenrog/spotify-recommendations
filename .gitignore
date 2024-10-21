@@ -357,7 +357,7 @@ MigrationBackup/
 *.Development.json
 
 # Distribution folder
-build/
+dist/
 
 # Package lock
 package-lock.json

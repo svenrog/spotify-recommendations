@@ -9,5 +9,6 @@
     "jsx": "react-jsx",
     "moduleResolution": "Bundler",
     "module": "ESNext",
+    "types": ["vite/client", "vite-plugin-comlink/client"]
   }
 }

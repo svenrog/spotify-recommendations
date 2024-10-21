@@ -6,7 +6,7 @@ import { appendBuckets, getBuckets } from "../utils/BucketUtils";
 import { Round } from "../utils/MathUtils";
 import { getTrackDistance } from "../utils/RecommendationUtils";
 
-self.onmessage = (event: MessageEvent<ITrackModel[]>) => {
+onmessage = (event: MessageEvent<ITrackModel[]>) => {
     const tracks = event.data;
     if (!tracks || !tracks.length) {
         postMessage(emptyAnalysis);
@@ -14,7 +14,7 @@ self.onmessage = (event: MessageEvent<ITrackModel[]>) => {
     }
 
     const analysis = analyzeProblems(tracks);
-    self.postMessage(analysis);
+    postMessage(analysis);
 }
 
 export function analyzeProblems(tracks: ITrackModel[]) {

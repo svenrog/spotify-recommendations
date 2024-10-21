@@ -30,7 +30,6 @@ Chart.register(
     Tooltip
 );
 
-Chart.defaults.backgroundColor = '#9BD0F5';
 Chart.defaults.borderColor = '#ffffff33';
 Chart.defaults.color = '#ffffff77';
 Chart.defaults.elements.point.borderColor = 'transparent';
