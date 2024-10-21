@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
         height: 100%;
     }
 
-    body{
+    body {
         background-color: #333;
     }
 

@@ -27,7 +27,7 @@ function Result({ page }: PageComponent) {
     const content = page.content as PageContent;
 
     if (track && recommendations) {
-        const top = [track!, ...result.slice(0, 4)];
+        const top = [track!, ...result.slice(0, 19)];
         console.log('Recommendation profile', mapRecommendationProfile(recommendations));
         console.log(`Top ${top.length} recommendations (out of ${result.length + 1})`);
         console.log('---');

@@ -10,7 +10,7 @@ interface Props {
 
 function Matrix({ data }: Props) {
     return (
-        <Chart style={{ maxWidth: 320 }} height={200} type='matrix' data={data}
+        <Chart height={200} type='matrix' data={data}
             options={getMatrixOptions()} />
     );
 }
