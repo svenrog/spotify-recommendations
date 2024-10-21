@@ -125,7 +125,7 @@ function Stats({ page }: PageComponent) {
                             <tbody>
                                 {collidingTracks.map(t => <tr key={t.id}>
                                     <td className='track'>{t.name}</td>
-                                    <td className='artist'>{t.name}</td>
+                                    <td className='artist'>{t.artistName}</td>
                                     <td className="count">{t.count}</td>
                                     <td className="score">{t.score}</td>
                                 </tr>)}
@@ -148,7 +148,7 @@ function Stats({ page }: PageComponent) {
                                 <tbody>
                                     {missingTracks.slice(0, displayMissingTracks).map(t => <tr key={t.id}>
                                         <td className='track'>{t.name}</td>
-                                        <td className='artist'>{t.name}</td>
+                                        <td className='artist'>{t.artistName}</td>
                                         <td className="score">{t.score}</td>
                                     </tr>)}
                                     {missingTracks.length > displayMissingTracks && <tr>

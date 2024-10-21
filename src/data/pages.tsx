@@ -26,7 +26,7 @@ const pages: PageType[] = [
                     modifier: [
                         { type: 'set', property: 'key', base: 10 },
                         { type: 'set', property: 'mode', base: 0 },
-                        { type: 'set', property: 'valence', base: 0.7 },
+                        { type: 'set', property: 'valence', base: 0.6 },
                     ],
                 },
                 {
@@ -49,7 +49,7 @@ const pages: PageType[] = [
                     modifier: [
                         { type: 'set', property: 'key', base: 2 },
                         { type: 'set', property: 'mode', base: 1 },
-                        { type: 'set', property: 'valence', base: 0.5 },
+                        { type: 'set', property: 'valence', base: 0.7 },
                     ],
                 },
                 {
@@ -143,7 +143,7 @@ const pages: PageType[] = [
                 {
                     text: 'Ett trubadurframträdande',
                     modifier: [
-                        { type: 'set', property: 'liveness', base: 0.1 },
+                        { type: 'set', property: 'liveness', base: 0.4 },
                         { type: 'set', property: 'acousticness', base: 0.5 },
                         { type: 'set', property: 'instrumentalness', base: 0.2 },
                     ],
@@ -151,7 +151,7 @@ const pages: PageType[] = [
                 {
                     text: 'Höra akustiska instrument',
                     modifier: [
-                        { type: 'set', property: 'liveness', base: 0.05 },
+                        { type: 'set', property: 'liveness', base: 0.1 },
                         { type: 'set', property: 'acousticness', base: 1 },
                         { type: 'set', property: 'instrumentalness', base: 0.5 },
                     ],

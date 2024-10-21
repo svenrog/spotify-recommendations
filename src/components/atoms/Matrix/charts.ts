@@ -5,7 +5,8 @@ import { _DeepPartialObject } from 'chart.js/dist/types/utils';
 
 export function getMatrixOptions(): _DeepPartialObject<PluginChartOptions<"matrix"> & ScaleChartOptions<"matrix">> {
     return {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
+        responsive: true,
         plugins: {
             legend: {
                 display: false,

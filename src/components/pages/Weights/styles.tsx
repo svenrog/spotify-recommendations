@@ -9,7 +9,7 @@ export const Subtitle = styled.h3`
   margin-top: 20px;
   text-align: center;
 
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 640px) {
         font-size: 1.4rem;
         font-weight: 700;
         text-align: left;
@@ -28,7 +28,7 @@ export const Section = styled.div`
         margin-bottom: 16px;
     }
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 640px) {
         display: flex;
         
         div, canvas {
