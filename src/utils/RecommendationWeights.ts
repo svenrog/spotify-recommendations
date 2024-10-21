@@ -24,14 +24,14 @@ const WEIGHT_TEMPO_POWER: number = 2;
 const WEIGHT_DANCEABILITY: number = 1.5;
 const WEIGHT_DANCEABILITY_POWER: number = 1.5;
 
-const WEIGHT_ENERGY: number = 3;
+const WEIGHT_ENERGY: number = 2;
 const WEIGHT_ENERGY_POWER: number = 1.5;
 
 const WEIGHT_ACOUSTICNESS: number = 1;
 const WEIGHT_ACOUSTICNESS_POWER: number = 2;
 
-const WEIGHT_LIVENESS: number = 1;
-const WEIGHT_LIVENESS_POWER: number = 1.5;
+const WEIGHT_LIVENESS: number = 2;
+const WEIGHT_LIVENESS_POWER: number = 1.8;
 
 const WEIGHT_INSTRUMENTALNESS: number = 0;
 
@@ -39,8 +39,8 @@ const WEIGHT_VALENCE: number = 1.7;
 const WEIGHT_VALENCE_POWER: number = 1.5;
 
 // If user steps back and selects another value, relevance can be tweaked
-export const MULTIPLE_OPERATION_SCALE: number = 2;
-export const MULTIPLE_OPERATIONS_MAX: number = 2;
+export const MULTIPLE_OPERATION_SCALE: number = 1;
+export const MULTIPLE_OPERATIONS_MAX: number = 1;
 
 /* All values should be normalized beforehand */
 export const Scaling: ITrackScaling = {

@@ -50,11 +50,20 @@ export const List = styled.div`
 
 export const Dual = styled.div`
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+    
     canvas {
-        margin: 12px 10px 30px 0;
+        margin: 12px 20px 30px 0;
+    }
+
+    @media only screen and (min-width: 640px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        canvas {
+            flex: 1;
+            max-width: 50%;
+            max-height: 300px;
+        }
     }
 `;
