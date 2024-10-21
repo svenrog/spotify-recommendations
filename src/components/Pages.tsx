@@ -6,12 +6,11 @@ import {
     useLocation,
     useNavigate,
 } from 'react-router-dom';
-import { PageTransition } from '@steveeeie/react-page-transition';
+import { PageTransition } from './transitions';
 import { pages } from '../data/pages';
 import { AppContext } from './contexts/AppContext';
 import { PageType } from '../types/PageType';
 import { PageComponent } from '../types/PageComponent';
-import '../utils/AnimationBootstrap';
 
 const Stats = lazy(() => import('./pages/Stats'));
 const Weights = lazy(() => import('./pages/Weights'));
