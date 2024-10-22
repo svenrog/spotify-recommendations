@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { memo } from 'react';
+import React, { memo, useRef } from 'react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { animations } from './animations';
 import { presets } from './presets';
@@ -22,6 +22,7 @@ function PageTransition({
     transitionKey,
     ...rest
 }: Props) {
+    const nodeRef = useRef(null);
     const selectEnterAnimation = () => {
         if (enterAnimationOverride) {
             if (typeof enterAnimationOverride === 'string') {
@@ -71,9 +72,10 @@ function PageTransition({
     return (
         <PageTransitionGroup {...rest}>
             <TransitionGroup component={null}>
-                <Transition key={transitionKey} timeout={timeout}>
+                <Transition nodeRef={nodeRef} key={transitionKey} timeout={timeout}>
                     {state => (
                         <PageTransitionWrapper
+                            ref={nodeRef}
                             enterAnimation={enterAnimation}
                             exitAnimation={exitAnimation}
                             state={state}
