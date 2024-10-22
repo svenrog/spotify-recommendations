@@ -54,7 +54,7 @@ function Pages() {
                 enterAnimation={''}
                 exitAnimation={''}
             >
-                <Suspense>
+                <Suspense fallback={null}>
                     <Routes location={location}>
                         {pages.map((page, index) => {
                             return (
