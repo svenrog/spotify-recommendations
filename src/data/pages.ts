@@ -7,11 +7,7 @@ const pages: PageType[] = [
         type: 'question',
         color: '#089068',
         content: {
-            question: (
-                <>
-                    Hur skulle du beskriva ditt nuvarande <em>humör</em>?
-                </>
-            ),
+            question: 'Hur skulle du beskriva ditt nuvarande <em>humör</em>?',
             answers: [
                 {
                     text: 'Glatt',
@@ -76,11 +72,7 @@ const pages: PageType[] = [
         color: '#06846c',
         type: 'question',
         content: {
-            question: (
-                <>
-                    Vilket <em>tempo</em> föredrar du?
-                </>
-            ),
+            question: 'Vilket <em>tempo</em> föredrar du?',
             answers: [
                 {
                     text: 'Långsamt och avkopplande',
@@ -127,11 +119,7 @@ const pages: PageType[] = [
         color: '#007369',
         type: 'question',
         content: {
-            question: (
-                <>
-                    Vilken <em>upplevelse</em> är du ute efter?
-                </>
-            ),
+            question: 'Vilken <em>upplevelse</em> är du ute efter?',
             answers: [
                 {
                     text: 'Ett liveframträde',
@@ -173,11 +161,7 @@ const pages: PageType[] = [
         color: '#005A5B',
         type: 'question',
         content: {
-            question: (
-                <>
-                    Hur viktigt är det att kunna <em>dansa</em> till musiken?
-                </>
-            ),
+            question: 'Hur viktigt är det att kunna<em>dansa</em> till musiken?',
             answers: [
                 {
                     text: 'Jätteviktigt',
@@ -221,11 +205,7 @@ const pages: PageType[] = [
         color: '#003840',
         type: 'question',
         content: {
-            question: (
-                <>
-                    Hur <em>lång</em> får låten vara?
-                </>
-            ),
+            question: 'Hur <em>lång</em> får låten vara?',
             answers: [
                 {
                     text: 'Jag vill bara lyssna på korta låtar',
@@ -273,12 +253,8 @@ const pages: PageType[] = [
         title: 'Resultat',
         color: '#161616',
         content: {
-            title: (
-                <>
-                    Nu är <em>resultatet</em> färdigställt
-                </>
-            ),
-            body: <>Efter att ha utvärderat dina svar noga (men inte så värst länge), <br />tror vi att du kommer gilla den här låten.</>
+            title: 'Nu är <em>resultatet</em> färdigställt',
+            body: 'Efter att ha utvärderat dina svar noga(men inte så värst länge), <br />tror vi att du kommer gilla den här låten.',
         },
     },
     {
@@ -288,11 +264,7 @@ const pages: PageType[] = [
         hide: true,
         color: '#161616',
         content: {
-            title: (
-                <>
-                    Här följer lite (av dig) påkallade <em>grafer</em> från datamängden
-                </>
-            ),
+            title: 'Här följer lite (av dig) påkallade <em>grafer</em> från datamängden',
             body: '',
         },
     },
@@ -303,12 +275,8 @@ const pages: PageType[] = [
         hide: true,
         color: '#161616',
         content: {
-            title: (
-                <>
-                    En beskrivning av <em>värden</em> i datamängden
-                </>
-            ),
-            body: <>Spotify analyserar all musik i sin bibliotek – det är grunden för deras rekommendationer. Nedan följer en redogörelse för de värden som används och med vilken vikt dessa påverkar resultatet.</>,
+            title: 'En beskrivning av <em>värden</em> i datamängden',
+            body: 'Spotify analyserar all musik i sin bibliotek – det är grunden för deras rekommendationer.Nedan följer en redogörelse för de värden som används och med vilken vikt dessa påverkar resultatet.',
         },
     },
 ];

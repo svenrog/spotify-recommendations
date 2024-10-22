@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { PageComponent } from '../../../types/PageComponent';
 import { PageContent } from '../../../types/PageContent';
 import { Graph, Graphs, List, Dual } from './styles';
@@ -7,6 +7,7 @@ import { tracks } from '../../../data/tracks';
 import { Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';
 import { getRadarPlotOptions, getScatterPlotOptions } from './charts';
+import ProblemWorker from '../../../workers/problemWorker?worker';
 import Matrix from '../../atoms/Matrix';
 import {
     getBucketDataset,
@@ -15,6 +16,7 @@ import {
     getTime,
 } from '../../../utils/ChartUtils';
 import '../Shared/chartboot'; // Setup defaults for chart component
+import { useWorker } from '../../../hooks/useWorker';
 
 const displayMissingTracks = 30;
 
@@ -52,26 +54,15 @@ function Stats({ page }: PageComponent) {
         },
         [tracks, collidingBuckets]
     )
-    useEffect(() => {
-        const problemWorker = new Worker('./problemWorker.js', { type: "module" });
-        problemWorker.onmessageerror = (error) => {
-            console.warn(error);
-        }
-        problemWorker.onerror = (error) => {
-            console.error(error);
-        }
-        problemWorker.onmessage = (message) => {
-            const problems = message.data as IPropblemAnalysis;
-            console.log('analysis complete', problems)
-            setProblems(problems);
-        }
-        problemWorker.postMessage(tracks);
-        return () => problemWorker.terminate();
+    useWorker(ProblemWorker, tracks, (message) => {
+        const problems = message.data as IPropblemAnalysis;
+        console.log('analysis complete', problems)
+        setProblems(problems);
     }, []);
     return (
         <Wrapper color={page.color}>
             <Container>
-                <Title>{content.title}</Title>
+                <Title dangerouslySetInnerHTML={{ __html: content.title }} />
                 <Graphs>
                     <Graph>
                         <Subtitle>Modus och fördelning av tonarter</Subtitle>

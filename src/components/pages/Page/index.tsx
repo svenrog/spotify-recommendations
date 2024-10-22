@@ -5,7 +5,7 @@ function Page({ page }: PageComponent) {
     return (
         <Wrapper color={page.color}>
             <Container>
-                <Title>{page.title}</Title>
+                <Title dangerouslySetInnerHTML={{ __html: page.title }} />
                 <Description>Hittade du det du letade efter?</Description>
             </Container>
         </Wrapper>

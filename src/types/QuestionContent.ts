@@ -1,12 +1,12 @@
 import { IValueModifier } from "./IValueModifier";
 
 export type QuestionContent = {
-    question: React.ReactNode;
+    question: string;
     answers: AnswerContent[]
 }
 
 export type AnswerContent = {
-    text: React.ReactNode;
+    text: string;
     modifier?: IValueModifier[];
     deemphasize?: boolean;
 }

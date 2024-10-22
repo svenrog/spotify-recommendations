@@ -1,3 +1,6 @@
+// This file cannot include .tsx files or modules that reference React or JSX.
+// Doing so will cause a runtime error inside the worker since there is no global Window object.
+
 import { getPermutations, performTest } from "../data/combinations";
 import { createBuckets } from "../types/AnalysisBuckets";
 import { emptyAnalysis } from "../types/IProblemAnalysis";
