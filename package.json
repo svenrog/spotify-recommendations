@@ -17,21 +17,19 @@
         "styled-components": "^5.3.5"
     },
     "devDependencies": {
-        "@types/react": "18.3.1",
+        "@types/react": "18.3.10",
         "@types/react-dom": "18.3.1",
         "@types/react-transition-group": "^4.4.4",
         "@types/styled-components": "^5.1.34",
-        "@vitejs/plugin-react-swc": "^3.7.1",
-        "esbuild": "^0.24.0",
+        "@vitejs/plugin-react": "^4.3.2",
+        "babel-plugin-react-compiler": "^19.0.0-beta-8a03594-20241020",
+        "react-compiler-runtime": "^19.0.0-beta-8a03594-20241020",
         "typescript": "^5.6.3",
         "vite": "^5.4.9"
     },
     "scripts": {
-        "watch-worker": "esbuild \"./src/workers/problemWorker.ts\" --bundle --outfile=\"./public/problemWorker.js\" --watch",
-        "worker": "esbuild \"./src/workers/problemWorker.ts\" --bundle --outfile=\"./public/problemWorker.js\"",
-        "worker-production": "esbuild \"./src/workers/problemWorker.ts\" --bundle --outfile=\"./public/problemWorker.js\" --minify",
-        "watch": "npm run worker && vite",
-        "build": "npm run worker-production && vite build",
+        "watch": "vite",
+        "build": "vite build",
         "preview": "npm run build && vite preview"
     },
     "browserslist": [

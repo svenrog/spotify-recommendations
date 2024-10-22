@@ -27,7 +27,7 @@ function Result({ page }: PageComponent) {
     const content = page.content as PageContent;
 
     if (track && recommendations) {
-        const top = [track!, ...result.slice(0, 19)];
+        const top = [track!, ...result.slice(0, 5)];
         console.log('Recommendation profile', mapRecommendationProfile(recommendations));
         console.log(`Top ${top.length} recommendations (out of ${result.length + 1})`);
         console.log('---');
@@ -40,8 +40,8 @@ function Result({ page }: PageComponent) {
             <Container>
                 {track ? (
                     <>
-                        <Title>{content.title}</Title>
-                        <Description>{content.body}</Description>
+                        <Title dangerouslySetInnerHTML={{ __html: content.title }} />
+                        <Description dangerouslySetInnerHTML={{ __html: content.body }} />
                         <SpotifyEmbed trackId={track.id} />
                     </>
                 ) : (

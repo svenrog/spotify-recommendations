@@ -24,7 +24,7 @@ function Question({ page, nextPage }: PageComponent) {
     return (
         <Wrapper color={page.color}>
             <Container $hasSelection={Boolean(selected && selected >= 0)}>
-                <Title>{content.question}</Title>
+                <Title dangerouslySetInnerHTML={{ __html: content.question }} />
                 <Answers>
                     {content.answers.map((answer, index) => (
                         <Answer

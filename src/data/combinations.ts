@@ -2,7 +2,7 @@ import { ITrackModel } from "../types/ITrackModel";
 import { AnswerContent, QuestionContent } from "../types/QuestionContent";
 import { sortTracks } from "../utils/RecommendationUtils";
 import { setValueSpace } from "../utils/ValueSpaceUtils";
-import { defaults } from "../components/contexts/RecommendationContext";
+import { defaults } from "../components/contexts/defaults";
 import { pages } from "./pages";
 
 const questions: AnswerContent[][] = [];

@@ -24,8 +24,8 @@ function Weights({ page }: PageComponent) {
     return (
         <Wrapper color={page.color}>
             <Container>
-                <Title>{content.title}</Title>
-                <Description>{content.body}</Description>
+                <Title dangerouslySetInnerHTML={{ __html: content.title }} />
+                <Description dangerouslySetInnerHTML={{ __html: content.body }} />
                 <Section>
                     <div>
                         <Subtitle>Tonart</Subtitle>
