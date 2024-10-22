@@ -9,9 +9,6 @@ import { getLineOptions } from './charts';
 import { Line, } from 'react-chartjs-2';
 import '../Shared/chartboot'
 
-
-console.log('scaling', Scaling.key)
-
 function Weights({ page }: PageComponent) {
     const content = page.content as PageContent;
     const keyData = useMemo(() => getScalingDataset(Scaling.key), []);

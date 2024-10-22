@@ -50,15 +50,21 @@ export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
             {
                 label: 'Moll',
                 data: minorCounts,
+                backgroundColor: '#36a2eb77',
+                borderColor: '#36a2eb'
             },
             {
                 label: 'Dur',
                 data: majorCounts,
+                backgroundColor: '#ff638477',
+                borderColor: '#ff6384'
             },
             {
                 label: 'Svarsalternativ',
                 data: answerCounts,
                 spanGaps: true,
+                backgroundColor: '#ff9f4077',
+                borderColor: '#ff9f40',
             }
         ],
     };
@@ -97,7 +103,9 @@ export function getScalingDataset(scaleFunc: (x: number) => number): ChartData<'
         labels: getScaleLabels(scale),
         datasets: [{
             data: scale,
-            tension: 0.1
+            tension: 0.1,
+            backgroundColor: '#36a2eb77',
+            borderColor: '#36a2eb'
         }],
     };
 }

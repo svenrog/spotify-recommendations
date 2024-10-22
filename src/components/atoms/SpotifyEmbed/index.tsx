@@ -3,7 +3,7 @@ interface Props {
     height?: number;
 }
 
-function Embed({ trackId, height }: Props) {
+function Embed({ trackId, height = 233 }: Props) {
     return (
         <iframe
             src={`https://open.spotify.com/embed/track/${trackId}`}
@@ -14,9 +14,5 @@ function Embed({ trackId, height }: Props) {
         ></iframe>
     );
 }
-
-Embed.defaultProps = {
-    height: 233,
-};
 
 export default Embed;
