@@ -6,7 +6,11 @@ export const Container = styled.nav`
   width: 100%;
 `;
 
-export const Wrapper = styled.div`
+interface WrapperProps {
+    color: string;
+}
+
+export const Wrapper = styled.div<WrapperProps>`
   background-color: ${({ color }) => color};
   display: flex;
   flex-direction: column;
@@ -20,12 +24,14 @@ export const Wrapper = styled.div`
 export const Title = styled.h1`
   font-size: 2.2rem;
   font-weight: 300;
+  font-smooth: always;
   margin-bottom: 24px;
   max-width: 720px;
   text-align: center;
   text-wrap: balance;
   letter-spacing: 1.1px;
   margin: 10px auto 40px;
+
 
   em {
     color: #eee;

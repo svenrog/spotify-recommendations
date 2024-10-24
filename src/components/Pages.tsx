@@ -1,4 +1,4 @@
-import { useContext, lazy, Suspense } from 'react';
+import { useContext, lazy, Suspense, useEffect } from 'react';
 import {
     Routes,
     Route,
@@ -17,6 +17,8 @@ const Weights = lazy(() => import('./pages/Weights'));
 const Page = lazy(() => import('./pages/Page'));
 const Question = lazy(() => import('./pages/Question'));
 const Result = lazy(() => import('./pages/Result'));
+
+let initialized: boolean = false;
 
 function Pages() {
     const location = useLocation();
@@ -46,9 +48,17 @@ function Pages() {
         }
     };
 
+    let initialRender = false;
+
+    if (!initialized) {
+        initialized = true;
+        initialRender = true;
+    }
+
     if (appContext) {
         return (
             <PageTransition
+                initialRender={initialRender}
                 preset={appContext.animation}
                 transitionKey={location.pathname}
                 enterAnimation={''}

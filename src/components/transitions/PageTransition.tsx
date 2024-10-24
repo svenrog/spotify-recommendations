@@ -8,6 +8,7 @@ import { PageTransitionWrapper } from './PageTransitionWrapper';
 
 interface Props {
     children: React.ReactNode;
+    initialRender?: boolean;
     enterAnimation?: string | { name: string; delay: Number; onTop: Boolean };
     exitAnimation?: string | { name: string; delay: Number; onTop: Boolean };
     preset: string;
@@ -16,6 +17,7 @@ interface Props {
 
 function PageTransition({
     children,
+    initialRender,
     enterAnimation: enterAnimationOverride,
     exitAnimation: exitAnimationOverride,
     preset,
@@ -76,6 +78,7 @@ function PageTransition({
                     {state => (
                         <PageTransitionWrapper
                             ref={nodeRef}
+                            className={initialRender ? 'load' : null}
                             enterAnimation={enterAnimation}
                             exitAnimation={exitAnimation}
                             state={state}
