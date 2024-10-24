@@ -7,13 +7,17 @@ interface Props {
     css?: FlattenSimpleInterpolation;
     onClick?: (answer: AnswerContent) => void;
     selected: boolean;
+    selection?: boolean;
+    index: number;
 }
 
-function Answer({ answer, selected, onClick, css }: Props) {
+function Answer({ answer, selected, index, selection, onClick, css }: Props) {
     return (
         <Container
             $selected={selected}
+            $selection={selection}
             $deemphasize={answer.deemphasize}
+            $index={index}
             $css={css}
             onClick={() => onClick && onClick(answer)}
         >

@@ -13,10 +13,9 @@ interface Props {
 
 function AppContextProvider({ children }: Props) {
     const [animation, setAnimation] = useState('roomToBottom');
-
     const appContext: IAppContext = {
         animation,
-        setAnimation,
+        setAnimation
     };
 
     return (

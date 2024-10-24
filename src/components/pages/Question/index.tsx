@@ -18,7 +18,7 @@ function Question({ page, nextPage }: PageComponent) {
         setSelected(index);
         setTimeout(() => {
             nextPage && nextPage();
-        }, 400);
+        }, 500);
     };
 
     return (
@@ -30,8 +30,10 @@ function Question({ page, nextPage }: PageComponent) {
                         <Answer
                             css={answerStyles}
                             key={index}
+                            index={index}
                             answer={answer}
                             selected={selected == index}
+                            selection={selected !== undefined}
                             onClick={(a) => onClickHandler(a, index)}
                         />
                     ))}

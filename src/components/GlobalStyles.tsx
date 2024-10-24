@@ -64,7 +64,26 @@ const GlobalStyles = createGlobalStyle`
         margin-right: 10px;
         line-height: 0.75;
         z-index: -1;
+        opacity: 0;
 
+        // Animation when appearing
+        animation-name: appear;
+        animation-duration: 800ms;
+        animation-timing-function: cubic-bezier(0, 0.5, 0, 1);
+        animation-fill-mode: forwards;
+        animation-delay: 850ms;
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: rotate(-5deg) scale(1.0) translate(0, -100%); 
+            }
+            to { 
+                opacity: 1;
+                transform: rotate(-5deg) scale(1.1) translate(0, 5%); 
+            }
+        }
+        
         :before {
             content: '';
             position: absolute;
@@ -77,6 +96,15 @@ const GlobalStyles = createGlobalStyle`
             padding: 16px 24px;
             margin: -10px -24px;
             transform: rotate(-3deg) translate(0, 0);
+        }
+    }
+
+    .load {
+
+        // Em should not appear when page has been loaded first time
+        em {
+            opacity: 1;
+            animation-name: none;
         }
     }
 `;
