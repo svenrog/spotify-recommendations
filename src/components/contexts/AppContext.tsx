@@ -1,8 +1,9 @@
+import { getCurrentUrl, RouterOnChangeArgs } from 'preact-router';
 import React, { createContext, useState } from 'react';
 
 interface IAppContext {
-    animation: string;
-    setAnimation: React.Dispatch<string>;
+    route: RouterOnChangeArgs;
+    setRoute: React.Dispatch<RouterOnChangeArgs>;
 }
 
 const AppContext = createContext<IAppContext | null>(null);
@@ -12,10 +13,18 @@ interface Props {
 }
 
 function AppContextProvider({ children }: Props) {
-    const [animation, setAnimation] = useState('roomToBottom');
+    const [route, setRoute] = useState<RouterOnChangeArgs>({
+        url: getCurrentUrl(),
+        active: null,
+        current: null,
+        router: null,
+        matches: null,
+        path: null,
+        previous: undefined
+    });
     const appContext: IAppContext = {
-        animation,
-        setAnimation
+        route,
+        setRoute
     };
 
     return (

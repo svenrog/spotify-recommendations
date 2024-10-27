@@ -1,14 +1,6 @@
-import { useContext, lazy, Suspense, useEffect } from 'react';
-import {
-    Routes,
-    Route,
-    Navigate,
-    useLocation,
-    useNavigate,
-} from 'react-router-dom';
-import { PageTransition } from './transitions';
+import { lazy, memo, Suspense } from 'react';
+import { useLocation } from 'preact-iso';
 import { pages } from '../data/pages';
-import { AppContext } from './contexts/AppContext';
 import { PageType } from '../types/PageType';
 import { PageComponent } from '../types/PageComponent';
 
@@ -18,19 +10,18 @@ const Page = lazy(() => import('./pages/Page'));
 const Question = lazy(() => import('./pages/Question'));
 const Result = lazy(() => import('./pages/Result'));
 
-let initialized: boolean = false;
+interface PagesProps {
+    url: string;
+}
 
-function Pages() {
-    const location = useLocation();
-    const appContext = useContext(AppContext);
-    const navigate = useNavigate();
-
+function Pages({ url }: PagesProps) {
+    const { route } = useLocation();
     const getComponent = (page: PageType, index: number) => {
         const props: PageComponent = {
             page,
             nextPage:
                 index < pages.length - 1
-                    ? () => navigate(pages[index + 1].path)
+                    ? () => route(pages[index + 1].path)
                     : undefined,
         };
 
@@ -48,41 +39,13 @@ function Pages() {
         }
     };
 
-    let initialRender = false;
+    const index = pages.findIndex(x => x.path === url);
 
-    if (!initialized) {
-        initialized = true;
-        initialRender = true;
-    }
-
-    if (appContext) {
-        return (
-            <PageTransition
-                initialRender={initialRender}
-                preset={appContext.animation}
-                transitionKey={location.pathname}
-                enterAnimation={''}
-                exitAnimation={''}
-            >
-                <Suspense fallback={null}>
-                    <Routes location={location}>
-                        {pages.map((page, index) => {
-                            return (
-                                <Route
-                                    key={index}
-                                    path={page.path}
-                                    element={getComponent(page, index)}
-                                />
-                            );
-                        })}
-                        <Route path="/" element={<Navigate to={pages[0].path} />} />
-                    </Routes>
-                </Suspense>
-            </PageTransition>
-        );
-    }
-
-    return null;
+    return (
+        <Suspense fallback={null}>
+            {getComponent(pages[index], index)}
+        </Suspense>
+    );
 }
 
-export { Pages };
+export default memo(Pages);

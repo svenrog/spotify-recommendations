@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { useRecommendations } from '../../../hooks/useRecommendations';
 import { AnswerContent, QuestionContent } from '../../../types/QuestionContent';
 import { PageComponent } from '../../../types/PageComponent';
