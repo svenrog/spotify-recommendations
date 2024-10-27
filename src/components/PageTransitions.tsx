@@ -2,8 +2,7 @@ import Pages from "./Pages";
 import { useEffect, useState } from "react";
 import { PageTransitionGroup } from "./transitions/PageTransitionGroup";
 import { pageTransitionDuration, TransitionStyles } from "./transitions/TransitionStyles";
-import { EVENT_ROUTER_CHANGE } from "./Routes";
-import { RouterOnChangeArgs } from "preact-router";
+import { EVENT_ROUTER_CHANGE, IRouteProps } from "./Routes";
 
 const initialClassName = "page load";
 const enterClassName = "page page-appear";
@@ -21,7 +20,7 @@ function PageTransitions() {
         return () => window.removeEventListener(EVENT_ROUTER_CHANGE, updateRoute);
     }, [])
 
-    const updateRoute = (x: CustomEvent<RouterOnChangeArgs>) => {
+    const updateRoute = (x: CustomEvent<IRouteProps>) => {
         setUrl(x.detail.url);
         const previous = x.detail.previous;
         const hasPrevious = Boolean(previous)

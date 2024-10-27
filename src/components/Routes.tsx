@@ -1,12 +1,12 @@
 import { pages } from "../data/pages";
 import { Redirect } from "./Redirect";
 import { Route, Router } from "preact-iso";
-import PageTransitions from "./PageTransitions";
 import { useRef } from "react";
+import PageTransitions from "./PageTransitions";
 
 export const EVENT_ROUTER_CHANGE = 'routerChange';
 
-interface IRouteProps {
+export interface IRouteProps {
     url: string,
     previous?: string;
 }
