@@ -161,7 +161,7 @@ const pages: PageType[] = [
         color: '#005A5B',
         type: 'question',
         content: {
-            question: 'Hur viktigt är det att kunna<em>dansa</em> till musiken?',
+            question: 'Hur viktigt är det att kunna <em>dansa</em> till musiken?',
             answers: [
                 {
                     text: 'Jätteviktigt',
@@ -254,7 +254,7 @@ const pages: PageType[] = [
         color: '#161616',
         content: {
             title: 'Nu är <em>resultatet</em> färdigställt',
-            body: 'Efter att ha utvärderat dina svar noga(men inte så värst länge), <br />tror vi att du kommer gilla den här låten.',
+            body: 'Efter att ha utvärderat dina svar noga (men inte så värst länge), <br />tror vi att du kommer gilla den här låten.',
         },
     },
     {

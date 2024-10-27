@@ -1,19 +1,18 @@
-import { BrowserRouter } from 'react-router-dom';
-import { AppContextProvider } from './components/contexts/AppContext';
+import { LocationProvider } from 'preact-iso';
 import { RecommendationContextProvider } from './components/contexts/RecommendationContext';
 import { GlobalStyles } from './components/GlobalStyles';
+import { FontStyles } from './components/FontStyles';
 import { Routes } from './components/Routes';
 
 function App() {
     return (
-        <AppContextProvider>
+        <LocationProvider>
             <RecommendationContextProvider>
-                <BrowserRouter>
-                    <GlobalStyles />
-                    <Routes />
-                </BrowserRouter>
+                <FontStyles />
+                <GlobalStyles />
+                <Routes />
             </RecommendationContextProvider>
-        </AppContextProvider>
+        </LocationProvider>
     );
 }
 
