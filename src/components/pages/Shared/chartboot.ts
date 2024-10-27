@@ -12,6 +12,7 @@ import {
     Tooltip,
 } from 'chart.js';
 import { MatrixController, MatrixElement } from 'chartjs-chart-matrix';
+//@ts-ignore
 import { _DeepPartialObject } from 'chart.js/dist/types/utils';
 import { chartLabelStyle } from './styles';
 

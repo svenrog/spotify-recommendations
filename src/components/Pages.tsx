@@ -6,7 +6,7 @@ import { PageComponent } from '../types/PageComponent';
 
 const Stats = lazy(() => import('./pages/Stats'));
 const Weights = lazy(() => import('./pages/Weights'));
-const Page = lazy(() => import('./pages/Page'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 const Question = lazy(() => import('./pages/Question'));
 const Result = lazy(() => import('./pages/Result'));
 
@@ -25,7 +25,7 @@ function Pages({ url }: PagesProps) {
                     : undefined,
         };
 
-        switch (page.type) {
+        switch (page?.type) {
             case 'question':
                 return <Question {...props} />;
             case 'results':
@@ -35,15 +35,17 @@ function Pages({ url }: PagesProps) {
             case 'weights':
                 return <Weights {...props} />;
             default:
-                return <Page {...props} />;
+                return <NotFound {...props} />;
         }
     };
 
+    // Hey look at this fancy code right here
     const index = pages.findIndex(x => x.path === url);
+    const page = pages[index];
 
     return (
         <Suspense fallback={null}>
-            {getComponent(pages[index], index)}
+            {getComponent(page, index)}
         </Suspense>
     );
 }

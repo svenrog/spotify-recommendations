@@ -2,8 +2,7 @@ import { useMemo } from 'react';
 import { useRecommendations } from '../../../hooks/useRecommendations';
 import { PageComponent } from '../../../types/PageComponent';
 import { PageContent } from '../../../types/PageContent';
-import { Container, Title, Description } from '../Page/styles';
-import { Wrapper } from '../Page/styles';
+import { Container, Title, Description, Wrapper } from '../Shared/styles';
 import {
     getTrackDistance,
     getTrackDistances,

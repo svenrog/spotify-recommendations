@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { PageComponent } from '../../../types/PageComponent';
 import { PageContent } from '../../../types/PageContent';
 import { Graph, Graphs, List, Dual } from './styles';
-import { Wrapper, Container, Title, Subtitle } from '../Page/styles';
+import { Wrapper, Container, Title, Subtitle } from '../Shared/styles';
 import { tracks } from '../../../data/tracks';
 import { Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';

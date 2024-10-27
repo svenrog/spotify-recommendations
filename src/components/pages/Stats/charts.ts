@@ -3,6 +3,7 @@ import {
     ScaleChartOptions,
     ScriptableContext,
 } from 'chart.js';
+//@ts-ignore
 import { _DeepPartialObject } from 'chart.js/dist/types/utils';
 import { chartLabelStyle } from '../Shared/styles';
 
