@@ -19,7 +19,7 @@ function Routes() {
             window.dispatchEvent(new CustomEvent<IRouteProps>(EVENT_ROUTER_CHANGE, { detail: route.current }))
         }}>
             <Route path="/" component={() => <Redirect to={pages[0].path} />} />
-            <Route path="/:" component={() => <PageTransitions />} />
+            <Route path="/*" component={() => <PageTransitions />} />
         </Router>
     );
 }

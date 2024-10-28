@@ -2,6 +2,7 @@ import {
     PluginChartOptions,
     ScaleChartOptions,
 } from 'chart.js';
+//@ts-ignore
 import { _DeepPartialObject } from 'chart.js/dist/types/utils';
 import { Decimals, Round } from '../../../utils/MathUtils';
 
@@ -22,6 +23,10 @@ export function getLineOptions(): _DeepPartialObject<PluginChartOptions<"line"> 
                     },
                 },
             },
+            y: {
+                max: 2.0,
+                min: 0.0,
+            }
         },
         animations: {
             y: {

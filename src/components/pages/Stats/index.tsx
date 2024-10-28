@@ -103,7 +103,7 @@ function Stats({ page }: PageComponent) {
                 </Graphs>
                 {collidingTracks.length > 0 &&
                     <List>
-                        <Subtitle>Låtar som förekommer i över 100 av {permutations} frågekombinationer</Subtitle>
+                        <Subtitle>Överrepresenterade låtar (120 av {permutations} svarskombinationer)</Subtitle>
                         <table>
                             <thead>
                                 <tr>
