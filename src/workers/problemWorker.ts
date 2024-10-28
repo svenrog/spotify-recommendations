@@ -23,8 +23,10 @@ onmessage = (event: MessageEvent<ITrackModel[]>) => {
 export function analyzeProblems(tracks: ITrackModel[]) {
     const permutations = getPermutations();
     const { heatMap, scoreMap } = collectMaps(permutations, tracks);
+    const heatMapFloor = Math.ceil((permutations.length / tracks.length) * 2) + 1;
+
     const { collidingTracks, collidingBuckets,
-        missingTracks, missingBuckets } = collectPropblemData(tracks, heatMap, scoreMap);
+        missingTracks, missingBuckets } = collectPropblemData(tracks, heatMap, heatMapFloor, scoreMap);
 
     return {
         collidingTracks,
@@ -37,7 +39,7 @@ export function analyzeProblems(tracks: ITrackModel[]) {
     };
 }
 
-function collectPropblemData(tracks: ITrackModel[], heatMap: Map<string, number>, scoreMap: Map<string, number>) {
+function collectPropblemData(tracks: ITrackModel[], heatMap: Map<string, number>, heatMapFloor: number, scoreMap: Map<string, number>) {
 
     const collidingTracks: ITrackModelCount[] = [];
     const missingTracks: ITrackModelScore[] = [];
@@ -53,7 +55,7 @@ function collectPropblemData(tracks: ITrackModel[], heatMap: Map<string, number>
             appendBuckets(bucketIndexes, missingBuckets);
             missingTracks.push({ ...track, score });
         }
-        else if (count > 100) {
+        else if (count > heatMapFloor) {
             appendBuckets(bucketIndexes, collidingBuckets);
             collidingTracks.push({ ...track, count, score });
         }

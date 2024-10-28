@@ -62,7 +62,7 @@ const pages: PageType[] = [
                         { type: 'set', property: 'valence', base: 0 },
                     ],
                 },
-                { text: 'Hoppa över', deemphasize: true },
+                { text: 'Känslor är inget för mig', deemphasize: true },
             ],
         },
     },
@@ -89,7 +89,7 @@ const pages: PageType[] = [
                     ],
                 },
                 {
-                    text: 'Mellansnabbt',
+                    text: 'Lite snabbare',
                     modifier: [
                         { type: 'set', property: 'tempo', base: 110 },
                         { type: 'set', property: 'energy', base: 0.5 }
@@ -129,7 +129,7 @@ const pages: PageType[] = [
                     ],
                 },
                 {
-                    text: 'Ett trubadurframträdande',
+                    text: 'Spelning på klubb',
                     modifier: [
                         { type: 'set', property: 'liveness', base: 0.4 },
                         { type: 'set', property: 'acousticness', base: 0.5 },
@@ -151,7 +151,7 @@ const pages: PageType[] = [
                         { type: 'set', property: 'acousticness', base: 0 },
                     ],
                 },
-                { text: 'Spelar inte stor roll', deemphasize: true },
+                { text: 'Jag är öppen för allt', deemphasize: true },
             ],
         },
     },
@@ -243,7 +243,7 @@ const pages: PageType[] = [
                         },
                     ],
                 },
-                { text: 'Spelar ingen roll', deemphasize: true },
+                { text: 'Jag saknar tidsuppfattning', deemphasize: true },
             ],
         },
     },
@@ -276,7 +276,7 @@ const pages: PageType[] = [
         color: '#161616',
         content: {
             title: 'En beskrivning av <em>värden</em> i datamängden',
-            body: 'Spotify analyserar all musik i sin bibliotek – det är grunden för deras rekommendationer.Nedan följer en redogörelse för de värden som används och med vilken vikt dessa påverkar resultatet.',
+            body: 'Spotify analyserar all musik i sin bibliotek – det utgör grunden för dessa rekommendationer. Nedan följer en redogörelse för de värden som används och med vilken viktning dessa påverkar resultatet.',
         },
     },
 ];

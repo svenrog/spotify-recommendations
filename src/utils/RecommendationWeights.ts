@@ -9,25 +9,25 @@ export const KEY_INVALID: number = -1;
 export const TEMPO_MAX: number = 200;
 export const TEMPO_MIN: number = 60;
 
-const WEIGHT_KEY: number = 1.5;
+const WEIGHT_KEY: number = 2;
 const WEIGHT_KEY_FLOOR: number = 0.1;
-const WEIGHT_KEY_POWER: number = 1.5;
+const WEIGHT_KEY_POWER: number = 1.8;
 
 const WEIGHT_MODE: number = 1.8;
 
 const WEIGHT_DURATION: number = 3.5;
 const WEIGHT_DURATION_POWER: number = 2;
 
-const WEIGHT_TEMPO: number = 1.5;
-const WEIGHT_TEMPO_POWER: number = 2;
+const WEIGHT_TEMPO: number = 2.2;
+const WEIGHT_TEMPO_POWER: number = 1.6;
 
-const WEIGHT_DANCEABILITY: number = 1.5;
+const WEIGHT_DANCEABILITY: number = 2;
 const WEIGHT_DANCEABILITY_POWER: number = 1.5;
 
-const WEIGHT_ENERGY: number = 2;
+const WEIGHT_ENERGY: number = 3;
 const WEIGHT_ENERGY_POWER: number = 1.5;
 
-const WEIGHT_ACOUSTICNESS: number = 1;
+const WEIGHT_ACOUSTICNESS: number = 1.5;
 const WEIGHT_ACOUSTICNESS_POWER: number = 2;
 
 const WEIGHT_LIVENESS: number = 2;
@@ -35,7 +35,7 @@ const WEIGHT_LIVENESS_POWER: number = 1.8;
 
 const WEIGHT_INSTRUMENTALNESS: number = 0;
 
-const WEIGHT_VALENCE: number = 1.7;
+const WEIGHT_VALENCE: number = 2.0;
 const WEIGHT_VALENCE_POWER: number = 1.5;
 
 // If user steps back and selects another value, relevance can be tweaked

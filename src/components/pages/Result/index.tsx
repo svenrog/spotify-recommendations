@@ -5,7 +5,7 @@ import { PageContent } from '../../../types/PageContent';
 import { Container, Title, Description, Wrapper } from '../Shared/styles';
 import {
     getTrackDistance,
-    getTrackDistances,
+    getTrackScaledDistances,
     mapRecommendationProfile,
     mapTrackValues,
     sortTracks,
@@ -30,7 +30,10 @@ function Result({ page }: PageComponent) {
         console.log('Recommendation profile', mapRecommendationProfile(recommendations));
         console.log(`Top ${top.length} recommendations (out of ${result.length + 1})`);
         console.log('---');
-        top.forEach(t => console.log(`${t.name}`, 'score', getTrackDistance(t, recommendations), getTrackDistances(t, recommendations), mapTrackValues(t)));
+        top.forEach(t => console.log(`${t.name}`,
+            'distance', getTrackDistance(t, recommendations),
+            getTrackScaledDistances(t, recommendations),
+            mapTrackValues(t)));
         console.log('---');
     }
 

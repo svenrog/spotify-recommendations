@@ -68,7 +68,7 @@ function Weights({ page }: PageComponent) {
                 <Section>
                     <div>
                         <Subtitle>Tempo</Subtitle>
-                        <p>Det totala uppskattade tempot för ett spår i slag per minut (BPM).</p>
+                        <p>Det totala uppskattade tempot för ett spår som taktslag per minut (BPM).</p>
                     </div>
                     <Line
                         className='chart'
@@ -81,7 +81,7 @@ function Weights({ page }: PageComponent) {
                 <Section>
                     <div>
                         <Subtitle>Energi</Subtitle>
-                        <p>Energi mäts från 0,0 till 1,0 och representerar en uppskattad intensitet och aktivitet. Vanligtvis känns energifyllda spår snabba, högljudda och bullriga. Till exempel får death metal höga poäng, medan ett Bach-preludium får låga. Egenskaper som bidrar till detta värde innefattar dynamiskt omfång, upplevd ljudstyrka, klangfärg eller tonansats.</p>
+                        <p>Energi mäts från 0,0 till 1,0 och representerar en uppskattad intensitet och aktivitet. Vanligtvis känns energifyllda spår snabba, högljudda och bullriga. Till exempel får låtar inom genren death metal höga poäng, medan ett Bach-preludium får låga. Egenskaper som bidrar till detta värde innefattar dynamiskt omfång, upplevd ljudstyrka, klangfärg eller tonansats.</p>
                     </div>
                     <Line
                         className='chart'
@@ -94,7 +94,7 @@ function Weights({ page }: PageComponent) {
                 <Section>
                     <div>
                         <Subtitle>Akustiskhet</Subtitle>
-                        <p>En sannolikhet från 0,0 till 1,0 om låten innehåller akustiska instrument. 1.0 representerar hög sannolikhet.</p>
+                        <p>En uppskattad sannolikhet om låten innehåller akustiska instrument mellan 0,0 och 1,0, där 1,0 representerar hög sannolikhet.</p>
                     </div>
                     <Line
                         className='chart'
@@ -107,7 +107,7 @@ function Weights({ page }: PageComponent) {
                 <Section>
                     <div>
                         <Subtitle>Dansbarhet</Subtitle>
-                        <p>Beskriver hur bra det går att dansa till en låt, baserat på en kombination av musikaliska egenskaper, inklusive tempo, rytmstabilitet, taktstyrka och övergripande regelbundenhet. Skalan går från 0,0 som representerar minst dansbart och 1,0 mest.</p>
+                        <p>Beskriver hur bra det går att dansa till en låt, baserat på en kombination av musikaliska egenskaper, inklusive tempo, rytmstabilitet, taktstyrka och övergripande regelbundenhet. Skalan går från 0,0 som representerar minst dansbart till 1,0 som mest.</p>
                     </div>
                     <Line
                         className='chart'
@@ -133,7 +133,7 @@ function Weights({ page }: PageComponent) {
                 <Section>
                     <div>
                         <Subtitle>Valens</Subtitle>
-                        <p>Ett mått från 0,0 till 1,0 som beskriver en uppskattad musikalisk positivitet. Låtar med hög valens låter mer positiva (glada, glada, euforiska), medan spår med låg valens låter negativa (ledsna, deprimerade, arga).</p>
+                        <p>Ett mått från 0,0 till 1,0 som beskriver en uppskattad musikalisk positivitet. Låtar med hög valens låter mer positiva (glada, glada, euforiska), medan låtar med låg valens låter negativa (ledsna, deprimerade, arga).</p>
                     </div>
                     <Line
                         className='chart'
