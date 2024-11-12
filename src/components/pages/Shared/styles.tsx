@@ -24,6 +24,8 @@ export const Wrapper = styled.div<WrapperProps>`
   overflow-y: auto;
   padding: 24px 24px;
   width: 100%;
+
+  transition: 2s ease-in-out background-color;
 `;
 
 export const Title = styled.h1`

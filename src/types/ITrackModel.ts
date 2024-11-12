@@ -14,6 +14,7 @@ export interface ITrackModel extends ITrackValues {
     artistId: string;
     artistName: string;
     albumImageUrl: string | null;
+    albumBackgroundColor: string | null;
     keyConfidence: number;
     modeConfidence: number;
     tempoConfidence: number;

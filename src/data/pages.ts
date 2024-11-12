@@ -84,7 +84,7 @@ const pages: PageType[] = [
                 {
                     text: 'Mittemellan',
                     modifier: [
-                        { type: 'set', property: 'tempo', base: 85 },
+                        { type: 'set', property: 'tempo', base: 100 },
                         { type: 'set', property: 'energy', base: 0.27 }
                     ],
                 },
