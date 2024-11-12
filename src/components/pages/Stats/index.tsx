@@ -4,7 +4,7 @@ import { PageContent } from '../../../types/PageContent';
 import { Graph, Graphs, List, Dual } from './styles';
 import { Wrapper, Container, Title, Subtitle } from '../Shared/styles';
 import { tracks } from '../../../data/tracks';
-import { Radar, Scatter } from 'react-chartjs-2';
+import { getDatasetAtEvent, Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';
 import { getRadarPlotOptions, getScatterPlotOptions } from './charts';
 import ProblemWorker from '../../../workers/problemWorker?worker';

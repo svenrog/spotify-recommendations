@@ -1,8 +1,10 @@
-import { useMemo } from 'react';
-import { useRecommendations } from '../../../hooks/useRecommendations';
+import { useEffect, useMemo, useState } from 'react';
 import { PageComponent } from '../../../types/PageComponent';
 import { PageContent } from '../../../types/PageContent';
-import { Container, Title, Description, Wrapper } from '../Shared/styles';
+import { Wrapper, Container, Title, Description } from '../Shared/styles';
+import { getData } from '../../../data/tracks'; 
+import SpotifyEmbed from '../../atoms/SpotifyEmbed';
+import { useRecommendations } from '../../../hooks/useRecommendations';
 import {
     getTrackDistance,
     getTrackScaledDistances,
@@ -10,30 +12,48 @@ import {
     mapTrackValues,
     sortTracks,
 } from '../../../utils/RecommendationUtils';
-import SpotifyEmbed from '../../atoms/SpotifyEmbed';
-import { tracks } from '../../../data/tracks';
 
 function Result({ page }: PageComponent) {
     const [recommendations, _] = useRecommendations();
+    const [tracks, setTracks] = useState([]); 
+
+
+    useEffect(() => {
+        const fetchTracks = async () => {
+            const data = await getData();
+            if (data) {
+                setTracks(data);
+            }
+        };
+        fetchTracks();
+    }, []);
+
     const result = useMemo(
-        () => sortTracks(tracks, recommendations),
-        [recommendations]
+        () => (tracks.length > 0 && recommendations ? sortTracks(tracks, recommendations) : []),
+        [tracks, recommendations]
     );
+
     const track = useMemo(
-        () => recommendations?.questionsAnswered ? result.shift() : null,
-        [recommendations]
+        () => (recommendations?.questionsAnswered ? result[0] : null),
+        [recommendations, result]
     );
+
     const content = page.content as PageContent;
 
     if (track && recommendations) {
-        const top = [track!, ...result.slice(0, 5)];
+        const top = [track, ...result.slice(1, 6)];
         console.log('Recommendation profile', mapRecommendationProfile(recommendations));
-        console.log(`Top ${top.length} recommendations (out of ${result.length + 1})`);
+        console.log(`Top ${top.length} recommendations (out of ${result.length})`);
         console.log('---');
-        top.forEach(t => console.log(`${t.name}`,
-            'distance', getTrackDistance(t, recommendations),
-            getTrackScaledDistances(t, recommendations),
-            mapTrackValues(t)));
+        top.forEach(t =>
+            console.log(
+                `${t.name}`,
+                'distance',
+                getTrackDistance(t, recommendations),
+                getTrackScaledDistances(t, recommendations),
+                mapTrackValues(t)
+            )
+        );
         console.log('---');
     }
 

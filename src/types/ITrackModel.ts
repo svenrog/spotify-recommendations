@@ -29,7 +29,7 @@ export interface ITrackProps<T> {
     danceability: T;
     energy: T;
     instrumentalness: T;
-    liveness: T;
+    liveness?: T;
     valence: T;
     boost?: number;
 }

@@ -8,6 +8,8 @@
     "dependencies": {
         "chart.js": "^4.4.4",
         "chartjs-chart-matrix": "^2.0.1",
+        "cors": "^2.8.5",
+        "node-fetch": "^3.3.2",
         "preact": "^10.24.3",
         "preact-iso": "^2.8.1",
         "react-chartjs-2": "^5.2.0",
@@ -29,4 +31,5 @@
     "prettier": {
         "singleQuote": true
     }
+     
 }

@@ -7,7 +7,7 @@ const pages: PageType[] = [
         type: 'question',
         color: '#089068',
         content: {
-            question: 'Hur skulle du beskriva ditt nuvarande <em>humör</em>?',
+            question: 'Hur skulle du beskriva ditt nuvarande <em>humör</em> för tillfället?',
             answers: [
                 {
                     text: 'Glatt',
