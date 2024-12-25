@@ -1,7 +1,7 @@
 import { PageComponent } from '../../../types/PageComponent';
 import { Container, Description, Title, Wrapper } from '../Shared/styles';
 
-function NotFound({ page }: PageComponent) {
+function NotFound({ }: PageComponent) {
     return (
         <Wrapper color="#222">
             <Container>

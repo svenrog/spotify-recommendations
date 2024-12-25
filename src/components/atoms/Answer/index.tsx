@@ -1,10 +1,10 @@
-import { FlattenSimpleInterpolation } from 'styled-components';
+import { Interpolation } from 'styled-components';
 import { AnswerContent } from '../../../types/QuestionContent';
 import { Container } from './styles';
 
 interface Props {
     answer: AnswerContent;
-    css?: FlattenSimpleInterpolation;
+    css?: Interpolation<object>;
     onClick?: (answer: AnswerContent) => void;
     selected: boolean;
     selection?: boolean;

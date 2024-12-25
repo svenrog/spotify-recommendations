@@ -3,7 +3,6 @@ import { MatrixDataPoint } from "chartjs-chart-matrix";
 import { Chart } from "react-chartjs-2";
 import { getMatrixOptions } from "./charts";
 
-
 interface Props {
     data: ChartData<"matrix", MatrixDataPoint[], unknown>;
 }

@@ -1,4 +1,4 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import styled, { css, Interpolation } from 'styled-components';
 
 export const Answers = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const Container = styled.button<{
     $selection?: boolean;
     $deemphasize?: boolean;
     $index: number;
-    $css?: FlattenSimpleInterpolation;
+    $css?: Interpolation<object>;
 }>`
   width: 100%;
   color: #ffffffdd;
