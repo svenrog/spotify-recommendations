@@ -7,7 +7,6 @@ import { tracks } from '../../../data/tracks';
 import { Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';
 import { getRadarPlotOptions, getScatterPlotOptions } from './charts';
-import ProblemWorker from 'worker-rspack-loader!../../../workers/problemWorker';
 import Matrix from '../../atoms/Matrix';
 import {
     getBucketDataset,
@@ -17,6 +16,8 @@ import {
 } from '../../../utils/ChartUtils';
 import '../Shared/chartboot'; // Setup defaults for chart component
 import { useWorker } from '../../../hooks/useWorker';
+//@ts-ignore
+import ProblemWorker from 'worker-rspack-loader!../../../workers/problemWorker';
 
 const displayMissingTracks = 30;
 
