@@ -6,25 +6,26 @@
     "main": "src/index.tsx",
     "type": "module",
     "dependencies": {
-        "chart.js": "^4.4.4",
+        "chart.js": "^4.4.7",
         "chartjs-chart-matrix": "^2.0.1",
-        "preact": "^10.24.3",
+        "preact": "^10.25.3",
         "preact-iso": "^2.8.1",
         "react-chartjs-2": "^5.2.0",
-        "styled-components": "^5.3.5"
+        "styled-components": "^6.1.13"
     },
     "devDependencies": {
-        "@preact/preset-vite": "^2.9.1",
-        "@types/react": "18.3.1",
-        "@types/react-dom": "18.3.1",
+        "@rsbuild/core": "^1.1.13",
+        "@rsbuild/plugin-preact": "^1.2.0",
+        "@types/react": "^19.0.2",
+        "@types/react-dom": "^19.0.2",
         "@types/styled-components": "^5.1.34",
-        "typescript": "^5.6.3",
-        "vite": "^5.4.9"
+        "typescript": "^5.7.2",
+        "worker-rspack-loader": "^3.1.2"
     },
     "scripts": {
-        "watch": "vite",
-        "build": "vite build",
-        "preview": "npm run build && vite preview"
+        "watch": "rsbuild dev",
+        "build": "rsbuild build",
+        "preview": "npm run build && rsbuild preview"
     },
     "prettier": {
         "singleQuote": true

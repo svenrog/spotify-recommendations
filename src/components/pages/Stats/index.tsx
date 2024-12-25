@@ -7,7 +7,7 @@ import { tracks } from '../../../data/tracks';
 import { Radar, Scatter } from 'react-chartjs-2';
 import { emptyAnalysis, IPropblemAnalysis } from '../../../types/IProblemAnalysis';
 import { getRadarPlotOptions, getScatterPlotOptions } from './charts';
-import ProblemWorker from '../../../workers/problemWorker?worker';
+import ProblemWorker from 'worker-rspack-loader!../../../workers/problemWorker';
 import Matrix from '../../atoms/Matrix';
 import {
     getBucketDataset,
