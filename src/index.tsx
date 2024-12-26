@@ -1,7 +1,20 @@
-import * as ReactDOMClient from 'react-dom/client';
-import App from './App';
+import { hydrate, prerender as ssr } from 'preact-iso';
+import App, { IApplicationProps } from './App';
+import { ServerStyleSheet } from 'styled-components';
 
-const rootElement = document.getElementById('root')!;
-const root = ReactDOMClient.createRoot(rootElement);
+if (typeof window !== 'undefined') {
+    hydrate(<App />, document.getElementById('root'));
+}
 
-root.render(<App />);
+export async function prerender(data: IApplicationProps) {
+    const styleSheet = new ServerStyleSheet();
+    const appNode = styleSheet.collectStyles(<App {...data} />);
+
+    const { html, links } = await ssr(appNode);
+    const styles = styleSheet._emitSheetCSS();
+
+    return {
+        html: styles + html,
+        links
+    }
+}
