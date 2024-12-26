@@ -14,17 +14,16 @@
         "styled-components": "^6.1.13"
     },
     "devDependencies": {
-        "@rsbuild/core": "^1.1.13",
-        "@rsbuild/plugin-preact": "^1.2.0",
+        "@preact/preset-vite": "^2.9.1",
         "@types/react": "^19.0.2",
         "@types/react-dom": "^19.0.2",
         "typescript": "^5.7.2",
-        "worker-rspack-loader": "^3.1.2"
+        "vite": "^5.4.9"
     },
     "scripts": {
-        "watch": "rsbuild dev",
-        "build": "rsbuild build",
-        "preview": "npm run build && rsbuild preview"
+        "watch": "vite",
+        "build": "vite build",
+        "preview": "npm run build && vite preview"
     },
     "prettier": {
         "singleQuote": true

@@ -6,7 +6,7 @@ function NotFound({ }: PageComponent) {
         <Wrapper color="#222">
             <Container>
                 <Title>Hoppsan, det verkar som att sidan <em>fattas</em></Title>
-                <Description>Prova <a href="/fraga-1">startsidan</a>, <a href="/stats">statistiksidan</a> eller <a href="/weights">informationssidan</a> om viktning istället.</Description>
+                <Description>Prova <a href="/fraga-1">startsidan</a>, <a href="/stats">statistiksidan</a> eller <a href="/vikter">informationssidan</a> om viktning istället.</Description>
             </Container>
         </Wrapper>
     );

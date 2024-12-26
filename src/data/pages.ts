@@ -2,7 +2,7 @@ import { PageType } from '../types/PageType';
 
 const pages: PageType[] = [
     {
-        path: '/fraga-1',
+        url: '/fraga-1',
         title: 'Fråga 1',
         type: 'question',
         color: '#089068',
@@ -67,7 +67,7 @@ const pages: PageType[] = [
         },
     },
     {
-        path: '/fraga-2',
+        url: '/fraga-2',
         title: 'Fråga 2',
         color: '#06846c',
         type: 'question',
@@ -114,7 +114,7 @@ const pages: PageType[] = [
         },
     },
     {
-        path: '/fraga-3',
+        url: '/fraga-3',
         title: 'Fråga 3',
         color: '#007369',
         type: 'question',
@@ -156,7 +156,7 @@ const pages: PageType[] = [
         },
     },
     {
-        path: '/fraga-4',
+        url: '/fraga-4',
         title: 'Fråga 4',
         color: '#005A5B',
         type: 'question',
@@ -200,7 +200,7 @@ const pages: PageType[] = [
         },
     },
     {
-        path: '/fraga-5',
+        url: '/fraga-5',
         title: 'Fråga 5',
         color: '#003840',
         type: 'question',
@@ -248,7 +248,7 @@ const pages: PageType[] = [
         },
     },
     {
-        path: '/resultat',
+        url: '/resultat',
         type: 'results',
         title: 'Resultat',
         color: '#161616',
@@ -258,7 +258,7 @@ const pages: PageType[] = [
         },
     },
     {
-        path: '/stats',
+        url: '/stats',
         type: 'stats',
         title: 'Statistik',
         hide: true,
@@ -269,7 +269,7 @@ const pages: PageType[] = [
         },
     },
     {
-        path: '/weights',
+        url: '/vikter',
         type: 'weights',
         title: 'Statistik',
         hide: true,

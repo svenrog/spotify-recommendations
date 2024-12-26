@@ -16,8 +16,7 @@ import {
 } from '../../../utils/ChartUtils';
 import '../Shared/chartboot'; // Setup defaults for chart component
 import { useWorker } from '../../../hooks/useWorker';
-//@ts-ignore
-import ProblemWorker from 'worker-rspack-loader!../../../workers/problemWorker';
+import ProblemWorker from '../../../workers/problemWorker?worker';
 
 const displayMissingTracks = 30;
 

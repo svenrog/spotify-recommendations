@@ -21,7 +21,7 @@ function Pages({ url }: PagesProps) {
             page,
             nextPage:
                 index < pages.length - 1
-                    ? () => route(pages[index + 1].path)
+                    ? () => route(pages[index + 1].url)
                     : undefined,
         };
 
@@ -39,8 +39,7 @@ function Pages({ url }: PagesProps) {
         }
     };
 
-    // Hey look at this fancy code right here
-    const index = pages.findIndex(x => x.path === url);
+    const index = pages.findIndex(x => x.url === url);
     const page = pages[index];
 
     return (

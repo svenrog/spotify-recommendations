@@ -4,9 +4,14 @@ import { GlobalStyles } from './components/GlobalStyles';
 import { FontStyles } from './components/FontStyles';
 import { Routes } from './components/Routes';
 
-function App() {
+export interface IApplicationProps {
+    ssr?: boolean;
+    url?: string;
+}
+
+function App({ ssr, url }: IApplicationProps) {
     return (
-        <LocationProvider>
+        <LocationProvider path={ssr ? url : window.location.pathname}>
             <RecommendationContextProvider>
                 <FontStyles />
                 <GlobalStyles />
