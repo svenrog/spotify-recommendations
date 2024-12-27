@@ -23,6 +23,10 @@ This guide has been tested using `Node.js` version `21.1.0`, other versions migh
 
 -   vscode-styled-components
 
+## Self hosting the site
+
+A short guide on self hosting found [here](/server/README.md).
+
 ## Package maintainer
 
 https://github.com/svenrog
