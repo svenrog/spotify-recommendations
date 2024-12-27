@@ -1,0 +1,40 @@
+{
+    "id": "c95f6cbf-f2e4-44db-9698-8223909096c7",
+    "name": "Spotify rekommendationer",
+    "short_name": "Spotify rekommendationer",
+    "description": "En enkel rekommendationsmotor skapad i övningssyfte",
+    "start_url": "/fraga-1",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#333",
+    "theme_color": "#1DB954",
+    "offline_enabled": true,
+    "icons": [
+        {
+            "src": "/icons/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/icons/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "thumbnails/thumb-wide.png",
+            "sizes": "640x320",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Quiz question"
+        },
+        {
+            "src": "thumbnails/thumb-narrow.png",
+            "sizes": "320x658",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Quiz question"
+        }
+    ]
+}
