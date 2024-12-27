@@ -25,7 +25,7 @@ This guide has been tested using `Node.js` version `21.1.0`, other versions migh
 
 ## Self hosting the site
 
-A short guide on self hosting found [here](/server/README.md).
+A short guide on self hosting found [here](/hosting/README.md).
 
 ## Package maintainer
 
