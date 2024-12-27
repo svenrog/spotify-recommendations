@@ -8,7 +8,7 @@ Serves the statically generated site enabling HTTP2, GZip compression and SSG fe
 
 -   When developing this site I used certbot to generate a certicifate for TLS. https://certbot.eff.org/
 
-### Prepare self-hosting using Express
+### Prepare self-hosting using [Express](https://expressjs.com/)
 
 [This](./serve-express/serve.js) implementation was able to serve around 500 requests per second when benchmarking.
 
@@ -16,7 +16,7 @@ Serves the statically generated site enabling HTTP2, GZip compression and SSG fe
 -   Modify `serveDir` to match your `dist` folder location.
 -   Adapt `certDir` and `spdy.createServer({ key, cert })` to match your certificate files.
 
-### Prepare self-hosting using Fastify
+### Prepare self-hosting using [Fastify](https://fastify.dev/)
 
 [This](./serve-fastify/serve.js) implementation was able to serve around 2000 requests per second when benchmarking.
 
