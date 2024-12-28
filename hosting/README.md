@@ -16,6 +16,15 @@ Serves the statically generated site enabling HTTP2, GZip compression and SSG fe
 -   Modify `serveDir` to match your `dist` folder location.
 -   Adapt `certDir` and `spdy.createServer({ key, cert })` to match your certificate files.
 
+### Prepare self-hosting using [Hono](https://hono.dev/)
+
+[This](./serve-hono/serve.js) implementation was able to serve around 900 requests per second when benchmarking. Performance is likely affected by the URL rewriting needed to fit this use-case.
+
+-   Copy files from [hono](./serve-hono) to desired location.
+-   Modify `serveDir` to match your `dist` folder location.
+-   Modify `host` to match machine internal ip (like `192.168.1.2`)
+-   Adapt `certDir` and `serverOptions: { key, cert })` to match your certificate files.
+
 ### Prepare self-hosting using [Fastify](https://fastify.dev/)
 
 [This](./serve-fastify/serve.js) implementation was able to serve around 2000 requests per second when benchmarking.
