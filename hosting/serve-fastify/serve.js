@@ -8,7 +8,7 @@ const compress = require('@fastify/compress');
 const serveStatic = require('@fastify/static');
 
 const port = 443;
-const host = 'localhost';
+const host = '0.0.0.0';
 const certDir = '*** PATH TO CERTIFICATE ***';
 const serveDir = '../../dist';
 

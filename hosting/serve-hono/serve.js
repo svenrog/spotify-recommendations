@@ -10,13 +10,15 @@ const http2 = require('node:http2');
 const compress = require('hono/compress').compress;
 
 const port = 443;
-const hostname = 'localhost';
+const host = '0.0.0.0';
 const certDir = '*** PATH TO CERTIFICATE ***';
 const serveDir = '../../dist';
 const defaultDocument = path.join(__dirname, serveDir, 'index.html');
-const defaultHtml = fs.readFileSync(defaultDocument);
+const defaultHtml = fs.readFileSync(defaultDocument, 'utf8');
 
 const app = new Hono();
+const routes = new Map();
+
 app.use(compress());
 app.use(async (c, next) => {
     await next();
@@ -34,12 +36,22 @@ app.use(
     serveStatic({
         root: path.join(serveDir),
         rewriteRequestPath: (path) => {
+            if (routes.has(path)) return routes.get(path);
             if (path.indexOf('.') >= 0) return path;
-            if (path.endsWith('/')) return path + 'index.html';
-            return path + '/index.html';
+            const routedPath = route(path);
+            routes.set(path, routedPath);
+            return routedPath;
+        },
+        onNotFound: (path, c) => {
+            c.html(defaultHtml);
         },
     })
 );
+
+const route = (path) => {
+    if (path.endsWith('/')) return path + 'index.html';
+    return path + '/index.html';
+};
 
 serve(
     {

@@ -18,11 +18,10 @@ Serves the statically generated site enabling HTTP2, GZip compression and SSG fe
 
 ### Prepare self-hosting using [Hono](https://hono.dev/)
 
-[This](./serve-hono/serve.js) implementation was able to serve around 900 requests per second when benchmarking. Performance is likely affected by the URL rewriting needed to fit this use-case.
+[This](./serve-hono/serve.js) implementation was able to serve around 1000 requests per second when benchmarking using node. 3000 rps when serving via Bun (no http2 support).
 
 -   Copy files from [hono](./serve-hono) to desired location.
 -   Modify `serveDir` to match your `dist` folder location.
--   Modify `host` to match machine internal ip (like `192.168.1.2`)
 -   Adapt `certDir` and `serverOptions: { key, cert })` to match your certificate files.
 
 ### Prepare self-hosting using [Fastify](https://fastify.dev/)
@@ -31,7 +30,6 @@ Serves the statically generated site enabling HTTP2, GZip compression and SSG fe
 
 -   Copy files from [fastify](./serve-fastify) to desired location.
 -   Modify `serveDir` to match your `dist` folder location.
--   Modify `host` to match machine internal ip (like `192.168.1.2`)
 -   Adapt `certDir` and `Fastify({ key, cert })` to match your certificate files.
 
 ### Run server
