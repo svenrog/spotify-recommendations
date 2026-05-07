@@ -1,5 +1,5 @@
-import { ChartData } from "chart.js";
-import { MatrixDataPoint } from "chartjs-chart-matrix";
+import type { ChartData } from "chart.js";
+import type { MatrixDataPoint } from "chartjs-chart-matrix";
 import { Chart } from "react-chartjs-2";
 import { getMatrixOptions } from "./charts";
 

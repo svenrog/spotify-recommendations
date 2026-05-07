@@ -1,4 +1,4 @@
-import { PageComponent } from '../../../types/PageComponent';
+import type { PageComponent } from '../../../types/PageComponent';
 import { Container, Description, Title, Wrapper } from '../Shared/styles';
 
 function NotFound({ }: PageComponent) {

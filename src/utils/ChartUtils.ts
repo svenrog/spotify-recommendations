@@ -1,10 +1,10 @@
-import { ChartData } from 'chart.js';
-import { ITrackModel, ITrackProps } from '../types/ITrackModel';
-import { IValueSpace } from '../types/IValueSpace';
-import { QuestionContent } from '../types/QuestionContent';
+import type { ChartData } from 'chart.js';
+import type { ITrackModel, ITrackProps } from '../types/ITrackModel';
+import type { IValueSpace } from '../types/IValueSpace';
+import type { QuestionContent } from '../types/QuestionContent';
 import { pages } from '../data/pages';
-import { ValueSpaceProperties } from '../types/IValueModifier';
-import { IPlotPoint } from '../types/IPlotPoint';
+import type { ValueSpaceProperties } from '../types/IValueModifier';
+import type { IPlotPoint } from '../types/IPlotPoint';
 import { Decimals, Round } from './MathUtils';
 const NO_DATA = {
     datasets: [],
@@ -34,8 +34,8 @@ export const LABELS = [
 export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
     if (!tracks) return NO_DATA;
 
-    var majorSongs = tracks.filter((x) => x.mode === 1);
-    var minorSongs = tracks.filter((x) => x.mode === 0);
+    const majorSongs = tracks.filter((x) => x.mode === 1);
+    const minorSongs = tracks.filter((x) => x.mode === 0);
 
     const majorCounts = getKeys(majorSongs);
     const minorCounts = getKeys(minorSongs);
@@ -71,7 +71,7 @@ export function getKeyModeDataset(tracks?: ITrackModel[]): ChartData<'radar'> {
 }
 
 export function getTime(duration: number) {
-    var milliseconds = Math.floor((duration % 1000) / 100),
+    const milliseconds = Math.floor((duration % 1000) / 100),
         seconds = Math.floor((duration / 1000) % 60),
         minutes = Math.floor((duration / (1000 * 60)) % 60),
         hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
@@ -113,7 +113,7 @@ export function getScalingDataset(scaleFunc: (x: number) => number): ChartData<'
 export function getBucketDataset(buckets?: ITrackProps<number[]>): ChartData<'matrix'> | null {
     if (!buckets) return null;
 
-    let data: IPlotPoint[] = [];
+    const data: IPlotPoint[] = [];
 
     data.push(...getMatrixDataColumn(buckets.key, LABEL_KEY));
     data.push(...getMatrixDataColumn(buckets.mode, LABEL_MODE));
@@ -149,7 +149,7 @@ export function getBucketDataset(buckets?: ITrackProps<number[]>): ChartData<'ma
 }
 
 function getMatrixDataColumn(buckets: number[], key: string) {
-    let column: IPlotPoint[] = [];
+    const column: IPlotPoint[] = [];
     const step: number = 6 / buckets.length;
     buckets.forEach((bucket, i) => {
         column.push({
@@ -207,7 +207,7 @@ function getKeys(tracks: ITrackModel[]): Array<number> {
 }
 
 function getScaleLabels(scale: number[]): string[] {
-    let data: string[] = new Array<string>(scale.length);
+    const data: string[] = new Array<string>(scale.length);
 
     for (let i = 0; i < scale.length; i++) {
         data[i] = Round(scale[i], Decimals.One).toString();
@@ -218,8 +218,8 @@ function getScaleLabels(scale: number[]): string[] {
 
 
 function getScale(scaleFunc: (x: number) => number, target: number, resolution: number): number[] {
-    let steps: number = target / resolution;
-    let data: number[] = new Array<number>(steps);
+    const steps: number = target / resolution;
+    const data: number[] = new Array<number>(steps);
 
     for (let i = 0; i < steps + 1; i++) {
         const x = i * resolution;
@@ -239,8 +239,8 @@ function collectAnswerValues(property1: string, property2: string): Array<IPlotP
     const space = collectQuestionSpace([property1, property2]);
     const values = [];
 
-    for (var i = 0; i < space[0].length; i++) {
-        for (var j = 0; j < space[1].length; j++) {
+    for (let i = 0; i < space[0].length; i++) {
+        for (let j = 0; j < space[1].length; j++) {
             values.push({ x: space[0][i].base ?? 0, y: space[1][j].base ?? 0 });
         }
     }
@@ -252,7 +252,7 @@ function collectKeyAnswerValues(): Array<number> {
     const space = collectQuestionSpace(['key']);
     const values = [];
 
-    for (var i = 0; i < space[0].length; i++) {
+    for (let i = 0; i < space[0].length; i++) {
         values.push(space[0][i].base ?? 0);
     }
 

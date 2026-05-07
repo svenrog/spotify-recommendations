@@ -1,5 +1,5 @@
-import { Interpolation } from 'styled-components';
-import { AnswerContent } from '../../../types/QuestionContent';
+import type { Interpolation } from 'styled-components';
+import type { AnswerContent } from '../../../types/QuestionContent';
 import { Container } from './styles';
 
 interface Props {
