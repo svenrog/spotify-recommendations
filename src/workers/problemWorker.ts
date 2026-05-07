@@ -4,7 +4,7 @@
 import { getPermutations, performTest } from "../data/combinations";
 import { createBuckets } from "../types/AnalysisBuckets";
 import { emptyAnalysis } from "../types/IProblemAnalysis";
-import { ITrackModel, ITrackModelCount, ITrackModelScore, ITrackProps } from "../types/ITrackModel";
+import type { ITrackModel, ITrackModelCount, ITrackModelScore, ITrackProps } from "../types/ITrackModel";
 import { appendBuckets, getBuckets } from "../utils/BucketUtils";
 import { Round } from "../utils/MathUtils";
 import { getTrackDistance } from "../utils/RecommendationUtils";

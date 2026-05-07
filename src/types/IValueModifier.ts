@@ -1,4 +1,4 @@
-import { IValueSpace } from "./IValueSpace";
+import type { IValueSpace } from "./IValueSpace";
 
 export type ValueSpaceProperties = 'key' | 'mode' | 'durationMs' | 'tempo' | 'acousticness' | 'danceability' | 'energy' | 'instrumentalness' | 'valence' | 'liveness';
 

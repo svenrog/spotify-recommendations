@@ -1,4 +1,4 @@
-import styled, { css, Interpolation } from 'styled-components';
+import styled, { css, type Interpolation } from 'styled-components';
 
 export const Answers = styled.div`
   display: flex;

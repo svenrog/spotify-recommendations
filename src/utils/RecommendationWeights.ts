@@ -1,4 +1,4 @@
-import { ITrackProps } from "../types/ITrackModel";
+import type { ITrackProps } from "../types/ITrackModel";
 import { clamp } from "./ValueSpaceUtils";
 
 export const DURATION_MAX: number = 900_000;

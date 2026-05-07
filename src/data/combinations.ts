@@ -1,5 +1,5 @@
-import { ITrackModel } from "../types/ITrackModel";
-import { AnswerContent, QuestionContent } from "../types/QuestionContent";
+import type { ITrackModel } from "../types/ITrackModel";
+import type { AnswerContent, QuestionContent } from "../types/QuestionContent";
 import { sortTracks } from "../utils/RecommendationUtils";
 import { setValueSpace } from "../utils/ValueSpaceUtils";
 import { defaults } from "../components/contexts/defaults";
