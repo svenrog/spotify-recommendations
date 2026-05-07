@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FontSpec } from "chart.js";
+import type { FontSpec } from "chart.js";
 
 export const chartLabelStyle: Partial<FontSpec> = {
     size: 16, weight: 500, family: 'Raleway'

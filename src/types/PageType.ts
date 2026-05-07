@@ -1,5 +1,5 @@
-import { QuestionContent } from "./QuestionContent";
-import { PageContent } from "./PageContent";
+import type { QuestionContent } from "./QuestionContent";
+import type { PageContent } from "./PageContent";
 
 export type PageType = {
     url: string;

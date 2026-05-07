@@ -4,8 +4,7 @@ let cachedTracks: ITrackModel[] | undefined;
 export const loadTracks = async (): Promise<ITrackModel[]> => {
     if (cachedTracks) return cachedTracks;
     const mod = await import('./popular.json');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const data: ITrackModel[] = (mod as any).default ?? [];
+    const data: ITrackModel[] = (mod as { default?: ITrackModel[] }).default ?? [];
     cachedTracks = data;
     return data;
 };

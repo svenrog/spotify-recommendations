@@ -1,4 +1,4 @@
-import { ITrackProps } from "./ITrackModel";
+import type { ITrackProps } from "./ITrackModel";
 
 export function createBuckets(): ITrackProps<number[]> {
     return {

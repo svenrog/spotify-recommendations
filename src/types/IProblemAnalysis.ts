@@ -1,5 +1,6 @@
 import { createBuckets } from "./AnalysisBuckets";
-import { ITrackModel, ITrackModelCount, ITrackModelScore, ITrackProps } from "./ITrackModel";
+import type { ITrackModelCount, ITrackModelScore, ITrackProps } from "./ITrackModel";
+import { ITrackModel } from "./ITrackModel";
 
 export interface IPropblemAnalysis {
     collidingTracks: ITrackModelCount[];

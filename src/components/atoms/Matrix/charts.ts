@@ -1,8 +1,8 @@
-import { PluginChartOptions, ScaleChartOptions, ScriptableContext } from "chart.js";
+import type { PluginChartOptions, ScaleChartOptions, ScriptableContext } from "chart.js";
 import { LABELS } from "../../../utils/ChartUtils";
-import { IPlotPoint } from "../../../types/IPlotPoint";
+import type { IPlotPoint } from "../../../types/IPlotPoint";
 //@ts-ignore
-import { _DeepPartialObject } from 'chart.js/dist/types/utils';
+import type { _DeepPartialObject } from 'chart.js/dist/types/utils';
 
 export function getMatrixOptions(): _DeepPartialObject<PluginChartOptions<"matrix"> & ScaleChartOptions<"matrix">> {
     return {

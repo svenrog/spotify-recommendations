@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { useRecommendations } from '../../../hooks/useRecommendations';
-import { PageComponent } from '../../../types/PageComponent';
-import { PageContent } from '../../../types/PageContent';
+import type { PageComponent } from '../../../types/PageComponent';
+import type { PageContent } from '../../../types/PageContent';
 import { Container, Title, Description, Wrapper } from '../Shared/styles';
 import {
     getTrackDistance,

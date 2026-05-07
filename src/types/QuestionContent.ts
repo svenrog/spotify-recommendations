@@ -1,4 +1,4 @@
-import { IValueModifier } from "./IValueModifier";
+import type { IValueModifier } from "./IValueModifier";
 
 export type QuestionContent = {
     question: string;

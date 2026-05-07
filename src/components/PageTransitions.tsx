@@ -8,7 +8,6 @@ const initialClassName = "page load";
 const enterClassName = "page page-appear";
 const exitClassName = "page page-exit";
 
-let initialized = false;
 
 function PageTransitions() {
     const { url } = useLocation();
