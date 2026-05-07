@@ -1,4 +1,4 @@
-import { PageType } from "./PageType"
+import type { PageType } from "./PageType"
 
 export type PageComponent = {
     page: PageType;

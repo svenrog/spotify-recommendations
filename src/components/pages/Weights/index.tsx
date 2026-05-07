@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { PageComponent } from '../../../types/PageComponent';
-import { PageContent } from '../../../types/PageContent';
+import type { PageComponent } from '../../../types/PageComponent';
+import type { PageContent } from '../../../types/PageContent';
 import { Wrapper, Container, Description, Title } from '../Shared/styles';
 import { Section, Subtitle } from './styles';
 import { getScalingDataset } from '../../../utils/ChartUtils';

@@ -1,5 +1,5 @@
 import { hydrate, prerender as ssr } from 'preact-iso';
-import App, { IApplicationProps } from './App';
+import App, { type IApplicationProps } from './App';
 import { ServerStyleSheet } from 'styled-components';
 
 if (typeof window !== 'undefined') {

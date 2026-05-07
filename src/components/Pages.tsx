@@ -1,8 +1,8 @@
 import { lazy, memo, Suspense } from 'react';
 import { useLocation } from 'preact-iso';
 import { pages } from '../data/pages';
-import { PageType } from '../types/PageType';
-import { PageComponent } from '../types/PageComponent';
+import type { PageType } from '../types/PageType';
+import type { PageComponent } from '../types/PageComponent';
 
 const Stats = lazy(() => import('./pages/Stats'));
 const Weights = lazy(() => import('./pages/Weights'));
