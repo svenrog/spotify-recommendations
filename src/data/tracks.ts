@@ -1,6 +1,13 @@
 import tracks from './popular.json';
+import type { ITrackModel } from '../types/ITrackModel';
 
-// This could be used to import practically any dataset following the ITrackModel schema.
-// Tracks could be moved into a context and hotswappable by answering a question about genres for example.
+export { tracks }; // static — used by Stats, Weights, SSR prerendering
 
-export { tracks }
+let cached: ITrackModel[] | null = null;
+
+export async function preloadTracks(): Promise<ITrackModel[]> {
+    if (cached) return cached;
+    const res = await fetch('/data/popular.json');
+    cached = await res.json() as ITrackModel[];
+    return cached;
+}

@@ -1,4 +1,4 @@
-import { IRecommendationProfile } from "../../types/IRecommendationProfile";
+import type { IRecommendationProfile } from "../../types/IRecommendationProfile";
 import { DURATION_MAX, DURATION_MIN, KEY_INVALID, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from "../../utils/RecommendationWeights";
 
 export const defaults: IRecommendationProfile = {

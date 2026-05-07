@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useRecommendations } from '../../../hooks/useRecommendations';
+import { useTracks } from '../../../components/contexts/TracksContext';
 import { PageComponent } from '../../../types/PageComponent';
 import { PageContent } from '../../../types/PageContent';
 import { Container, Title, Description, Wrapper } from '../Shared/styles';
@@ -11,13 +12,13 @@ import {
     sortTracks,
 } from '../../../utils/RecommendationUtils';
 import SpotifyEmbed from '../../atoms/SpotifyEmbed';
-import { tracks } from '../../../data/tracks';
 
 function Result({ page }: PageComponent) {
     const [recommendations, _] = useRecommendations();
+    const { tracks } = useTracks();
     const result = useMemo(
-        () => sortTracks(tracks, recommendations),
-        [recommendations]
+        () => sortTracks(tracks ?? [], recommendations),
+        [recommendations, tracks]
     );
     const track = useMemo(
         () => recommendations?.questionsAnswered ? result.shift() : null,

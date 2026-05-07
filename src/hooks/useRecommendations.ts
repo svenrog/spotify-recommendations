@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { RecommendationContext, IRecommendationContext } from '../components/contexts/RecommendationContext';
-import { IValueModifier } from '../types/IValueModifier';
+import { type IRecommendationContext, RecommendationContext } from '../components/contexts/RecommendationContext';
+import type { IValueModifier } from '../types/IValueModifier';
 import { adjustValueSpace, setValueSpace } from '../utils/ValueSpaceUtils';
 
 export function useRecommendations(): [IRecommendationContext | null, (value?: IValueModifier[]) => void] {
