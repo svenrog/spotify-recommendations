@@ -1,12 +1,13 @@
 import tracks from './popular.json';
+import { ITrackModel } from '../types/ITrackModel';
 
 export { tracks }; // static — used by Stats, Weights, SSR prerendering
 
-let cached: typeof tracks | null = null;
+let cached: ITrackModel[] | null = null;
 
-export async function preloadTracks(): Promise<typeof tracks> {
+export async function preloadTracks(): Promise<ITrackModel[]> {
     if (cached) return cached;
     const res = await fetch('/data/popular.json');
-    cached = await res.json() as typeof tracks
+    cached = await res.json() as ITrackModel[];
     return cached;
 }

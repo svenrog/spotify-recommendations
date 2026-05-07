@@ -7,7 +7,7 @@ const TracksContext = createContext<{ tracks: ITrackModel[] | null }>({
 });
 
 interface Props {
-    value: typeof staticTracks | null;
+    value: ITrackModel[] | null;
     children: React.ReactNode;
 }
 
