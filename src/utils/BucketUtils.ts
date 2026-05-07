@@ -1,4 +1,4 @@
-import { ITrackModel, ITrackProps } from "../types/ITrackModel";
+import type { ITrackModel, ITrackProps } from "../types/ITrackModel";
 import { DURATION_MAX, DURATION_MIN, KEY_MAX, TEMPO_MAX, TEMPO_MIN } from "./RecommendationWeights";
 import { clamp } from "./ValueSpaceUtils";
 

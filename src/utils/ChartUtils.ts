@@ -1,10 +1,10 @@
-import { ChartData } from 'chart.js';
-import { ITrackModel, ITrackProps } from '../types/ITrackModel';
-import { IValueSpace } from '../types/IValueSpace';
-import { QuestionContent } from '../types/QuestionContent';
+import type { ChartData } from 'chart.js';
+import type { ITrackModel, ITrackProps } from '../types/ITrackModel';
+import type { IValueSpace } from '../types/IValueSpace';
+import type { QuestionContent } from '../types/QuestionContent';
 import { pages } from '../data/pages';
-import { ValueSpaceProperties } from '../types/IValueModifier';
-import { IPlotPoint } from '../types/IPlotPoint';
+import type { ValueSpaceProperties } from '../types/IValueModifier';
+import type { IPlotPoint } from '../types/IPlotPoint';
 import { Decimals, Round } from './MathUtils';
 const NO_DATA = {
     datasets: [],

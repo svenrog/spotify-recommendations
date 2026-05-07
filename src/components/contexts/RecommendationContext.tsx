@@ -1,22 +1,20 @@
-import React, { createContext, useState } from 'react';
-import { IValueSpace } from '../../types/IValueSpace';
-import {
-    IRecommendationProfile,
-} from '../../types/IRecommendationProfile';
+import { createContext, useState, type Dispatch, type ReactNode } from 'react';
+import type { IValueSpace } from '../../types/IValueSpace';
+import type { IRecommendationProfile } from '../../types/IRecommendationProfile';
 import { defaults } from './defaults';
 
 export interface IRecommendationContext extends IRecommendationProfile {
-    setDurationMs: React.Dispatch<IValueSpace>;
-    setKey: React.Dispatch<IValueSpace>;
-    setMode: React.Dispatch<IValueSpace>;
-    setTempo: React.Dispatch<IValueSpace>;
-    setAcousticness: React.Dispatch<IValueSpace>;
-    setDanceability: React.Dispatch<IValueSpace>;
-    setEnergy: React.Dispatch<IValueSpace>;
-    setInstrumentalness: React.Dispatch<IValueSpace>;
-    setValence: React.Dispatch<IValueSpace>;
-    setLiveness: React.Dispatch<IValueSpace>;
-    setQuestionsAnswered: React.Dispatch<number>;
+    setDurationMs: Dispatch<IValueSpace>;
+    setKey: Dispatch<IValueSpace>;
+    setMode: Dispatch<IValueSpace>;
+    setTempo: Dispatch<IValueSpace>;
+    setAcousticness: Dispatch<IValueSpace>;
+    setDanceability: Dispatch<IValueSpace>;
+    setEnergy: Dispatch<IValueSpace>;
+    setInstrumentalness: Dispatch<IValueSpace>;
+    setValence: Dispatch<IValueSpace>;
+    setLiveness: Dispatch<IValueSpace>;
+    setQuestionsAnswered: Dispatch<number>;
     questionsAnswered: number;
 }
 
@@ -25,7 +23,7 @@ const RecommendationContext = createContext<IRecommendationContext | null>(
 );
 
 interface Props {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 function RecommendationContextProvider({ children }: Props) {

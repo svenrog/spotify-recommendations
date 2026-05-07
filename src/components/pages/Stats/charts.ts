@@ -1,11 +1,11 @@
-import {
+import type {
     PluginChartOptions,
     ScaleChartOptions,
     ScriptableContext,
 } from 'chart.js';
 import { chartLabelStyle } from '../Shared/styles';
 //@ts-ignore
-import { _DeepPartialObject } from 'chart.js/dist/types/utils';
+import type { _DeepPartialObject } from 'chart.js/dist/types/utils';
 
 export function getScatterPlotOptions(renderTicks?: (value: string | number) => string): _DeepPartialObject<PluginChartOptions<"scatter"> & ScaleChartOptions<"scatter">> {
     return {
