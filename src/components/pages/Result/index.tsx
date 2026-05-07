@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { useRecommendations } from '../../../hooks/useRecommendations';
 import { PageComponent } from '../../../types/PageComponent';
 import { PageContent } from '../../../types/PageContent';
@@ -11,13 +11,20 @@ import {
     sortTracks,
 } from '../../../utils/RecommendationUtils';
 import SpotifyEmbed from '../../atoms/SpotifyEmbed';
-import { tracks } from '../../../data/tracks';
+import type { ITrackModel } from '../../../types/ITrackModel';
+import { loadTracks } from '../../../data/tracks';
 
 function Result({ page }: PageComponent) {
     const [recommendations, _] = useRecommendations();
+    const [trackData, setTrackData] = useState<ITrackModel[] | null>(null);
+    useEffect(() => {
+        let cancelled=false;
+        loadTracks().then(t=>{if(!cancelled) setTrackData(t);});
+        return ()=>{cancelled=true;};
+    }, []);
     const result = useMemo(
-        () => sortTracks(tracks, recommendations),
-        [recommendations]
+        () => trackData? sortTracks(trackData, recommendations) : [],
+        [trackData, recommendations]
     );
     const track = useMemo(
         () => recommendations?.questionsAnswered ? result.shift() : null,
