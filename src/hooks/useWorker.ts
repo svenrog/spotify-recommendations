@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, type Inputs } from "react";
 
 export const useWorker = (
     workerConstructor: ({
@@ -6,7 +6,7 @@ export const useWorker = (
     }),
     message: any,
     onmessage: (event: MessageEvent) => any,
-    deps?: React.Inputs,
+    deps?: Inputs,
     onmessageerror?: (event: MessageEvent) => any,
     onerror?: (event: ErrorEvent) => any,
 ) => {

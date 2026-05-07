@@ -1,4 +1,4 @@
-import { PageType } from '../types/PageType';
+import type { PageType } from '../types/PageType';
 
 const pages: PageType[] = [
     {

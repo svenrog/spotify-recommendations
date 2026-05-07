@@ -1,4 +1,4 @@
-import { IValueSpace } from "../types/IValueSpace";
+import type { IValueSpace } from "../types/IValueSpace";
 
 export function adjustValueSpace(value: IValueSpace, diff?: IValueSpace): IValueSpace {
     if (!diff) return value;
