@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { ITrackModel } from '../../types/ITrackModel';
+import type { ITrackModel } from '../../types/ITrackModel';
 import { tracks as staticTracks } from '../../data/tracks';
 
 const TracksContext = createContext<{ tracks: ITrackModel[] | null }>({

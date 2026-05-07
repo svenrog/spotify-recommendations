@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
-import { IValueSpace } from '../../types/IValueSpace';
-import {
+import type { IValueSpace } from '../../types/IValueSpace';
+import type {
     IRecommendationProfile,
 } from '../../types/IRecommendationProfile';
 import { defaults } from './defaults';

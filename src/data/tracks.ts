@@ -1,5 +1,5 @@
 import tracks from './popular.json';
-import { ITrackModel } from '../types/ITrackModel';
+import type { ITrackModel } from '../types/ITrackModel';
 
 export { tracks }; // static — used by Stats, Weights, SSR prerendering
 

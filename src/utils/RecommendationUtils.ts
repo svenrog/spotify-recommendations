@@ -1,9 +1,9 @@
-import { IRecommendationContext } from "../components/contexts/RecommendationContext"
+import type { IRecommendationContext } from "../components/contexts/RecommendationContext"
 import { getDistance, getRotationalDistance } from "./ValueSpaceUtils"
-import { ITrackModel, ITrackValues } from "../types/ITrackModel"
-import { IRecommendationProfile } from "../types/IRecommendationProfile";
+import type { ITrackModel, ITrackValues } from "../types/ITrackModel"
+import type { IRecommendationProfile } from "../types/IRecommendationProfile";
 import { DURATION_MAX, DURATION_MIN, KEY_DIVISOR, KEY_MAX, MULTIPLE_OPERATIONS_MAX, MULTIPLE_OPERATION_SCALE, Scaling, TEMPO_MAX, TEMPO_MIN } from "./RecommendationWeights";
-import { IValueSpace } from "../types/IValueSpace";
+import type { IValueSpace } from "../types/IValueSpace";
 
 export function sortTracks(tracks?: ITrackModel[], profile?: IRecommendationProfile | null): ITrackModel[] {
     if (!tracks || !tracks.sort) return [];
