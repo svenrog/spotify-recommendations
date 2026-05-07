@@ -1,3 +1,4 @@
+import type { ITrackModel } from './types/ITrackModel';
 import { useEffect, useState } from 'react';
 import { LocationProvider } from 'preact-iso';
 import { RecommendationContextProvider } from './components/contexts/RecommendationContext';
@@ -13,7 +14,7 @@ export interface IApplicationProps {
 }
 
 function App({ ssr, url }: IApplicationProps) {
-    const [trackData, setTrackData] = useState<typeof import('./data/tracks').tracks | null>(null);
+    const [trackData, setTrackData] = useState<ITrackModel[] | null>(null);
 
     useEffect(() => {
         preloadTracks().then(setTrackData);
